@@ -7,3 +7,5 @@ MyGo 固定为 v0.8.1，包含音频输出、Windows 绘制和测试工具的局
 重新生成 vendor 会覆盖这些修改。升级依赖时须核对补丁、更新来源哈希并运行音频、界面和应用测试；不能只修改 go.mod。
 
 模块许可清单见 dependency-inventory.json，补充许可见 additional-notice-inventory.json，嵌入文件与源码告知分别见 embed-inventory.json、source-header-notices.json。vendor-source-hashes.json 记录当前第三方源码哈希。
+
+扫描告警涉及的测试数据、NSIS 告知与实际分发范围见 [扫描审查说明](LICENSE_REVIEW.md)。

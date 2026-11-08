@@ -803,7 +803,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-Module: golang.org/x/net v0.59.0 / LICENSE
+Module: golang.org/x/net v0.62.0 / LICENSE
 Copyright 2009 The Go Authors.
 
 Redistribution and use in source and binary forms, with or without
@@ -1872,7 +1872,7 @@ Source: https://github.com/lucide-icons/lucide/tree/ee8e10d746a10907205366cfd984
 
 ## Public Suffix List data
 
-golang.org/x/net v0.59.0 embeds a compiled Public Suffix List snapshot.
+golang.org/x/net v0.62.0 embeds a compiled Public Suffix List snapshot.
 Its publicsuffix/table.go identifies data revision d6c92f1bbb7433e5db7b8405c25d4035fb8ff376.
 The unmodified source snapshot is provided in publicsuffix/public_suffix_list.dat with its original MPL 2.0 header; license text is in publicsuffix/LICENSE.
 Source: https://github.com/publicsuffix/list/blob/d6c92f1bbb7433e5db7b8405c25d4035fb8ff376/public_suffix_list.dat

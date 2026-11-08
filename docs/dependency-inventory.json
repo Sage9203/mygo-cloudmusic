@@ -117,7 +117,7 @@
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
     "scope": "Windows amd64 application dependency graph",
     "module": "golang.org/x/net",
-    "version": "v0.59.0"
+    "version": "v0.62.0"
   },
   {
     "rootLicenseFiles": [
