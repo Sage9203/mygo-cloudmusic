@@ -1,4 +1,6 @@
 # MyGo CloudMusic
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSage9203%2Fmygo-cloudmusic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSage9203%2Fmygo-cloudmusic?ref=badge_shield)
+
 
 一个简洁的第三方网易云音乐桌面客户端。
 
@@ -42,3 +44,7 @@
 基于原 MyGo CloudMusic 源码继续维护，使用 [MyGo](https://github.com/egoist/mygo) 构建原生界面。感谢原作者及相关开源项目，具体来源见 [致谢](docs/ORIGIN.md)。
 
 项目采用 [AGPL-3.0](LICENSE)，第三方许可见 [THIRD-PARTY-LICENSES.txt](THIRD-PARTY-LICENSES.txt)。本项目与网易云音乐官方无关，不提供音乐内容或会员权限。
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSage9203%2Fmygo-cloudmusic.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSage9203%2Fmygo-cloudmusic?ref=badge_large)
