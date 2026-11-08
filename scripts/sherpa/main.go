@@ -259,11 +259,19 @@ func extract(archive, dir string, names []string) error {
 		return err
 	}
 	defer f.Close()
-	want := map[string]bool{}
-	for _, n := range names {
-		want[n] = true
+	return extractTar(tar.NewReader(bzip2.NewReader(f)), dir, names)
+}
+
+func extractTar(tr *tar.Reader, dir string, names []string) error {
+	root, err := os.OpenRoot(dir)
+	if err != nil {
+		return err
 	}
-	tr := tar.NewReader(bzip2.NewReader(f))
+	defer root.Close()
+	want := map[string]string{}
+	for _, n := range names {
+		want[n] = n
+	}
 	for {
 		h, err := tr.Next()
 		if err == io.EOF {
@@ -272,11 +280,13 @@ func extract(archive, dir string, names []string) error {
 		if err != nil {
 			return err
 		}
-		name := path.Base(h.Name)
-		if h.Typeflag != tar.TypeReg || !want[name] {
+		name, wanted := want[path.Base(h.Name)]
+		if h.Typeflag != tar.TypeReg || !wanted {
 			continue
 		}
-		out, err := os.OpenFile(filepath.Join(dir, name), os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o755)
+		// Only caller-selected names are written, within root, without
+		// following or overwriting an existing file or link.
+		out, err := root.OpenFile(name, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o755)
 		if err != nil {
 			return err
 		}
@@ -290,7 +300,7 @@ func extract(archive, dir string, names []string) error {
 		delete(want, name)
 	}
 	if len(want) > 0 {
-		return fmt.Errorf("%s has no %v", filepath.Base(archive), want)
+		return fmt.Errorf("archive is missing libraries: %v", want)
 	}
 	return nil
 }
