@@ -1,0 +1,8 @@
+{
+  "sampleRate": 44100,
+  "channels": 2,
+  "bitrate": 128000,
+  "frames": 193,
+  "maxMainDataBegin": 511,
+  "borrowsAcrossMultipleFrames": true
+}

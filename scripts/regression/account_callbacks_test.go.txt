@@ -1,0 +1,330 @@
+package app
+
+import (
+	"errors"
+	"io"
+	"net/http"
+	"strings"
+	"testing"
+"time"
+"slices"
+"github.com/egoist/mygo/ui"
+
+	"netease-music-mygo/internal/netease"
+)
+
+var callbackQueue=make(chan func(),16)
+type accountTransport func(*http.Request)(*http.Response,error)
+func(f accountTransport)RoundTrip(r *http.Request)(*http.Response,error){return f(r)}
+
+// Old account failures must not roll back hearts in a newer account, while a
+// failure in the original account must still undo its optimistic change.
+func TestAccountCallbackLike(t *testing.T){
+	before:=likeSong
+	defer func(){likeSong=before}()
+	likeSong=func(int64,bool)error{return errors.New("test failure")}
+	for _,changed:=range []bool{false,true}{
+		a:=newTestApp()
+		a.profile=&netease.Profile{UserID:1}
+		a.toggleLike(&netease.Track{ID:7})
+		callback:=wait(t,callbackQueue,"like response")
+		if changed {a.accountEpoch++;a.profile=&netease.Profile{UserID:2};a.liked=map[int64]bool{7:true}}
+		callback()
+		if a.liked[7]!=changed {t.Fatalf("account changed %v: liked %v",changed,a.liked[7])}
+	}
+}
+
+// A late old home response must not replace the newer request, even on the
+// same account; changing accounts also starts a new home request.
+func TestAccountCallbackHome(t *testing.T){
+	before:=http.DefaultTransport
+	defer func(){http.DefaultTransport=before}()
+	http.DefaultTransport=accountTransport(func(r *http.Request)(*http.Response,error){
+		body:=`{"code":200,"result":[{"id":1}],"list":[{"id":1}],"recommend":[{"id":1}],"data":{"dailySongs":[{"id":1}]},"songs":[{"id":1}],"privileges":[]}`
+		return &http.Response{StatusCode:200,Header:make(http.Header),Body:io.NopCloser(strings.NewReader(body)),Request:r},nil
+	})
+	for _,changed:=range []bool{false,true}{
+		a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+		a.loadHome()
+		old:=wait(t,callbackQueue,"old home")
+		if changed {a.accountEpoch++;a.profile=&netease.Profile{UserID:2}}
+		a.loadHome()
+		newer:=wait(t,callbackQueue,"new home")
+		newer()
+		a.daily=[]netease.Track{{ID:2}};a.recPlaylists=[]netease.Playlist{{ID:2}}
+		old()
+		if len(a.daily)!=1||a.daily[0].ID!=2||len(a.recPlaylists)!=1||a.recPlaylists[0].ID!=2{t.Fatal("old home overwrote the current home")}
+	}
+}
+
+// A failed deletion from the previous account must not reinsert its playlist
+// into the new account's sidebar.
+func TestAccountCallbackDelete(t *testing.T){
+	before:=deletePlaylist;defer func(){deletePlaylist=before}()
+	deletePlaylist=func(int64)error{return errors.New("test failure")}
+	a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+	a.mine=[]netease.Playlist{{ID:7}};a.deleting=deleteDialog{id:7}
+	a.deleteChosen()
+	callback:=wait(t,callbackQueue,"delete response")
+	a.accountEpoch++;a.profile=&netease.Profile{UserID:2};a.mine=[]netease.Playlist{{ID:9}}
+	callback()
+	if len(a.mine)!=1||a.mine[0].ID!=9{t.Fatal("old delete restored a playlist in the new account")}
+}
+
+// Repeated clicks on the same song must not submit competing requests while its reply is pending.
+func TestAccountCallbackLikeSerial(t *testing.T) {
+ before:=likeSong;defer func(){likeSong=before}()
+ likeSong=func(int64,bool)error{return nil}
+ a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+ a.toggleLike(&netease.Track{ID:7})
+ first:=wait(t,callbackQueue,"first like")
+ a.toggleLike(&netease.Track{ID:7})
+ if !a.liked[7] {
+  t.Error("second click changed a pending heart")
+  wait(t,callbackQueue,"second like")()
+ }
+ first()
+}
+
+// An older liked-list read must not erase a heart changed after that read began.
+func TestAccountCallbackLikedRead(t *testing.T){
+ before:=likedIDs;write:=likeSong
+ defer func(){likedIDs=before;likeSong=write}()
+ likedIDs=func(int64)([]int64,error){return nil,nil}
+ likeSong=func(int64,bool)error{return nil}
+ a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+ a.loadLiked(1)
+ old:=wait(t,callbackQueue,"liked list")
+ a.toggleLike(&netease.Track{ID:7})
+ wait(t,callbackQueue,"like write")()
+ old()
+ if !a.liked[7] {t.Fatal("old list erased the new heart")}
+ a.loadLiked(1);wait(t,callbackQueue,"fresh list")()
+ if a.liked[7] {t.Fatal("fresh external change was ignored")}
+}
+
+// A failed program-like query remains unknown and does not retry on every render.
+func TestAccountCallbackProgramFailure(t *testing.T){
+ before:=programsLiked;defer func(){programsLiked=before}()
+ programsLiked=func([]int64)(map[int64]bool,error){return nil,errors.New("offline")}
+ a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+ a.askProgramLikes([]int64{7});wait(t,callbackQueue,"program likes")()
+ if _,known:=a.likedPrograms[7];known {t.Fatal("network failure became a known dislike")}
+ a.askProgramLikes([]int64{7})
+ if a.askedPrograms[7] {t.Fatal("retried before backoff")}
+ a.programRetry[7]=time.Time{}
+ programsLiked=func([]int64)(map[int64]bool,error){return map[int64]bool{7:true},nil}
+ a.askProgramLikes([]int64{7});wait(t,callbackQueue,"retry")()
+ if !a.likedPrograms[7] {t.Fatal("retry did not restore known liked state")}
+}
+
+// Reopening a stale playlist refreshes its contents, keeping the old page on failure.
+func TestAccountCallbackPlaylistRefresh(t *testing.T){
+ before:=playlistDetail;defer func(){playlistDetail=before}()
+ a:=newTestApp();a.playlists[7]=&netease.Playlist{ID:7,Name:"old"}
+ playlistDetail=func(int64)(*netease.Playlist,error){return &netease.Playlist{ID:7,Name:"new"},nil}
+ a.loadPlaylist(7,false);wait(t,callbackQueue,"playlist refresh")()
+ if a.playlists[7].Name!="new" {t.Fatal("stale playlist not refreshed")}
+ a.playlistAt[7]=time.Time{}
+ playlistDetail=func(int64)(*netease.Playlist,error){return nil,errors.New("offline")}
+ a.loadPlaylist(7,false);wait(t,callbackQueue,"failed playlist refresh")()
+ if a.playlists[7].Name!="new" {t.Fatal("failed refresh discarded the last good page")}
+}
+
+func runCallbacks(t *testing.T, done func()bool){t.Helper();for !done(){wait(t,callbackQueue,"UI completion")()}}
+
+// UI clicks wait for their actual queued completion before toggling again.
+func TestAccountCallbackLikeFromPlayerBar(t *testing.T) {
+	calls := make(chan bool, 4)
+	likeSong = func(id int64, like bool) error { calls <- like; return nil }
+	defer func() { likeSong = netease.Like }()
+
+	a := newTestApp()
+	a.settings = defaultSettings()
+	a.profile = &netease.Profile{UserID: 1, Nickname: "小明"}
+	tr := netease.Track{ID: 7, Name: "宝船", Artists: []netease.Artist{{Name: "DOUDOU"}}, Duration: 200000}
+	a.pl.Cue([]netease.Track{tr})
+	a.pl.SetLyrics(nil)
+	tt := ui.NewTester(a.view, 1200, 800)
+	tt.Advance(time.Second)
+	tt.Frame()
+
+	if err := tt.Click("喜欢"); err != nil {
+		t.Fatal(err)
+	}
+	if !a.liked[7] {
+		t.Fatal("the heart did not fill at once")
+	}
+	if like := <-calls; !like {
+		t.Error("asked NetEase to unlike")
+	}
+ runCallbacks(t,func()bool{return !a.songLiking[7]})
+	tt.Frame()
+	if err := tt.Click("取消喜欢"); err != nil {
+		t.Fatal(err)
+	}
+	if a.liked[7] {
+		t.Error("still liked after unliking")
+	}
+	if like := <-calls; like {
+		t.Error("asked NetEase to like again")
+	}
+
+ runCallbacks(t,func()bool{return !a.songLiking[7]})
+}
+
+// UI clicks wait for their actual queued completion before toggling again.
+func TestAccountCallbackLikeEpisode(t *testing.T) {
+	asked := make(chan []int64, 4)
+	programsLiked = func(ids []int64) (map[int64]bool, error) { asked <- ids; return nil, nil }
+	type call struct {
+		id   int64
+		like bool
+	}
+	calls := make(chan call, 4)
+	likeProgram = func(id int64, like bool) error { calls <- call{id, like}; return nil }
+	likeSong = func(int64, bool) error { t.Error("liked the episode's audio as a song"); return nil }
+	defer func() {
+		programsLiked, likeProgram, likeSong = netease.ProgramsLiked, netease.LikeProgram, netease.Like
+	}()
+
+	a := newTestApp()
+	a.settings = defaultSettings()
+	a.profile = &netease.Profile{UserID: 1}
+	a.pl.Cue([]netease.Track{{ID: 13, Name: "第一期", ProgramID: 3, PodcastID: 5, Duration: 600000}})
+	tt := ui.NewTester(a.view, 1200, 800)
+	tt.Advance(time.Second)
+	tt.Frame()
+	if ids := wait(t, asked, "whether the episode is liked"); !slices.Equal(ids, []int64{3}) {
+		t.Fatalf("asked of %v", ids)
+	}
+	if err := tt.Click("喜欢"); err != nil {
+		t.Fatal(err)
+	}
+	if !a.likedPrograms[3] {
+		t.Fatal("the heart did not fill at once")
+	}
+	if c := wait(t, calls, "the like"); c != (call{3, true}) {
+		t.Errorf("asked NetEase for %+v", c)
+	}
+ runCallbacks(t,func()bool{return !a.programLiking[3]})
+	tt.Frame()
+	if err := tt.Click("取消喜欢"); err != nil {
+		t.Fatal(err)
+	}
+	if c := wait(t, calls, "the unlike"); c != (call{3, false}) || a.likedPrograms[3] {
+		t.Errorf("asked NetEase for %+v, liked %v", c, a.likedPrograms[3])
+	}
+	if len(asked) > 0 {
+		t.Error("asked again whether the episode is liked")
+	}
+
+ runCallbacks(t,func()bool{return !a.programLiking[3]})
+}
+
+// UI clicks wait for their actual queued completion before toggling again.
+func TestAccountCallbackLikeComment(t *testing.T) {
+	type call struct {
+		thread string
+		id     int64
+		like   bool
+	}
+	calls := make(chan call, 4)
+	likeComment = func(thread string, id int64, like bool) error { calls <- call{thread, id, like}; return nil }
+	defer func() { likeComment = netease.LikeComment }()
+	a:=newTestApp();a.settings=defaultSettings();a.pl.Cue([]netease.Track{{ID:2}});a.nowPlaying=true;tt:=ui.NewTester(a.view,1200,800)
+	a.profile = &netease.Profile{UserID: 1}
+	cm := netease.Comment{ID: 9, Content: "好听", LikedCount: 41}
+	a.comments = commentState{track: 2, thread: "R_SO_4_2", loaded: true, total: 1, hot: []netease.Comment{cm}, latest: []netease.Comment{cm}}
+	a.npPane = paneComments
+	tt.Frame()
+	if err := tt.Click("赞"); err != nil {
+		t.Fatal(err)
+	}
+	if c := wait(t, calls, "the like"); c != (call{"R_SO_4_2", 9, true}) {
+		t.Errorf("asked NetEase for %+v", c)
+	}
+	for _, cm := range []netease.Comment{a.comments.hot[0], a.comments.latest[0]} {
+		if !cm.Liked || cm.LikedCount != 42 {
+			t.Fatalf("liked %v by %d", cm.Liked, cm.LikedCount)
+		}
+	}
+ runCallbacks(t,func()bool{return !a.comments.liking[9]})
+	tt.Frame()
+	if err := tt.Click("取消赞"); err != nil {
+		t.Fatal(err)
+	}
+	if c := wait(t, calls, "the unlike"); c.like {
+		t.Error("liked again")
+	}
+	for _, cm := range []netease.Comment{a.comments.hot[0], a.comments.latest[0]} {
+		if cm.Liked || cm.LikedCount != 41 {
+			t.Errorf("unliked: liked %v by %d", cm.Liked, cm.LikedCount)
+		}
+	}
+
+ runCallbacks(t,func()bool{return !a.comments.liking[9]})
+}
+
+// Keyboard likes also wait for their queued completion before toggling again.
+func TestAccountCallbackLikeCurrent(t *testing.T) {
+	songs := make(chan struct{}, 2)
+	programs := make(chan struct{}, 1)
+	likeSong = func(int64, bool) error { songs <- struct{}{}; return nil }
+	defer func() { likeSong = netease.Like }()
+	a := newTestApp()
+	a.pl.Cue([]netease.Track{{ID: 7, Name: "宝船"}})
+	a.profile = &netease.Profile{UserID: 1}
+	a.likeCurrent()
+	if !a.liked[7] || a.toast != "已添加到我喜欢的音乐" {
+		t.Fatalf("liked %v, toast %q", a.liked[7], a.toast)
+	}
+ runCallbacks(t,func()bool{return !a.songLiking[7]})
+	a.likeCurrent()
+	if a.liked[7] || a.toast != "已取消喜欢" {
+		t.Fatalf("unliked: liked %v, toast %q", a.liked[7], a.toast)
+	}
+	// An episode playing: the episode, not its audio.
+	likeProgram = func(int64, bool) error { programs <- struct{}{}; return nil }
+	defer func() { likeProgram = netease.LikeProgram }()
+	a.pl.Cue([]netease.Track{{ID: 13, Name: "第一期", ProgramID: 3}})
+	a.likeCurrent()
+	if !a.likedPrograms[3] || a.liked[13] {
+		t.Fatalf("episode liked %v, its audio %v", a.likedPrograms[3], a.liked[13])
+	}
+	for range 2 {
+		wait(t, songs, "song-like update")
+	}
+	wait(t, programs, "episode-like update")
+
+ runCallbacks(t,func()bool{return !a.songLiking[7]&&!a.programLiking[3]})
+}
+
+// A playlist read started before a rename must not replace the completed edit.
+func TestAccountCallbackRenameBeatsRead(t *testing.T){
+ read,write:=playlistDetail,renamePlaylist
+ defer func(){playlistDetail=read;renamePlaylist=write}()
+ playlistDetail=func(int64)(*netease.Playlist,error){return &netease.Playlist{ID:7,Name:"old"},nil}
+ renamePlaylist=func(int64,string)error{return nil}
+ a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+ a.mine=[]netease.Playlist{{ID:7,Name:"old"}}
+ a.playlists[7]=&netease.Playlist{ID:7,Name:"old"}
+ a.loadPlaylist(7,false);old:=wait(t,callbackQueue,"old playlist")
+ a.naming=nameDialog{name:"new",rename:7};a.submitName()
+ wait(t,callbackQueue,"rename")()
+ old()
+ if a.mine[0].Name!="new"||a.playlists[7].Name!="new"{t.Fatal("old read overwrote the rename")}
+}
+
+// Repeated program likes stay serialized and a failed operation restores its prior state.
+func TestAccountCallbackProgramSerial(t *testing.T){
+ before:=likeProgram;defer func(){likeProgram=before}()
+ likeProgram=func(int64,bool)error{return errors.New("offline")}
+ a:=newTestApp();a.profile=&netease.Profile{UserID:1}
+ a.toggleProgramLike(7);first:=wait(t,callbackQueue,"program write")
+ a.toggleProgramLike(7)
+ if !a.likedPrograms[7]{t.Fatal("second click reversed a pending write")}
+ first()
+ if a.likedPrograms[7]||a.programLiking[7]{t.Fatal("failed write did not roll back")}
+}
+

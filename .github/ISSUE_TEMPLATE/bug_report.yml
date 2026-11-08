@@ -1,0 +1,23 @@
+name: 故障反馈
+description: 播放、界面或兼容性问题
+body:
+  - type: markdown
+    attributes:
+      value: 请勿上传 Cookie、登录二维码、凭据文件或完整应用数据。安全漏洞请参阅 SECURITY.md。
+  - type: input
+    id: version
+    attributes:
+      label: 程序版本及 Windows 版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤、预期结果与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 补充信息
+      description: 可选。音频问题请说明共享或独占模式；截图和日志请先遮盖个人信息。

@@ -1,0 +1,42 @@
+[
+  {
+    "path": "third_party/NOTICE.md",
+    "sha256": "aefb9d9f753857ca01813a1f8df911502ee2bc20f6c10b2f4282448817128b97",
+    "bytes": 3121
+  },
+  {
+    "path": "third_party/go/LICENSE",
+    "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "bytes": 1453
+  },
+  {
+    "path": "third_party/lucide/LICENSE",
+    "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+    "bytes": 3208
+  },
+  {
+    "path": "third_party/mygo-ebitengine/LICENSE",
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "bytes": 11357
+  },
+  {
+    "path": "third_party/mygo-ebitengine/NOTICE",
+    "sha256": "ca026e78986b8e1dd4d5b4fcf4a58f8f88e54de84bfa082181f6688d5c9e3710",
+    "bytes": 250
+  },
+  {
+    "path": "third_party/nsis/COPYING",
+    "sha256": "388357c1215ff403c5ebde3a5ecd273e68f8b79a579996775245d1ee65442aba",
+    "bytes": 15632
+  },
+  {
+    "path": "third_party/publicsuffix/LICENSE",
+    "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "bytes": 16726
+  },
+  {
+    "path": "third_party/publicsuffix/public_suffix_list.dat",
+    "sha256": "a5638281157e8c902b127a5376f9ea2d024bf2ee11524133a6a76cd1d14ee7be",
+    "bytes": 330467
+  }
+]

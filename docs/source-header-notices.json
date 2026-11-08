@@ -1,0 +1,834 @@
+[
+  {
+    "package": "golang.org/x/text/internal/tag",
+    "file": "internal/tag/tag.go",
+    "notices": [
+      "// Copyright 2015 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/compact.go",
+    "notices": [
+      "// Copyright 2018 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/compose.go",
+    "notices": [
+      "// Copyright 2018 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/coverage.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "// BaseLanguages returns the list of all supported base languages. It generates"
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/language.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/lookup.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/match.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/parse.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language",
+    "file": "internal/language/tags.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language/compact",
+    "file": "internal/language/compact/compact.go",
+    "notices": [
+      "// Copyright 2018 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language/compact",
+    "file": "internal/language/compact/language.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "\t// NOTE: exported tags will become part of the public API."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/internal/language/compact",
+    "file": "internal/language/compact/tags.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/coverage.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "// internationalization service. Note that not all types are supported by all",
+      "\t// Tags returns the list of supported tags.",
+      "\t// BaseLanguages returns the list of supported base languages.",
+      "\t// Scripts returns the list of supported scripts.",
+      "\t// Regions returns the list of supported regions.",
+      "\t// Supported defines a Coverage that lists all supported subtags. Tags",
+      "\tSupported Coverage = allSubtags{}"
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/doc.go",
+    "notices": [
+      "// Copyright 2017 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "// user-preferred languages to a list of supported languages.",
+      "// # Matching preferred against supported languages",
+      "// This list of supported languages is typically implied by the languages for"
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/language.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/match.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "// preferred tag with the same script as a supported tag to match this supported"
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/parse.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/text/language",
+    "file": "language/tags.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/transfer",
+    "file": "transfer/drag.go",
+    "notices": [
+      "// Allowed supplies the safe default (copy) and removes unsupported effects."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/platform",
+    "file": "internal/platform/platform.go",
+    "notices": [
+      "// ErrUnsupported is returned by features the current backend cannot provide.",
+      "// It is errors.ErrUnsupported too (errors.Is), which apps check.",
+      "var ErrUnsupported error = unsupportedError{}",
+      "type unsupportedError struct{}",
+      "func (unsupportedError) Error() string        { return \"not supported on this platform\" }",
+      "func (unsupportedError) Is(target error) bool { return target == errors.ErrUnsupported }"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/platform",
+    "file": "internal/platform/watch.go",
+    "notices": [
+      "\t// lists it, returns ErrUnsupported for a target that isn't one, and",
+      "\t// path relative to it. A backend that can't returns ErrUnsupported,"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/l10n",
+    "file": "internal/l10n/l10n.go",
+    "notices": [
+      "// package of each translation adds its own as it is imported."
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego/internal/strings",
+    "file": "internal/strings/strings.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2022 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "cdecl.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2026 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "func.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2022 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "gen.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2025 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "go_runtime.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2022 The Ebitengine Authors",
+      "// from runtime/runtime2.go, exported via go:linkname for usage with cgo assembly"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "struct_amd64.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2024 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "syscall.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2022 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "syscall_notstackargs.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2026 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "github.com/ebitengine/purego",
+    "file": "syscall_windows.go",
+    "notices": [
+      "// SPDX-License-Identifier: Apache-2.0",
+      "// SPDX-FileCopyrightText: 2022 The Ebitengine Authors"
+    ]
+  },
+  {
+    "package": "golang.org/x/net/publicsuffix",
+    "file": "publicsuffix/list.go",
+    "notices": [
+      "// Copyright 2012 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/windows",
+    "file": "internal/windows/content_rules.go",
+    "notices": [
+      "\t\tdone(nil, platform.ErrUnsupported)"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/windows",
+    "file": "internal/windows/uia_text.go",
+    "notices": [
+      "\tprocUiaGetReservedNotSupportedValue   = uiaCore.NewProc(\"UiaGetReservedNotSupportedValue\")"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo",
+    "file": "watch.go",
+    "notices": [
+      "\t// of permissions and other metadata are not reported, nor are"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/language",
+    "file": "language/language.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/language",
+    "file": "language/scripts_table.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/bidi_class.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/combining_classes.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/decomposition.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/east_asian_width.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/emojis.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/general_category.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/grapheme_break.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/indic_conjunct_break.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/line_break.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/mirroring.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/vertical_orientation.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/internal/unicodedata",
+    "file": "internal/unicodedata/word_break.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/segmenter",
+    "file": "segmenter/segmenter.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/segmenter",
+    "file": "segmenter/unicode14_rules.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "github.com/go-text/typesetting/segmenter",
+    "file": "segmenter/unicode29_rules.go",
+    "notices": [
+      "// SPDX-License-Identifier: Unlicense OR BSD-3-Clause"
+    ]
+  },
+  {
+    "package": "golang.org/x/image/internal/safemath",
+    "file": "internal/safemath/safemath.go",
+    "notices": [
+      "// Copyright 2026 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/bmp",
+    "file": "bmp/reader.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file.",
+      "// ErrUnsupported means that the input BMP image uses a valid but unsupported",
+      "var ErrUnsupported = errors.New(\"bmp: unsupported BMP image\")"
+    ]
+  },
+  {
+    "package": "golang.org/x/image/bmp",
+    "file": "bmp/writer.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/riff",
+    "file": "riff/riff.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/decode.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/filter.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/idct.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/partition.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/pred.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/predfunc.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/quant.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/reconstruct.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8",
+    "file": "vp8/token.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8l",
+    "file": "vp8l/decode.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8l",
+    "file": "vp8l/huffman.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/vp8l",
+    "file": "vp8l/transform.go",
+    "notices": [
+      "// Copyright 2014 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/webp",
+    "file": "webp/decode.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "golang.org/x/image/webp",
+    "file": "webp/doc.go",
+    "notices": [
+      "// Copyright 2016 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/ui",
+    "file": "ui/list_builder.go",
+    "notices": [
+      "// List creates a virtual list. The original row callback remains supported."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/ui",
+    "file": "ui/text_input_client.go",
+    "notices": [
+      "// TextInputSelection is the primary selection reported to native input"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir",
+    "file": "internal/shaderir/check.go",
+    "notices": [
+      "// Copyright 2023 The Ebitengine Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir",
+    "file": "internal/shaderir/program.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0",
+      "// forked from Ebitengine with package shader (see its documentation)."
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir",
+    "file": "internal/shaderir/type.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shader",
+    "file": "internal/shader/doc.go",
+    "notices": [
+      "// Apache License 2.0 in LICENSE, forked to compile MyGo's shaders: files"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shader",
+    "file": "internal/shader/expr.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shader",
+    "file": "internal/shader/shader.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shader",
+    "file": "internal/shader/stmt.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shader",
+    "file": "internal/shader/type.go",
+    "notices": [
+      "// Copyright 2020 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir/hlsl",
+    "file": "internal/shaderir/hlsl/hlsl.go",
+    "notices": [
+      "// Copyright 2022 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir/hlsl",
+    "file": "internal/shaderir/hlsl/type.go",
+    "notices": [
+      "// Copyright 2022 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/internal/shaderir/hlsl",
+    "file": "internal/shaderir/hlsl/uniform.go",
+    "notices": [
+      "// Copyright 2022 The Ebiten Authors",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/egoist/mygo/ui/shader",
+    "file": "ui/shader/shader.go",
+    "notices": [
+      "// compiler MyGo's is forked from: Go's syntax with the types bool, int,",
+      "// dot, ...), functions of its own, if, and for loops. Exported variables"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/consts",
+    "file": "internal/consts/consts.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/bits",
+    "file": "internal/bits/bits.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/frameheader",
+    "file": "internal/frameheader/frameheader.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/imdct",
+    "file": "internal/imdct/imdct.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/huffman",
+    "file": "internal/huffman/huffman.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/sideinfo",
+    "file": "internal/sideinfo/sideinfo.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/maindata",
+    "file": "internal/maindata/huffman.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/maindata",
+    "file": "internal/maindata/maindata.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3/internal/frame",
+    "file": "internal/frame/frame.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3",
+    "file": "decode.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/hajimehoshi/go-mp3",
+    "file": "source.go",
+    "notices": [
+      "// Copyright 2017 Hajime Hoshi",
+      "// Licensed under the Apache License, Version 2.0 (the \"License\");",
+      "//     http://www.apache.org/licenses/LICENSE-2.0"
+    ]
+  },
+  {
+    "package": "github.com/mewkiz/flac/internal/hashutil/crc16",
+    "file": "internal/hashutil/crc16/crc16.go",
+    "notices": [
+      "// Copyright 2013 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "github.com/mewkiz/flac/internal/hashutil/crc8",
+    "file": "internal/hashutil/crc8/crc8.go",
+    "notices": [
+      "// Copyright 2012 The Go Authors. All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "github.com/mewkiz/flac/meta",
+    "file": "meta/seektable.go",
+    "notices": [
+      "\t// The number of seek points is derived from the header length, divided by"
+    ]
+  },
+  {
+    "package": "rsc.io/qr/gf256",
+    "file": "gf256/gf256.go",
+    "notices": [
+      "// Copyright 2010 The Go Authors.  All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "rsc.io/qr/coding",
+    "file": "coding/qr.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors.  All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "rsc.io/qr",
+    "file": "png.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors.  All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  },
+  {
+    "package": "rsc.io/qr",
+    "file": "qr.go",
+    "notices": [
+      "// Copyright 2011 The Go Authors.  All rights reserved.",
+      "// license that can be found in the LICENSE file."
+    ]
+  }
+]

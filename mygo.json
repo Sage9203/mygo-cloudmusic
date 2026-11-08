@@ -1,0 +1,16 @@
+{
+  "name": "MyGo CloudMusic",
+  "identifier": "local.mygo.music.recovery",
+  "slug": "mygo-cloudmusic",
+  "version": "0.1.26-preview.1",
+  "out": "build",
+  "linux": {
+    "comment": "第三方网易云音乐桌面客户端",
+    "categories": [
+      "AudioVideo",
+      "Audio",
+      "Player"
+    ],
+    "webview": false
+  }
+}

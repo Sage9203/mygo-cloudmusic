@@ -1,0 +1,86 @@
+[
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "bdef66489fb585d5fc85e2b4851b43ee1816ecf8bfdfcf53e63bb2f8d14f8b0c",
+    "path": "icon/AppIcon-dev.icon/Assets/arm.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 619
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "281422020fdcbad0c29edacda5252dc198a7cc1eb7f76d6c9535b32921833516",
+    "path": "icon/AppIcon-dev.icon/Assets/label.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 436
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "dfbf672e16ca25b69ba6e9820da86d1413d5c776020749f9d9d91d8d86631ad4",
+    "path": "icon/AppIcon-dev.icon/Assets/record.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 19028
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "e46cedfee3f4c390e03ab6e587219eb72ad883fb54049206dc130b5d5d91bb80",
+    "path": "icon/AppIcon.icon/Assets/arm.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 616
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "281422020fdcbad0c29edacda5252dc198a7cc1eb7f76d6c9535b32921833516",
+    "path": "icon/AppIcon.icon/Assets/label.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 436
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "dfbf672e16ca25b69ba6e9820da86d1413d5c776020749f9d9d91d8d86631ad4",
+    "path": "icon/AppIcon.icon/Assets/record.svg",
+    "matchesRecoveredUpstream": true,
+    "bytes": 19028
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "a5efa45a8c0ec608f2372ab61253a6ce068d8fc436b44ce6f9d71ebe90d2f353",
+    "path": "internal/app/tray/tray-template.png",
+    "matchesRecoveredUpstream": true,
+    "bytes": 783
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "15addf5ffe82c2e7cc50913c41a5bd914dc397fcadf3bed20d09302cb198d9d3",
+    "path": "internal/app/tray/tray.png",
+    "matchesRecoveredUpstream": true,
+    "bytes": 5354
+  },
+  {
+    "licenseReview": "Generated mathematical signals; project AGPLv3; generator and provenance in testdata/README.md",
+    "sha256": "6f770e7cea00217407e5bdd3bda558d0299e60e76f55d4f75c7e58ef0a28c052",
+    "path": "internal/player/testdata/seek.flac",
+    "matchesRecoveredUpstream": false,
+    "bytes": 200220
+  },
+  {
+    "licenseReview": "Generated mathematical signals; project AGPLv3; generator and provenance in testdata/README.md",
+    "sha256": "b1815d8572020ccf6adc65a1f6fa3cb211c8a051146e3729ec1cf682f145412c",
+    "path": "internal/player/testdata/seek.mp3",
+    "matchesRecoveredUpstream": false,
+    "bytes": 80666
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "24f4e1ed7097888608a7eed98f9f8c38949e75e4c1188f0a6118b33751859772",
+    "path": "resources/icon-dev.png",
+    "matchesRecoveredUpstream": true,
+    "bytes": 721025
+  },
+  {
+    "licenseReview": "Unmodified upstream artwork; retained under upstream repository AGPLv3 declaration; authorship chain not independently established",
+    "sha256": "773343eaba8b33ba2e9217eaf3d56fd1cca7bd75e530ff42b09eefcbbae632fa",
+    "path": "resources/icon.png",
+    "matchesRecoveredUpstream": true,
+    "bytes": 723065
+  }
+]

@@ -1,0 +1,14 @@
+/build/
+/.mygo/
+mygo_windows_*.syso
+/netease-music-mygo
+/node_modules/
+/.claude/
+/.codex/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+*.part
+*.lnk
