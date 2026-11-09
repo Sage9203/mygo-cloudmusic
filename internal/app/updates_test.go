@@ -1,88 +1,125 @@
 package app
 
 import (
+	"context"
+	"errors"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
 	"github.com/egoist/mygo/ui"
-
-	"netease-music-mygo/internal/netease"
 )
 
-// fakeUpdater swaps the update plugin's preferences for ones in memory,
-// counting the checks asked for, until the returned function puts them
-// back.
-func fakeUpdater(checks, downloads *bool, checked *int) func() {
-	check, getChecks, setChecks := checkForUpdates, updateChecks, setUpdateChecks
-	getDownloads, setDownloads, last := updateDownloads, setUpdateDownloads, lastUpdateCheck
-	checkForUpdates = func() { *checked++ }
-	updateChecks = func() bool { return *checks }
-	setUpdateChecks = func(on bool) { *checks = on }
-	updateDownloads = func() bool { return *downloads }
-	setUpdateDownloads = func(on bool) { *downloads = on }
-	lastUpdateCheck = func() time.Time { return time.Time{} }
-	return func() {
-		checkForUpdates, updateChecks, setUpdateChecks = check, getChecks, setChecks
-		updateDownloads, setUpdateDownloads, lastUpdateCheck = getDownloads, setDownloads, last
+type releaseTransport func(*http.Request) (*http.Response, error)
+
+func (f releaseTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	return f(req)
+}
+
+// Release selection compares numeric versions and respects the installed channel.
+func TestFindAppRelease(t *testing.T) {
+	const payload = `[
+		{"tag_name":"v0.1.26-preview.10","published_at":"2026-11-08T10:00:00Z","prerelease":true},
+		{"tag_name":"v0.1.26-preview.2","published_at":"2026-11-09T10:00:00Z","prerelease":true},
+		{"tag_name":"v0.1.25","published_at":"2026-11-07T10:00:00Z"},
+		{"tag_name":"v9.0.0","published_at":"2026-11-09T10:00:00Z","draft":true},
+		{"tag_name":"v8.0.0","published_at":null},
+		{"tag_name":"v7.0.0/elsewhere","published_at":"2026-11-09T10:00:00Z"}
+	]`
+	for _, test := range []struct {
+		current string
+		tag     string
+		newer   bool
+	}{
+		{"0.1.26-preview.2", "v0.1.26-preview.10", true},
+		{"0.1.26-preview.10+local.1", "v0.1.26-preview.10", false},
+		{"0.1.26", "v0.1.25", false},
+	} {
+		t.Run(test.current, func(t *testing.T) {
+			client := &http.Client{Transport: releaseTransport(func(req *http.Request) (*http.Response, error) {
+				if req.Method != http.MethodGet || req.URL.String() != releasesAPI+"?per_page=100&page=1" ||
+					req.Header.Get("Authorization") != "" || req.Header.Get("Cookie") != "" {
+					t.Fatal("expected an unauthenticated GET of the project's releases")
+				}
+				return &http.Response{StatusCode: http.StatusOK, Body: io.NopCloser(strings.NewReader(payload))}, nil
+			})}
+			got, newer, err := findAppRelease(context.Background(), client, test.current)
+			if err != nil || got.Tag != test.tag || newer != test.newer {
+				t.Fatalf("release = %q, newer = %v, err = %v", got.Tag, newer, err)
+			}
+		})
 	}
 }
 
-// Turning off checking for updates turns it off in the updater, and
-// installing updates without asking can't be turned on without it.
-func TestTurnOffUpdateChecks(t *testing.T) {
-	checks, downloads, checked := true, false, 0
-	defer fakeUpdater(&checks, &downloads, &checked)()
-	a := newTestApp()
-	a.settings = defaultSettings()
-	a.updates = true
-	tt := ui.NewTester(a.settingsView, 560, 2000)
-	tt.Frame()
-	// The row's title is labelled as its switch is: click the switch, at
-	// the row's end.
-	toggle := func(title, desc string) {
-		t.Helper()
-		top, ok1 := tt.Find(title)
-		bottom, ok2 := tt.Find(desc)
-		if !ok1 || !ok2 {
-			t.Fatalf("no row %s", title)
+// HTTP failures and empty responses must leave the result unknown.
+func TestFindAppReleaseUnavailable(t *testing.T) {
+	for _, status := range []int{http.StatusOK, http.StatusForbidden} {
+		client := &http.Client{Transport: releaseTransport(func(*http.Request) (*http.Response, error) {
+			return &http.Response{StatusCode: status, Body: io.NopCloser(strings.NewReader("[]"))}, nil
+		})}
+		if _, newer, err := findAppRelease(context.Background(), client, "0.1.26-preview.2"); newer || err == nil {
+			t.Fatalf("status %d: newer = %v, err = %v", status, newer, err)
 		}
-		tt.ClickAt(560-28-16-12, (top.Y+bottom.Y+bottom.H)/2)
+	}
+}
+
+// A failed manual check can be retried, and the release button opens the selected tag.
+func TestCheckForUpdatesFromSettings(t *testing.T) {
+	const current = "0.1.26-preview.2"
+	const tag = "v0.1.26-preview.3"
+	original := checkAppRelease
+	defer func() { checkAppRelease = original }()
+	replies := make(chan releaseCheckState, 2)
+	replies <- releaseCheckState{err: context.DeadlineExceeded}
+	replies <- releaseCheckState{
+		release: appRelease{Tag: tag, Body: "更新说明正文", PublishedAt: time.Date(2026, 11, 8, 10, 0, 0, 0, time.UTC)},
+		newer:   true,
+	}
+	versions := make(chan string, 2)
+	checkAppRelease = func(version string) (appRelease, bool, error) {
+		versions <- version
+		reply := <-replies
+		return reply.release, reply.newer, reply.err
+	}
+	pending := make(chan func(), 1)
+	a := newTestApp()
+	tt := ui.NewTester(func(c *ui.Context) {
+		a.settingsContent(c, current, func(fn func()) { pending <- fn })
+	}, 560, 2000)
+	clickAndComplete := func() {
+		t.Helper()
+		if err := tt.Click("检查更新"); err != nil {
+			t.Fatal(err)
+		}
+		if !a.releaseCheck.running {
+			t.Fatal("the click did not start a check")
+		}
+		select {
+		case complete := <-pending:
+			complete()
+		case <-time.After(5 * time.Second):
+			t.Fatal("the worker did not return to the UI")
+		}
+		if got := <-versions; got != current {
+			t.Fatalf("checked version %q", got)
+		}
 		tt.Frame()
 	}
-	toggle("自动检查更新", "每天检查一次是否有新版本")
-	if checks {
-		t.Fatal("checks for updates still")
-	}
-	toggle("自动下载并安装", "在后台下载新版本，下次打开时生效")
-	if downloads {
-		t.Fatal("turned on installing updates without checking for them")
-	}
-	// It does turn on while the updater checks.
-	checks = true
 	tt.Frame()
-	toggle("自动下载并安装", "在后台下载新版本，下次打开时生效")
-	if !downloads {
-		t.Fatal("didn't turn on installing updates")
+	clickAndComplete()
+	if a.releaseCheck.running || !errors.Is(a.releaseCheck.err, context.DeadlineExceeded) {
+		t.Fatal("the timed-out check did not finish with its error")
 	}
-}
-
-// 检查更新 in the settings checks for updates as the user asked.
-func TestCheckForUpdatesFromSettings(t *testing.T) {
-	checks, downloads, checked := true, false, 0
-	defer fakeUpdater(&checks, &downloads, &checked)()
-	a := newTestApp()
-	a.settings = defaultSettings()
-	a.updates = true
-	a.profile = &netease.Profile{UserID: 1}
-	tt := ui.NewTester(a.settingsView, 560, 2000)
-	tt.Frame()
-	if err := tt.Click("检查更新"); err != nil {
+	clickAndComplete()
+	if err := tt.Click("查看发布页"); err != nil {
 		t.Fatal(err)
 	}
-	if checked != 1 {
-		t.Fatalf("checked %d times", checked)
+	if urls := tt.OpenedURLs(); len(urls) != 1 || urls[0] != releasesPage+tag {
+		t.Fatalf("opened %v", urls)
 	}
 }
 

@@ -198,6 +198,11 @@ func TestAccountCallbackLikeEpisode(t *testing.T) {
 	if ids := wait(t, asked, "whether the episode is liked"); !slices.Equal(ids, []int64{3}) {
 		t.Fatalf("asked of %v", ids)
 	}
+	// Finish the initial read before testing writes that share the callback queue.
+	runCallbacks(t, func() bool {
+		_, known := a.likedPrograms[3]
+		return known
+	})
 	if err := tt.Click("喜欢"); err != nil {
 		t.Fatal(err)
 	}
