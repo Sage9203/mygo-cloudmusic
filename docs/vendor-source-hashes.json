@@ -4209,11 +4209,11 @@
   },
   {
     "path": "github.com/klauspost/compress/fse/compress.go",
-    "sha256": "06073fe56b9a1477cf8f2f37bcfa763876257f64f413118e3962ed7172565691"
+    "sha256": "9e422fcfb2e595e86b016830dc919f4a8129611defe1e7ad8d8c5e366bea21bb"
   },
   {
     "path": "github.com/klauspost/compress/fse/decompress.go",
-    "sha256": "f30d291722fa174e3961a272f054a19e52c6101a9bf52464e19c12a997bfb088"
+    "sha256": "26cf1711bfb5020b3afad13f8b4ece02287b68df9fac554d1fca800814abae1e"
   },
   {
     "path": "github.com/klauspost/compress/fse/fse.go",
@@ -4233,11 +4233,15 @@
   },
   {
     "path": "github.com/klauspost/compress/huff0/bitreader.go",
-    "sha256": "dd01a3bc6e42f96a7516199fd2a6457e02aa531a2cedcc07b725dc7d37403b43"
+    "sha256": "1dd98d552acbc3530c9d77b14b0365f4e10485394f06fb330379b64be09a4bce"
   },
   {
     "path": "github.com/klauspost/compress/huff0/bitwriter.go",
     "sha256": "da46bbc76279fbe6e5790647e0344c483444021b7650a28daa0c7dd7f31e3632"
+  },
+  {
+    "path": "github.com/klauspost/compress/huff0/build_table.go",
+    "sha256": "fe63abca1f2ff79c840e5ab2fb5fbaceccc5e881848b6c666c21234f499f3cad"
   },
   {
     "path": "github.com/klauspost/compress/huff0/compress.go",
@@ -4245,19 +4249,31 @@
   },
   {
     "path": "github.com/klauspost/compress/huff0/decompress_amd64.go",
-    "sha256": "9aeafaec125e956d9a109a8f6a4093d6961902ed9657b05986534cf695be3faa"
+    "sha256": "52cf77f54de81041a1390bf828e910027a6a6b7937ef9eede63f0cc444678449"
   },
   {
     "path": "github.com/klauspost/compress/huff0/decompress_amd64.s",
-    "sha256": "1be4b028f6a98b957cf7557629bbc3aaead44fccf0c60f796fdee608b8d7ee9e"
+    "sha256": "604062261d8e148ceb70c1a234d576d3c3454b35d4a27c868146554343fef3e1"
+  },
+  {
+    "path": "github.com/klauspost/compress/huff0/decompress_arm64.go",
+    "sha256": "f975ff16898bc6a372d06a1f48407758b7d9d71e81d22b94d4bd176ebe8ab140"
+  },
+  {
+    "path": "github.com/klauspost/compress/huff0/decompress_arm64.s",
+    "sha256": "0875a130e3c54cc8df095115ad352afe20bbe81aed0e0b7e1f8f566361bc4838"
+  },
+  {
+    "path": "github.com/klauspost/compress/huff0/decompress_asm.go",
+    "sha256": "6508d7911abe1b89ab32201e2a6054adbc06c0c20ff66ba5efa47db5aec990c7"
   },
   {
     "path": "github.com/klauspost/compress/huff0/decompress_generic.go",
-    "sha256": "ba1cc4d77e412d58083f3a718e1fad7ee9f732f45f47b3c1008fc84b1579e818"
+    "sha256": "ab5454886851a3ae3d0138b5829381a8d150929ebe460a059957d21d64ffefc0"
   },
   {
     "path": "github.com/klauspost/compress/huff0/decompress.go",
-    "sha256": "1215c8e8259106f825450dc797550952e15aa8786b91630d5bf47664d35ec8df"
+    "sha256": "aa3f1fb1a3ec89a8e7dd3741abb0561d6f872314f59528bc1def1972604a7ac1"
   },
   {
     "path": "github.com/klauspost/compress/huff0/huff0.go",
@@ -4297,7 +4313,7 @@
   },
   {
     "path": "github.com/klauspost/compress/internal/snapref/decode.go",
-    "sha256": "fe5067e037b182775507aaff195bb36ddac3b254b9adbfa2bf9f2a74c5a7bdaa"
+    "sha256": "310de583b9b835b099db15ed414276dccddb0f6c1b7749f8f5b809f790720991"
   },
   {
     "path": "github.com/klauspost/compress/internal/snapref/encode_other.go",
@@ -4321,7 +4337,7 @@
   },
   {
     "path": "github.com/klauspost/compress/README.md",
-    "sha256": "94804907837cae0ff157fe027c861445f7ef0b02ae89002d0ef12e51baaa6df7"
+    "sha256": "edabc949078b5139cf1bd6f6f89d72fd57265b1826c59cb16174b4f7ab0239d8"
   },
   {
     "path": "github.com/klauspost/compress/s2sx.mod",
@@ -4345,7 +4361,7 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/blockdec.go",
-    "sha256": "b2e6c37759403e6b59f2ce9be65cab6e0a1d6629d8a79f8105ba1c64a563a76c"
+    "sha256": "123e4335a2996778cddf1a9c15a843ccbe57dbe1c6d151df429bd0caa0d941bc"
   },
   {
     "path": "github.com/klauspost/compress/zstd/blockenc.go",
@@ -4373,59 +4389,67 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/decoder.go",
-    "sha256": "14b850eb2880c4103fd09cd693237af4f315894c610fc6bf51852865ee14b582"
+    "sha256": "e257d10cc6bd7511dc4de63be7709ec1afb3d22ccf29ce4fe4f758dd72d62062"
   },
   {
     "path": "github.com/klauspost/compress/zstd/dict.go",
-    "sha256": "c0742de26d9fcd7a26c472d2b2b823cf19bb73737883e7f4e469228c7d35ac83"
+    "sha256": "8b38563f2dd350fedc8d51f7a1ee29599ad262ecf783c01e515fc888b51592a4"
   },
   {
     "path": "github.com/klauspost/compress/zstd/enc_base.go",
-    "sha256": "3bcb79516bf469f077a4fd0486d2ece01f7bb2c6959b9ec3c4e3eaeb8e90289a"
+    "sha256": "ed6183a07b2015bb45160cf3cdde26cb2285f80d0b38de258f4f232857849439"
   },
   {
     "path": "github.com/klauspost/compress/zstd/enc_best.go",
-    "sha256": "679b28e776926c3c70121163b0ed647d4fb7330f8804e161c906a605c741ef1a"
+    "sha256": "d24e0b656640b7a831c220ca96321b8abe82f4812a310064e54f4a9dc12d5273"
   },
   {
     "path": "github.com/klauspost/compress/zstd/enc_better.go",
-    "sha256": "f017c68af35219933def0324001fe0d5b4afbf13f9bb11bb89ebd60c5bf7839f"
+    "sha256": "66b60e7969627c4fbb01a5f677c9b9447be9d183197a43bea90d86963c90acc0"
   },
   {
     "path": "github.com/klauspost/compress/zstd/enc_dfast.go",
-    "sha256": "c69d71f76e4e6d40b75eb4d9e71fd10149819ad18da70f9a51ea3231c2a4d85a"
+    "sha256": "e5069eace9ad696100153b74be24435479f2e7ad217d1632ee481d3356743ef8"
   },
   {
     "path": "github.com/klauspost/compress/zstd/enc_fast.go",
-    "sha256": "ea12ee70f9150942a4f5185b9825edfcfd9aa62c2d8cb1f0a9319f555bc5d237"
+    "sha256": "085f9abaccb7c75bf1ff23f64514e7e8a0c264580169bfc12ce8e2d430e87b4c"
+  },
+  {
+    "path": "github.com/klauspost/compress/zstd/enc_jobs.go",
+    "sha256": "19df686e69757b835e2dbd5cf576774c0e66e436965f10c4a2d1e35b309db5d2"
   },
   {
     "path": "github.com/klauspost/compress/zstd/encoder_options.go",
-    "sha256": "78cac0ea887986a2a500be17b85b38f2a6cb2331a9fb65ace1d0ca70abff91ac"
+    "sha256": "4ae12e1e35a7893a3ce027f41437d14e011e73116c6620b62025086a6b584241"
   },
   {
     "path": "github.com/klauspost/compress/zstd/encoder.go",
-    "sha256": "c101d114affe0b2e50260db6fc8adf893c02346340dcec0f534aef328042db21"
+    "sha256": "3253274b936ac5c05b21b1cf10f3ed6b1e4fff5bd2db969771e70b926108c78b"
   },
   {
     "path": "github.com/klauspost/compress/zstd/framedec.go",
-    "sha256": "5ae64aea3e2c632d6148e0f0801d92290da1cd070b983d8298bfb505c7940cdf"
+    "sha256": "919e095465a8450f94dc2ef0d024d0873be090012552e98e43c7e9e35f63ce19"
   },
   {
     "path": "github.com/klauspost/compress/zstd/frameenc.go",
     "sha256": "826c75e733aaa50ef8cecb2223b4fad30c666cf1012cc0919fed64449067c9b2"
   },
   {
-    "path": "github.com/klauspost/compress/zstd/fse_decoder_amd64.go",
-    "sha256": "9a31305570cb5c98b698407be3b1b818fe4657ef0cf9118f0cf44959233f25d6"
+    "path": "github.com/klauspost/compress/zstd/fse_decoder_amd64.s",
+    "sha256": "d25ab2895d0e28f4fa5dc1312e496b050b401ec1bb270ec450fc8ca217806dea"
   },
   {
-    "path": "github.com/klauspost/compress/zstd/fse_decoder_amd64.s",
-    "sha256": "c4a1dfa1b108aa32f587b676523d09858c5ee5df9753d0067af5aee303e5df4b"
+    "path": "github.com/klauspost/compress/zstd/fse_decoder_arm64.s",
+    "sha256": "403d041bd6ff6407e75cabb276afcc5c5fec64373b7bf39a483940a9553ba4ab"
+  },
+  {
+    "path": "github.com/klauspost/compress/zstd/fse_decoder_asm.go",
+    "sha256": "58fa8565bdb52fc353f91e9cb75358c187a896c877df505c5e452ee7290b2555"
   },
   {
     "path": "github.com/klauspost/compress/zstd/fse_decoder_generic.go",
-    "sha256": "6e5e76f81facb37516a37b9a8041313339fd0760c8f822daec0edb6a30abfa3b"
+    "sha256": "eee92bf828f68586c7a473a9f14025b59a537c2ac0ee0f8240b82072274c0156"
   },
   {
     "path": "github.com/klauspost/compress/zstd/fse_decoder.go",
@@ -4457,11 +4481,11 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/internal/xxhash/xxhash_amd64.s",
-    "sha256": "3796a9c399d49392c3ad83af1452099d24c1e6fb993941d8bd1735879f5edbc8"
+    "sha256": "a6dfc44ff0d1e7929cfbb1f4aaec208fd868c568a378902dfe519fbe3fd75b4e"
   },
   {
     "path": "github.com/klauspost/compress/zstd/internal/xxhash/xxhash_arm64.s",
-    "sha256": "0e2b30d48c0ab8035e201d06c5b74813e39da76c7dc7e3239f4dd4acba7fbb64"
+    "sha256": "6263de49d76ade89a73b4c5ff5131ef598132e7f6cb7101ae2d59601133fee39"
   },
   {
     "path": "github.com/klauspost/compress/zstd/internal/xxhash/xxhash_asm.go",
@@ -4477,7 +4501,7 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/internal/xxhash/xxhash.go",
-    "sha256": "83344ca444865877a307d2980068f883716736e9a5b8fca36d13e5557ee319c1"
+    "sha256": "6ce8f2dc66afea0ad991a13827d9a70ced1633dab51526b9920c0f5ddd8215e0"
   },
   {
     "path": "github.com/klauspost/compress/zstd/matchlen_amd64.go",
@@ -4493,23 +4517,35 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/README.md",
-    "sha256": "20888516b13212230d419040203a284f537a820bbab91394bf4405169b6d3a73"
+    "sha256": "83bab933c9c86791e520006a2fa9cf26635ad57e37c009d5d55e638d3cf69421"
   },
   {
     "path": "github.com/klauspost/compress/zstd/seqdec_amd64.go",
-    "sha256": "a54d38ce2d9948da48d56378c6ac344e86d8f3bdc61c020407a39aa84ce330d6"
+    "sha256": "23d80eba1cb9a72e623b48e86a46956213a4fef1c0da3927f52b21e3ef4474b7"
   },
   {
     "path": "github.com/klauspost/compress/zstd/seqdec_amd64.s",
-    "sha256": "b3c4b4f8cc3224e2243824c767d6e6f2c61ca637a553104a581e69c4bdb7173f"
+    "sha256": "50e6a1c6a34b25058675d4608f36f37504acd2ba9973267b799311f2e178a700"
+  },
+  {
+    "path": "github.com/klauspost/compress/zstd/seqdec_arm64.go",
+    "sha256": "7bae921874ee667d03ec4e7b854778295f6bc81047e75ab4311b644f3efbbb31"
+  },
+  {
+    "path": "github.com/klauspost/compress/zstd/seqdec_arm64.s",
+    "sha256": "97a0a29c7ce5d5bd5946212de91173eb5ad2c0da60b44231e5d2815bb56f094f"
+  },
+  {
+    "path": "github.com/klauspost/compress/zstd/seqdec_asm.go",
+    "sha256": "c4945ef155a03e34ee47f8f4d10c152e29f01ccfbb4e624867790eb6526f643a"
   },
   {
     "path": "github.com/klauspost/compress/zstd/seqdec_generic.go",
-    "sha256": "059c3b7ab312882d09a7c3fa5f5961619400562758ad762fac7a29a3a836dad4"
+    "sha256": "a31f9fb4fdacba12b811cfd45a5974cf63e7b039d7b91998be52252389e74bbd"
   },
   {
     "path": "github.com/klauspost/compress/zstd/seqdec.go",
-    "sha256": "b2ea74a7161842bb0084474025f26b5375d2acbba2e5b7b25234bcfaf7efc4d7"
+    "sha256": "bf001f361d0173345cba802f84cefe594d5ae62862502da2a552dc5e1e15eb92"
   },
   {
     "path": "github.com/klauspost/compress/zstd/seqenc.go",
@@ -4521,7 +4557,7 @@
   },
   {
     "path": "github.com/klauspost/compress/zstd/snappy.go",
-    "sha256": "f0b8b75c040e2981c2e085f2887f2f5095ce7ce7c929994329e6d5c5d860dc70"
+    "sha256": "c6e64a7a5fb547668cf461e13aaeb3f466382bcf2fff9e95044d77756d609170"
   },
   {
     "path": "github.com/klauspost/compress/zstd/zip.go",
@@ -5961,7 +5997,7 @@
   },
   {
     "path": "modules.txt",
-    "sha256": "ea2de0ca206ef9c710f77c67160d5e67ca2a6dcd2b86923f748c4c97b2939337"
+    "sha256": "a1ebc0cb38a87e6b07e6d6cc414d83ad4bc2f7e64d645411ac1d90225e82cf6e"
   },
   {
     "path": "rsc.io/qr/coding/qr.go",

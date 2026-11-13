@@ -1,158 +1,158 @@
 [
   {
-    "rootLicenseFiles": [
-      {
-        "file": "LICENSE",
-        "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
-      }
-    ],
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.11.1",
     "module": "github.com/ebitengine/purego",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.11.1"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "f0b56f4ab53beb6e18c5e155219c2e2b6000b5475c0ae3ddb3af3894fd9349b4"
+        "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.9.0",
     "module": "github.com/egoist/mygo",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.9.0"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "6b1bf94c77d7faa0ce94f8745595bfaf4c404f8b3873f5c2ce55ca15f8e44eca"
+        "sha256": "f0b56f4ab53beb6e18c5e155219c2e2b6000b5475c0ae3ddb3af3894fd9349b4",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.3.5",
     "module": "github.com/go-text/typesetting",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.3.5"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        "sha256": "6b1bf94c77d7faa0ce94f8745595bfaf4c404f8b3873f5c2ce55ca15f8e44eca",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.3.4",
     "module": "github.com/hajimehoshi/go-mp3",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.3.4"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "7f07468215ea57ce0dd45a2a45a33226fccbf4136a87f8fa3db7f84a87d7b54d"
+        "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v1.1.0",
     "module": "github.com/icza/bitio",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v1.1.0"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c"
+        "sha256": "7f07468215ea57ce0dd45a2a45a33226fccbf4136a87f8fa3db7f84a87d7b54d",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v1.0.14",
     "module": "github.com/mewkiz/flac",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v1.0.14"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "UNLICENSE",
-        "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
+        "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.0.0-20250417130911-3f050ff8c56d",
     "module": "github.com/mewkiz/pkg",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.0.0-20250417130911-3f050ff8c56d"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "UNLICENSE",
-        "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
+        "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd",
+        "file": "UNLICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.0.0-20241026122259-37a80af23985",
     "module": "github.com/mewpkg/term",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.0.0-20241026122259-37a80af23985"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd",
+        "file": "UNLICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.46.0",
     "module": "golang.org/x/image",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.46.0"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.62.0",
     "module": "golang.org/x/net",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.62.0"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "v0.43.0",
     "module": "golang.org/x/text",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.43.0"
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+        "file": "LICENSE"
       }
-    ],
+    ]
+  },
+  {
+    "scope": "Windows amd64 application dependency graph",
+    "version": "",
     "module": "netease-music-mygo",
-    "scope": "Windows amd64 application dependency graph",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": ""
-  },
-  {
     "rootLicenseFiles": [
       {
-        "file": "LICENSE",
-        "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+        "sha256": "e0eedba615d5cd1b986afb6c5b3a4b1ae33713e7e9dc74d19daec5e3221f9d2e",
+        "file": "LICENSE"
       }
-    ],
-    "module": "rsc.io/qr",
+    ]
+  },
+  {
     "scope": "Windows amd64 application dependency graph",
+    "version": "v0.2.0",
+    "module": "rsc.io/qr",
     "review": "Module root notices; additional component notices are in third_party/NOTICE.md",
-    "version": "v0.2.0"
+    "rootLicenseFiles": [
+      {
+        "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067",
+        "file": "LICENSE"
+      }
+    ]
   }
 ]

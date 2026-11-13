@@ -25,3 +25,9 @@
 固定到 v0.62.0 以避开 [GO-2026-6860](https://pkg.go.dev/vuln/GO-2026-6860) 与 [GO-2026-6866](https://pkg.go.dev/vuln/GO-2026-6866) 的受影响版本。两项公告涉及 `html` 包；播放器实际依赖的是 `publicsuffix`，vendor 中不包含 `html`。
 
 更新模块版本、校验和和清单后，应对新提交重新扫描。历史版本的报告仍可能显示原来的告警；审核结论应注明所针对的提交。
+
+## MyGo 构建工具
+
+MyGo v0.9.0 的构建命令引入了 RPM 打包依赖。将 circl 固定到 v1.6.3、compress 固定到 v1.20.2，以处理扫描提示。Windows x64 播放器的构建依赖图不包含这两个模块，完整源码包保留构建工具所需的源码和许可。
+
+FOSSA 对 golang.org/x/crypto v0.58.0 标记了 openssl-ssleay。vendor 中保留该模块的根许可。扫描命中的具体文件和适用范围仍待确认。

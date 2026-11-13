@@ -1855,7 +1855,7 @@ The following components retain their own notices and licenses. This file does n
 
 ## MyGo / Ebitengine shader compiler
 
-MyGo is pinned to github.com/egoist/mygo v0.8.1.
+MyGo is pinned to github.com/egoist/mygo v0.9.0.
 Its internal/shader package documents a fork of Ebitengine's Kage compiler and internal/shaderir at commit 16f18b0.
 Copyright 2020-2023 The Ebiten / Ebitengine Authors, as recorded in the upstream source headers.
 These packages and the shaderir backends retain their Apache License 2.0 source headers.
