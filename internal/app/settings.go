@@ -2,6 +2,8 @@ package app
 
 import (
 	"encoding/json"
+	"errors"
+	"io"
 	"os"
 	"path/filepath"
 
@@ -122,7 +124,10 @@ func loadSettings() settings {
 	s := defaultSettings()
 	if path, err := settingsPath(); err == nil {
 		if b, err := os.ReadFile(path); err == nil {
-			json.Unmarshal(b, &s)
+			loaded := s
+			if json.Unmarshal(b, &loaded) == nil {
+				s = loaded
+			}
 		}
 		s.path = path
 	}
@@ -143,7 +148,27 @@ func (s settings) save() error {
 	if err := os.MkdirAll(filepath.Dir(path), 0o700); err != nil {
 		return err
 	}
-	return os.WriteFile(path, b, 0o600)
+	return writeSettingsFile(path, b, os.Rename)
+}
+
+// Stage the complete settings next to the destination before replacing it.
+func writeSettingsFile(path string, data []byte, replace func(string, string) error) error {
+	file, err := os.CreateTemp(filepath.Dir(path), ".settings-*.tmp")
+	if err != nil {
+		return err
+	}
+	defer os.Remove(file.Name())
+	n, err := file.Write(data)
+	if err == nil && n != len(data) {
+		err = io.ErrShortWrite
+	}
+	if err == nil {
+		err = file.Sync()
+	}
+	if err := errors.Join(err, file.Close()); err != nil {
+		return err
+	}
+	return replace(file.Name(), path)
 }
 
 // applyAppearance makes the windows light, dark, or follow the system.

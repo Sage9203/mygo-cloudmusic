@@ -148,10 +148,11 @@ type app struct {
 	sig                   playerSig
 	quitting              bool
 
-	settings     settings
-	settingsWin  *mygo.Window
-	cacheUsed    int64 // the bytes the song cache takes, -1 until measured
-	releaseCheck releaseCheckState
+	settings           settings
+	settingsSaveFailed bool
+	settingsWin        *mygo.Window
+	cacheUsed          int64 // the bytes the song cache takes, -1 until measured
+	releaseCheck       releaseCheckState
 
 	restored     bool   // playback picked up where it was left
 	savedSession string // the session as last kept

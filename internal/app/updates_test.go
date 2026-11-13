@@ -16,6 +16,19 @@ import (
 
 type releaseTransport func(*http.Request) (*http.Response, error)
 
+// Release summaries show readable headings and keep complete items where possible.
+func TestReleaseNotesSummary(t *testing.T) {
+	short := appRelease{Body: "### 本版更新\r\n\r\n- 修复问题"}
+	if got := short.notes(); got != "本版更新\n\n• 修复问题" {
+		t.Fatalf("notes = %q", got)
+	}
+	item := strings.Repeat("字", 350)
+	long := appRelease{Body: "- " + item + "\n- " + item}
+	if got := long.notes(); got != "• "+item+"…" {
+		t.Fatalf("summary did not end at the first item: %q", got)
+	}
+}
+
 func (f releaseTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	return f(req)
 }

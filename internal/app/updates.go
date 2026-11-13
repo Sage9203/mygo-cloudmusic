@@ -22,6 +22,7 @@ const (
 
 // Match the tags used by this project, and allow a local build suffix.
 var releaseVersionPattern = regexp.MustCompile(`^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-preview\.(0|[1-9][0-9]*))?(?:\+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)?$`)
+var releaseHeading = regexp.MustCompile(`^#{1,6}[ \t]+`)
 
 // Compare major, minor, patch, stable flag, then preview number.
 type releaseVersion [5]uint64
@@ -59,10 +60,22 @@ type appRelease struct {
 }
 
 func (r appRelease) notes() string {
-	notes := []rune(strings.TrimSpace(r.Body))
+	lines := strings.Split(strings.TrimSpace(r.Body), "\n")
+	for i, line := range lines {
+		line = releaseHeading.ReplaceAllString(strings.TrimSpace(line), "")
+		if item, ok := strings.CutPrefix(line, "- "); ok {
+			line = "• " + item
+		}
+		lines[i] = line
+	}
+	notes := []rune(strings.Join(lines, "\n"))
 	const limit = 600
 	if len(notes) > limit {
-		return strings.TrimSpace(string(notes[:limit])) + "…"
+		summary := string(notes[:limit])
+		if lineEnd := strings.LastIndexByte(summary, '\n'); lineEnd >= len(string(notes[:limit/2])) {
+			summary = summary[:lineEnd]
+		}
+		return strings.TrimSpace(summary) + "…"
 	}
 	return string(notes)
 }

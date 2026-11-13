@@ -1,12 +1,38 @@
 package app
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"testing"
 
 	"github.com/egoist/mygo"
 )
+
+// A failed replacement leaves the previous settings and removes the staged file.
+func TestSettingsReplacementFailure(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "settings.json")
+	old := []byte(`{"volume":0.3}`)
+	if err := os.WriteFile(path, old, 0600); err != nil {
+		t.Fatal(err)
+	}
+	blocked := errors.New("replacement blocked")
+	err := writeSettingsFile(path, []byte(`{"volume":0.4}`), func(_, _ string) error {
+		return blocked
+	})
+	if !errors.Is(err, blocked) {
+		t.Fatalf("save error = %v", err)
+	}
+	got, err := os.ReadFile(path)
+	if err != nil || string(got) != string(old) {
+		t.Fatalf("previous settings = %q, error = %v", got, err)
+	}
+	entries, err := os.ReadDir(dir)
+	if err != nil || len(entries) != 1 {
+		t.Fatalf("settings directory = %v, error = %v", entries, err)
+	}
+}
 
 // The public app name must still read and update settings from an earlier preview.
 func TestPreviewSettingsSurviveRename(t *testing.T) {

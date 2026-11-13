@@ -253,9 +253,25 @@ func (a *app) scrollVolume(ev ui.InputEvent) bool {
 	if ev.Kind != ui.InputScroll {
 		return false
 	}
-	a.volume = min(1, max(0, a.volume-float64(ev.DY)/400))
+	a.volume = min(1, max(0, a.volume-volumeScroll(ev)))
 	a.pl.SetVolume(a.volume)
 	return true
+}
+
+// Mouse wheel distance depends on the system's lines-per-notch setting.
+// Keep touchpad movement proportional and use a fixed step for the wheel.
+func volumeScroll(ev ui.InputEvent) float64 {
+	if ev.Precise {
+		return float64(ev.DY) / 400
+	}
+	switch {
+	case ev.DY > 0:
+		return 0.03
+	case ev.DY < 0:
+		return -0.03
+	default:
+		return 0
+	}
 }
 
 // volumeIcon is the speaker for volume v: silent, or with one or two waves.
