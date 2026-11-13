@@ -30,6 +30,9 @@ func setHeld(n int64) {
 // are.
 func heard() int64 { return mixed - unheard }
 
+// rampFrames is how long volume changes, fades in and fades out take: 5 ms.
+const rampFrames = sampleRate / 200
+
 // A source gives a voice its frames. Its methods run under mu and never
 // block.
 type source interface {
@@ -289,9 +292,6 @@ func (v *voice) gains(master float64) [4]float32 {
 	if !v.playing {
 		g = 0
 	}
-	if v.pan == 0 {
-		return [4]float32{float32(g), 0, 0, float32(g)}
-	}
 	if v.mono {
 		// Equal power, the middle as decoded.
 		x := (v.pan + 1) / 2 * math.Pi / 2
@@ -320,10 +320,8 @@ func (v *voice) retarget(t [4]float32) {
 		return
 	}
 	v.target = t
-	// Ramp over 5 ms at the current output rate.
-	rampFrames := mixRate / 200
 	for i := range t {
-		v.step[i] = (t[i] - v.gain[i]) / float32(rampFrames)
+		v.step[i] = (t[i] - v.gain[i]) / rampFrames
 	}
 	v.rampLeft = rampFrames
 }
@@ -342,10 +340,10 @@ func (v *voice) mix(out []float32, master float64, at, heard int64) bool {
 // through its source for, and whether it is still active.
 func (v *voice) play(out []float32, master float64) (int, bool) {
 	v.retarget(v.gains(master))
-	step := v.rate / float64(mixRate) * v.speed
+	step := v.rate / sampleRate * v.speed
 	if v.st != nil && v.st.on {
 		// Stretched to the speed already.
-		step = v.rate / float64(mixRate)
+		step = v.rate / sampleRate
 	}
 	// The spline reaches 2 frames ahead, the sinc further the faster.
 	reach := 2

@@ -50,13 +50,12 @@ func active() bool {
 // mixFor mixes into buf for an output open at latency lat, and reports
 // whether anything plays; ok is false, and it mixes nothing, once tests
 // mix by hand or the latency changed.
-func mixFor(buf []float32, lat Latency, format outputFormat) (busy, ok bool) {
+func mixFor(buf []float32, lat Latency) (busy, ok bool) {
 	mu.Lock()
 	defer mu.Unlock()
-	if testMode || latency != lat || requestedFormat != format {
+	if testMode || latency != lat {
 		return false, false
 	}
-	mixRate = format.rate
 	return mixLocked(buf), true
 }
 
@@ -69,53 +68,35 @@ func run() {
 			<-wake
 		}
 		lat := outputLatency()
-		format := outputSettings()
-		dev, n, err := openOutput(lat.ahead(), format)
+		dev, n, err := openOutput(lat.ahead())
 		if err != nil {
 			setErr(err)
-			dev, n = newNullDevice(err != errUnsupported), format.rate/100
+			dev, n = newNullDevice(err != errUnsupported), nullFrames
 			// It holds nothing: what it takes is heard as it takes it.
 			setHeld(0)
 		} else {
 			setErr(nil)
-			setHeld(int64(lat.ahead() * time.Duration(format.rate) / time.Second))
+			setHeld(int64(lat.ahead() * sampleRate / time.Second))
 		}
-		if d, ok := dev.(*nullDevice); ok {
-			d.rate = format.rate
-		}
-		playDevice(dev, n, lat, format)
-	}
-}
-
-// playDevice owns one opened device until it becomes idle, fails or changes format.
-func playDevice(dev device, n int, lat Latency, format outputFormat) {
-	defer dev.close()
-	buf := make([]float32, n*channels)
-	idle := time.Duration(0)
-	idleLimit := idleClose
-	if format.exclusive {
-		idleLimit = lat.ahead()
-	}
-	per := frames(int64(n), format.rate)
-	for {
-		busy, ok := mixFor(buf, lat, format)
-		if !ok {
-			// A new format must not discard the previous stream's queued tail.
-			// Failed writes take the other path and never wait for a lost device.
-			if d, ok := dev.(interface{ drain() }); ok {
-				d.drain()
+		buf := make([]float32, n*channels)
+		idle := time.Duration(0)
+		per := frames(int64(n), sampleRate)
+		for {
+			busy, ok := mixFor(buf, lat)
+			if !ok {
+				break
 			}
-			break
+			if err := dev.write(buf); err != nil {
+				// Lost, or a null device trying the real one again.
+				break
+			}
+			if busy {
+				idle = 0
+			} else if idle += per; idle >= idleClose {
+				break
+			}
 		}
-		if err := dev.write(buf); err != nil {
-			// Lost, or a null device trying the real one again.
-			break
-		}
-		if busy {
-			idle = 0
-		} else if idle += per; idle >= idleLimit {
-			break
-		}
+		dev.close()
 	}
 }
 
@@ -128,7 +109,6 @@ const nullFrames = sampleRate / 100
 // have. One standing in for a device that failed to open fails after a
 // while, so that the output tries the device again.
 type nullDevice struct {
-	rate  int
 	next  time.Time
 	retry time.Time
 	// now and sleep are its clock, which tests replace.
@@ -137,7 +117,7 @@ type nullDevice struct {
 }
 
 func newNullDevice(retry bool) *nullDevice {
-	d := &nullDevice{rate: sampleRate, next: time.Now(), now: time.Now, sleep: time.Sleep}
+	d := &nullDevice{next: time.Now(), now: time.Now, sleep: time.Sleep}
 	if retry {
 		d.retry = d.next.Add(2 * time.Second)
 	}
@@ -155,7 +135,7 @@ func (d *nullDevice) write(samples []float32) error {
 		// Behind, as after a sleep: don't hurry to catch up.
 		d.next = now
 	}
-	d.next = d.next.Add(frames(int64(len(samples)/channels), d.rate))
+	d.next = d.next.Add(frames(int64(len(samples)/channels), sampleRate))
 	d.sleep(d.next.Sub(d.now()))
 	return nil
 }

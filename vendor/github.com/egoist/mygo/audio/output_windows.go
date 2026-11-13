@@ -5,7 +5,6 @@ package audio
 import (
 	"errors"
 	"fmt"
-	"math"
 	"syscall"
 	"time"
 	"unsafe"
@@ -103,12 +102,9 @@ func release(obj uintptr) {
 type wasapiDevice struct {
 	enumerator, client, render uintptr
 	event                      uintptr
-	format                     waveFormatExtensible
-	exclusive                  bool
 	frames                     uint32 // the client's buffer
 	id                         string // the device's endpoint ID
 	checked                    time.Time
-	mixStatus                  string
 }
 
 // defaultID returns the endpoint ID of the default output.
@@ -133,7 +129,7 @@ func defaultID(enumerator uintptr) (string, error) {
 	return syscall.UTF16ToString(unsafe.Slice(p, n)), nil
 }
 
-func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
+func openDevice(ahead time.Duration) (device, int, error) {
 	if !comInitialized {
 		// S_FALSE, already initialized, succeeds as well.
 		if hr, _, _ := procCoInitializeEx.Call(0, coinitMultithreaded); failed(hr) {
@@ -142,26 +138,14 @@ func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
 		comInitialized = true
 	}
 	d := &wasapiDevice{}
-	err := d.open(ahead, format)
-	var fallback error
-	if err != nil && format.exclusive {
-		fallback = err
-		d.close()
-		format.exclusive = false
-		err = d.open(ahead, format)
-	}
-	if err != nil {
+	if err := d.open(ahead); err != nil {
 		d.close()
 		return nil, 0, err
 	}
-	setOutputStatus(format.rate, int(d.format.validBits), d.exclusive, fallback)
-	errMu.Lock()
-	outputMixStatus = d.mixStatus
-	errMu.Unlock()
-	return d, min(format.rate/100, int(d.frames)), nil
+	return d, windowsFrames, nil
 }
 
-func (d *wasapiDevice) open(ahead time.Duration, format outputFormat) error {
+func (d *wasapiDevice) open(ahead time.Duration) error {
 	if hr, _, _ := procCoCreateInstance.Call(uintptr(unsafe.Pointer(&clsidMMDeviceEnumerator)), 0, clsctxAll,
 		uintptr(unsafe.Pointer(&iidIMMDeviceEnumerator)), uintptr(unsafe.Pointer(&d.enumerator))); failed(hr) {
 		return hresult("CoCreateInstance(MMDeviceEnumerator)", hr)
@@ -182,12 +166,11 @@ func (d *wasapiDevice) open(ahead time.Duration, format outputFormat) error {
 	if hr := comCall(dev, 3, uintptr(unsafe.Pointer(&iidIAudioClient)), clsctxAll, 0, uintptr(unsafe.Pointer(&d.client))); failed(hr) {
 		return hresult("IMMDevice.Activate", hr)
 	}
-	d.mixStatus = readMixFormat(d.client)
 	f := waveFormatExtensible{
 		formatTag:      waveFormatExtensibleTag,
 		channels:       channels,
-		samplesPerSec:  uint32(format.rate),
-		avgBytesPerSec: uint32(format.rate * channels * 4),
+		samplesPerSec:  sampleRate,
+		avgBytesPerSec: sampleRate * channels * 4,
 		blockAlign:     channels * 4,
 		bitsPerSample:  32,
 		size:           22,
@@ -195,31 +178,10 @@ func (d *wasapiDevice) open(ahead time.Duration, format outputFormat) error {
 		channelMask:    speakerFrontLeft | speakerFrontRight,
 		subFormat:      ksDataFormatSubtypeFloat,
 	}
-	// Exclusive formats are tested with the driver before initialization.
-	// Timer-driven exclusive output uses GetCurrentPadding, like shared mode,
-	// rather than event mode's full-buffer packets and alignment constraints.
-	mode := uintptr(audclntShareModeShared)
-	if format.exclusive {
-		var ok bool
-		for _, candidate := range exclusiveFormats(format.rate) {
-			if hr := comCall(d.client, 7, 1, uintptr(unsafe.Pointer(&candidate)), 0); hr == 0 {
-				f, ok = candidate, true
-				break
-			}
-		}
-		if !ok {
-			return fmt.Errorf("设备不支持 %g kHz 独占格式", float64(format.rate)/1000)
-		}
-		mode = 1
-	}
-	d.format, d.exclusive = f, format.exclusive
-	// Shared mode may convert after receiving this native-rate stream.
+	// ahead, converted to the device's format by WASAPI's resampler.
 	duration := uintptr(ahead / 100) // in 100 ns
 	flags := uintptr(audclntStreamFlagsEventCB | audclntStreamFlagsNoPersist | audclntStreamFlagsAutoConvert | audclntStreamFlagsSRCQuality)
-	if format.exclusive {
-		flags = 0
-	}
-	if hr := comCall(d.client, 3, mode, flags, duration, 0, uintptr(unsafe.Pointer(&f)), 0); failed(hr) {
+	if hr := comCall(d.client, 3, audclntShareModeShared, flags, duration, 0, uintptr(unsafe.Pointer(&f)), 0); failed(hr) {
 		return hresult("IAudioClient.Initialize", hr)
 	}
 	if hr := comCall(d.client, 4, uintptr(unsafe.Pointer(&d.frames))); failed(hr) {
@@ -228,15 +190,13 @@ func (d *wasapiDevice) open(ahead time.Duration, format outputFormat) error {
 	if hr := comCall(d.client, 14, uintptr(unsafe.Pointer(&iidIAudioRenderClient)), uintptr(unsafe.Pointer(&d.render))); failed(hr) {
 		return hresult("IAudioClient.GetService", hr)
 	}
-	if !format.exclusive {
-		ev, _, err := procCreateEventW.Call(0, 0, 0, 0)
-		if ev == 0 {
-			return fmt.Errorf("audio: CreateEvent failed: %v", err)
-		}
-		d.event = ev
-		if hr := comCall(d.client, 13, d.event); failed(hr) {
-			return hresult("IAudioClient.SetEventHandle", hr)
-		}
+	ev, _, err := procCreateEventW.Call(0, 0, 0, 0)
+	if ev == 0 {
+		return fmt.Errorf("audio: CreateEvent failed: %v", err)
+	}
+	d.event = ev
+	if hr := comCall(d.client, 13, d.event); failed(hr) {
+		return hresult("IAudioClient.SetEventHandle", hr)
 	}
 	if hr := comCall(d.client, 10); failed(hr) {
 		return hresult("IAudioClient.Start", hr)
@@ -259,17 +219,13 @@ func (d *wasapiDevice) write(samples []float32) error {
 		if time.Now().After(deadline) {
 			return errAudioClientUnresponded
 		}
-		if d.event != 0 {
-			procWaitForSingleObject.Call(d.event, 100)
-		} else {
-			time.Sleep(2 * time.Millisecond)
-		}
+		procWaitForSingleObject.Call(d.event, 100)
 	}
 	var p unsafe.Pointer
 	if hr := comCall(d.render, 3, uintptr(n), uintptr(unsafe.Pointer(&p))); failed(hr) {
 		return hresult("IAudioRenderClient.GetBuffer", hr)
 	}
-	encodeOutput(unsafe.Slice((*byte)(p), len(samples)*int(d.format.bitsPerSample)/8), samples, d.format)
+	copy(unsafe.Slice((*float32)(p), len(samples)), samples)
 	if hr := comCall(d.render, 4, uintptr(n), 0); failed(hr) {
 		return hresult("IAudioRenderClient.ReleaseBuffer", hr)
 	}
@@ -284,23 +240,6 @@ func (d *wasapiDevice) write(samples []float32) error {
 	return nil
 }
 
-// drain lets submitted samples finish before a normal format change stops the
-// client. A removed or unresponsive device must not hold up the output thread.
-func (d *wasapiDevice) drain() {
-	deadline := time.Now().Add(time.Second)
-	for time.Now().Before(deadline) {
-		var padding uint32
-		if hr := comCall(d.client, 6, uintptr(unsafe.Pointer(&padding))); failed(hr) || padding == 0 {
-			return
-		}
-		if d.event != 0 {
-			procWaitForSingleObject.Call(d.event, 10)
-		} else {
-			time.Sleep(2 * time.Millisecond)
-		}
-	}
-}
-
 func (d *wasapiDevice) close() {
 	if d.client != 0 {
 		comCall(d.client, 11)
@@ -312,40 +251,5 @@ func (d *wasapiDevice) close() {
 	if d.event != 0 {
 		procCloseHandle.Call(d.event)
 		d.event = 0
-	}
-}
-
-// PCM candidates retain at least 24 valid bits when supported. A 16-bit-only
-// device is accepted and the actual depth is shown, never labelled 24-bit.
-func exclusiveFormats(rate int) []waveFormatExtensible {
-	pcm := guid{0x00000001, 0, 0x0010, [8]byte{0x80, 0, 0, 0xaa, 0, 0x38, 0x9b, 0x71}}
-	var result []waveFormatExtensible
-	for _, spec := range []struct {
-		bits, valid uint16
-		subtype     guid
-	}{
-		{32, 32, ksDataFormatSubtypeFloat}, {32, 32, pcm}, {32, 24, pcm}, {24, 24, pcm}, {16, 16, pcm},
-	} {
-		align := spec.bits / 8 * channels
-		result = append(result, waveFormatExtensible{waveFormatExtensibleTag, channels, uint32(rate), uint32(rate) * uint32(align), align, spec.bits, 22, spec.valid, speakerFrontLeft | speakerFrontRight, spec.subtype})
-	}
-	return result
-}
-
-func encodeOutput(dst []byte, samples []float32, f waveFormatExtensible) {
-	if f.subFormat == ksDataFormatSubtypeFloat {
-		copy(unsafe.Slice((*float32)(unsafe.Pointer(&dst[0])), len(samples)), samples)
-		return
-	}
-	width := int(f.bitsPerSample / 8)
-	shift := f.bitsPerSample - f.validBits
-	scale := math.Ldexp(1, int(f.validBits)-1)
-	for i, sample := range samples {
-		x := math.Round(float64(sample) * scale)
-		x = min(max(x, -scale), scale-1)
-		v := uint32(int32(int64(x) << shift))
-		for b := 0; b < width; b++ {
-			dst[i*width+b] = byte(v >> (8 * b))
-		}
 	}
 }

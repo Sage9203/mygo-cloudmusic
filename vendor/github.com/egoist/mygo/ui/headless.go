@@ -580,33 +580,26 @@ func (t *Tester) HasText(s string) bool {
 // targetCenter checks the named element before sending any input. Labels
 // include clipped boxes, and a visible box may be covered by another control.
 func (t *Tester) targetCenter(s string, button int) (float32, float32, error) {
-	var n *labelNode
+	var firstErr error
 	for i := range t.rt.labels {
-		if t.rt.labels[i].text == s {
-			n = &t.rt.labels[i]
-			break
+		n := &t.rt.labels[i]
+		if n.text != s {
+			continue
+		}
+		// A rich paragraph can have the same text as its only inline link.
+		// Check each named candidate against the actual input target.
+		x, y, err := t.targetLabelCenter(n, button)
+		if err == nil {
+			return x, y, nil
+		}
+		if firstErr == nil {
+			firstErr = err
 		}
 	}
-	if n == nil {
-		return 0, 0, fmt.Errorf("ui: no element shows %q", s)
+	if firstErr != nil {
+		return 0, 0, firstErr
 	}
-	// A paragraph can repeat its inline link's label. Keep an explicitly
-	// named interactive parent, and only substitute links it contains.
-	if st := t.rt.states[n.id]; st != nil && st.flags&interactive == 0 {
-		for i := range t.rt.labels {
-			candidate := &t.rt.labels[i]
-			st := t.rt.states[candidate.id]
-			if candidate.text != s || st == nil || st.flags&interactive == 0 {
-				continue
-			}
-			for parent := t.rt.states[st.parent]; parent != nil; parent = t.rt.states[parent.parent] {
-				if parent.id == n.id {
-					return t.targetLabelCenter(candidate, button)
-				}
-			}
-		}
-	}
-	return t.targetLabelCenter(n, button)
+	return 0, 0, fmt.Errorf("ui: no element shows %q", s)
 }
 
 func (t *Tester) targetLabelCenter(n *labelNode, button int) (float32, float32, error) {

@@ -143,7 +143,7 @@ var jsOpen bool
 
 type jsDevice struct{}
 
-func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
+func openDevice(ahead time.Duration) (device, int, error) {
 	if err := jsSetup(ahead); err != nil {
 		return nil, 0, err
 	}

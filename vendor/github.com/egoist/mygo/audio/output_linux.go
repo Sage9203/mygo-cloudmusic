@@ -71,7 +71,7 @@ func appName() string {
 	return "mygo"
 }
 
-func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
+func openDevice(ahead time.Duration) (device, int, error) {
 	d, perr := openPulse(ahead)
 	if perr == nil {
 		return d, linuxFrames, nil

@@ -92,7 +92,7 @@ type aqDevice struct {
 	started bool
 }
 
-func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
+func openDevice(ahead time.Duration) (device, int, error) {
 	if err := loadAudioToolbox(); err != nil {
 		return nil, 0, err
 	}
