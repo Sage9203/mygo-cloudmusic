@@ -14,6 +14,6 @@ Windows 版本按解码后的采样率提交音频。共享模式下，Windows �
 
 ## 开发说明
 
-输出格式切换、设备重新打开与缓冲排空由音频线程处理，修改保存在 patches/mygo-v0.8.1-local.patch。依赖音频测试需显式运行，构建脚本已包含此步骤。
+输出格式切换、设备重新打开与缓冲排空由音频线程处理，修改保存在 patches/mygo-v0.9.0-local.patch。依赖音频测试需显式运行，构建脚本已包含此步骤。
 
 设置页显示音源采样率和最近打开的输出格式；共享混音格式是 Windows 的报告值，不等于硬件最终规格。相关接口：[IAudioClient](https://learn.microsoft.com/en-us/windows/win32/api/audioclient/nn-audioclient-iaudioclient)。

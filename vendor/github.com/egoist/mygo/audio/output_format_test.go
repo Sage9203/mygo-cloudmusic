@@ -148,3 +148,53 @@ func TestDeviceDrain(t *testing.T) {
 		}()
 	}
 }
+
+// Downsampling preserves duration and attenuates tones above the device Nyquist frequency.
+func TestNativeRateDownsampling(t *testing.T) {
+	mu.Lock()
+	defer mu.Unlock()
+	saved := mixRate
+	defer func() { mixRate = saved }()
+	const sourceRate = 96000
+	const outputRate = 44100
+	mixRate = outputRate
+
+	for _, tc := range []struct {
+		name           string
+		hz             float64
+		minRMS, maxRMS float64
+	}{
+		{"passband", 1000, 0.69, 0.72},
+		{"stopband", 30000, 0, 0.001},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			samples := make([]float32, sourceRate*2)
+			for i := range sourceRate {
+				sample := float32(math.Sin(2 * math.Pi * tc.hz * float64(i) / sourceRate))
+				samples[2*i], samples[2*i+1] = sample, sample
+			}
+			v := &voice{
+				src:  &memSource{samples: samples, channels: 2},
+				rate: sourceRate, length: sourceRate, volume: 1, speed: 1,
+				playing: true, snap: true,
+			}
+			v.reset(0)
+			out := make([]float32, (outputRate+32)*2)
+			frames, active := v.play(out, 1)
+			if active || math.Abs(float64(frames-outputRate)) > 1 {
+				t.Fatalf("one source second produced %d output frames, active=%v", frames, active)
+			}
+			// Exclude the filter's start and end transients.
+			const margin = 512
+			var sum float64
+			for i := margin; i < outputRate-margin; i++ {
+				sample := float64(out[2*i])
+				sum += sample * sample
+			}
+			rms := math.Sqrt(sum / (outputRate - 2*margin))
+			if math.IsNaN(rms) || rms < tc.minRMS || rms > tc.maxRMS {
+				t.Fatalf("%g Hz output RMS = %.6f, want [%.3f, %.3f]", tc.hz, rms, tc.minRMS, tc.maxRMS)
+			}
+		})
+	}
+}

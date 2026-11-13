@@ -6,7 +6,6 @@ import (
 	"bytes"
 	"image"
 	pngenc "image/png"
-	"runtime"
 	"slices"
 	"strings"
 	"structs"
@@ -18,6 +17,7 @@ import (
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
 
+	"github.com/egoist/mygo/internal/pacing"
 	"github.com/egoist/mygo/internal/platform"
 	"github.com/egoist/mygo/transfer"
 )
@@ -43,16 +43,15 @@ type cgRect struct {
 const nsNotFound = uint(1<<63 - 1)
 
 var (
-	surfaceOnce        sync.Once
-	msgConvertRectView func(obj id, sel objc.SEL, r NSRect, view id) NSRect
-	msgInitTracking    func(obj id, sel objc.SEL, r NSRect, options uint, owner, info id) id
-	msgTimer           func(cls id, sel objc.SEL, interval float64, target id, selector objc.SEL, info id, repeats bool) id
-	cgColorSpaceSRGB   uintptr
-	cgImageCreate      uintptr
-	cgImageRelease     uintptr
-	cgProviderCreate   uintptr
-	cgProviderRelease  uintptr
-	cfDataCreate       uintptr
+	surfaceOnce       sync.Once
+	msgInitTracking   func(obj id, sel objc.SEL, r NSRect, options uint, owner, info id) id
+	msgTimer          func(cls id, sel objc.SEL, interval float64, target id, selector objc.SEL, info id, repeats bool) id
+	cgColorSpaceSRGB  uintptr
+	cgImageCreate     uintptr
+	cgImageRelease    uintptr
+	cgProviderCreate  uintptr
+	cgProviderRelease uintptr
+	cfDataCreate      uintptr
 	// Read the keyboard type from each event, so an external ISO keyboard
 	// does not inherit the built-in keyboard's ANSI mapping.
 	cgEventGetIntegerValueField func(event uintptr, field uint32) int64
@@ -83,11 +82,6 @@ const (
 
 func loadSurface() {
 	surfaceOnce.Do(func() {
-		stret := msgSendAddr
-		if runtime.GOARCH == "amd64" {
-			stret = mustDlsym(libObjC, "objc_msgSend_stret")
-		}
-		purego.RegisterFunc(&msgConvertRectView, stret)
 		purego.RegisterFunc(&msgInitTracking, msgSendAddr)
 		purego.RegisterFunc(&msgTimer, msgSendAddr)
 		cgImageCreate = mustDlsym(libCG, "CGImageCreate")
@@ -176,6 +170,11 @@ type surface struct {
 	marked    string
 	markedSel nsRange
 	keyDown   bool // in interpretKeyEvents: text typed with the key
+	// withheld is the key keyDown: kept from the content while the input
+	// method composed, during interpretKeyEvents: doCommandBySelector:
+	// sends it if the input method ends the composition and passes the
+	// key on.
+	withheld *platform.SurfaceEvent
 	// refused: the content left the composition set in
 	// interpretKeyEvents, given up once it returns.
 	refused bool
@@ -392,7 +391,20 @@ func (s *surface) RequestFrame() {
 	if s.w.closed {
 		return
 	}
-	if s.link != 0 {
+	if pacing.Uncapped {
+		s.frameSoon()
+		return
+	}
+	// The link does not tick for a window hidden or minimized, only for
+	// one covered: its frames come from the timer below, as without a
+	// link, or the one the view builds as the window hides (WindowHidden)
+	// would wait until it shows again. Package ui holds the others
+	// (holdFrame), which draw nothing, but only once the window server
+	// told that the window left the screen (occlusionState), which takes
+	// a pass of the run loop: drawn at once each (drawSoon), the frames of
+	// a view that asks for one in each would keep the backend's queue from
+	// ever emptying, and the main thread in it.
+	if s.link != 0 && sendBool(s.w.win, "isVisible") {
 		switch {
 		case s.linkRunning:
 			s.due = true
@@ -426,6 +438,27 @@ func (s *surface) RequestFrame() {
 	s.timing = true
 	withPool(func() {
 		t := msgTimer(class("NSTimer"), sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), delay.Seconds(), s.view, sel("mygoTimer:"), 0, false)
+		send(send(class("NSRunLoop"), "mainRunLoop"), "addTimer:forMode:", uintptr(t), kCFRunLoopCommonModes)
+	})
+}
+
+// frameSoon draws a frame in the run loop's next pass, from a timer that
+// fires at once, for frames uncapped (MYGO_UNCAPPED): the next frame
+// starts as soon as the last was drawn, rather than at the display link's
+// next tick, and only while frames are asked for. The pass handles the
+// input that came meanwhile first. The backend's queue (drawSoon) would
+// draw it in this pass instead, and the next in it too, as the queue runs
+// until it is empty: input would wait for the frames to stop. The frame
+// is paced, so that the content leaves it to draw while the renderer
+// fetches the drawable of the next (FrameNow), rather than wait for it on
+// the main thread, which keeps each a frame of its own.
+func (s *surface) frameSoon() {
+	if s.timing {
+		return
+	}
+	s.timing = true
+	withPool(func() {
+		t := msgTimer(class("NSTimer"), sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), 0, s.view, sel("mygoTimer:"), 0, false)
 		send(send(class("NSRunLoop"), "mainRunLoop"), "addTimer:forMode:", uintptr(t), kCFRunLoopCommonModes)
 	})
 }
@@ -464,6 +497,14 @@ func (s *surface) drawSoon() {
 		// A frame drawn since the last ask, as a resize's, drew what
 		// this one would.
 		if s.w.b.surfaceOf(s.view) != s || s.lastFrame != s.soonAfter {
+			return
+		}
+		if s.link != 0 && s.resized && s.presentsWithTransaction() {
+			// A frame for a new size after one presented with the
+			// transaction, drawn in a pass of its own, does not show
+			// (updateLayer): the link's next tick draws it.
+			s.lastFrame = time.Now()
+			s.RequestFrame()
 			return
 		}
 		s.frameNow(false)
@@ -1224,7 +1265,9 @@ func registerSurfaceClass() {
 			// A closed window's view lives until its timer fires.
 			if s := b().surfaceOf(self); s != nil {
 				s.timing = false
-				s.frameNow(false)
+				// Uncapped, the content may leave the frame to draw
+				// once the renderer can (frameSoon).
+				s.frameNow(pacing.Uncapped)
 			}
 		}),
 		method("setFrameSize:", func(self id, cmd objc.SEL, size NSSize) {
@@ -1328,11 +1371,14 @@ func registerSurfaceClass() {
 			text := s.input.Active && mods&(platform.ModSuper|platform.ModCtrl) == 0
 			ime := text && !s.input.NoInputMethod
 			// A key typed while the input method composes is the input
-			// method's alone, as Enter choosing a candidate or Escape
-			// giving the composition up, as GTK's and IMM32's filtering
-			// keeps them on Linux and Windows.
-			if !ime || !s.hasMarkedText() {
-				s.send(platform.SurfaceEvent{Kind: platform.KeyPressed, Key: eventKey(ev), PhysicalKey: physicalKey(ev), Code: eventKeyCode(ev), Mods: mods, Repeat: sendBool(ev, "isARepeat")})
+			// method's, as Enter choosing a candidate or Escape giving the
+			// composition up, as GTK's and IMM32's filtering keeps them on
+			// Linux and Windows, unless the input method passes it on
+			// (doCommandBySelector:).
+			key := platform.SurfaceEvent{Kind: platform.KeyPressed, Key: eventKey(ev), PhysicalKey: physicalKey(ev), Code: eventKeyCode(ev), Mods: mods, Repeat: sendBool(ev, "isARepeat")}
+			withheld := ime && s.hasMarkedText()
+			if !withheld {
+				s.send(key)
 			}
 			// Input methods see the key while a text input has the focus;
 			// they answer with insertText: or setMarkedText:.
@@ -1346,8 +1392,11 @@ func registerSurfaceClass() {
 				}
 			} else if ime {
 				s.keyDown = true
-				send(self, "interpretKeyEvents:", uintptr(nsArray(ev)))
-				s.keyDown = false
+				if withheld {
+					s.withheld = &key
+				}
+				interpretKeys(self, ev)
+				s.keyDown, s.withheld = false, nil
 				if s.refused {
 					s.refused = false
 					s.discardComposition()
@@ -1462,7 +1511,23 @@ func registerSurfaceClass() {
 			screen := msgRectToRect(s.w.win, sel("convertRectToScreen:"), inWindow)
 			return cgRect{X: screen.Origin.X, Y: screen.Origin.Y, W: screen.Size.Width, H: screen.Size.Height}
 		}),
-		method("doCommandBySelector:", func(self id, _ objc.SEL, cmd objc.SEL) {}),
+		// The input method passes on the key it was given (insertNewline:
+		// for Return, moveLeft: for the left arrow…), as the Korean one
+		// does once Return or an arrow committed the syllable it composed:
+		// the content gets the key it held back, as a text view acts on
+		// the command. Input methods that keep the key, as Return choosing
+		// a candidate in Japanese or Chinese, do not ask for its command,
+		// or still compose; a key the content got already, or a command
+		// outside keyDown:, sends nothing.
+		method("doCommandBySelector:", func(self id, _ objc.SEL, cmd objc.SEL) {
+			s := b().surfaceOf(self)
+			if s == nil || s.withheld == nil || s.hasMarkedText() {
+				return
+			}
+			key := *s.withheld
+			s.withheld = nil
+			s.send(key)
+		}),
 	}...))
 }
 
