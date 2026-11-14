@@ -160,3 +160,33 @@ func TestMoveOldData(t *testing.T) {
 		t.Fatalf("settings %q, moved over what was there", b)
 	}
 }
+
+// Startup checks are opt-in and a release only interrupts the listener once per session.
+func TestAutomaticReleaseCheck(t *testing.T) {
+	original := checkAppRelease
+	defer func() { checkAppRelease = original }()
+	checkAppRelease = func(string) (appRelease, bool, error) {
+		return appRelease{Tag: "v0.1.26-preview.7"}, true, nil
+	}
+	a := newTestApp()
+	pending := make(chan func(), 1)
+	post := func(fn func()) { pending <- fn }
+	a.checkForUpdatesAutomatically("0.1.26-preview.6", post)
+	if a.releaseCheck.running {
+		t.Fatal("checked despite being disabled")
+	}
+	a.settings.AutoCheckUpdates = true
+	for i := 0; i < 2; i++ {
+		a.toast = ""
+		a.checkForUpdatesAutomatically("0.1.26-preview.6", post)
+		select {
+		case fn := <-pending:
+			fn()
+		case <-time.After(5 * time.Second):
+			t.Fatal("check did not return")
+		}
+		if !a.releaseCheck.newer || (a.toast != "") != (i == 0) {
+			t.Fatalf("check %d: toast %q", i, a.toast)
+		}
+	}
+}

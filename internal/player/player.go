@@ -3,6 +3,7 @@ package player
 import (
 	"context"
 	"errors"
+	"fmt"
 	"math"
 	"math/rand/v2"
 	"runtime"
@@ -40,6 +41,8 @@ type Player struct {
 	// Changed, if set, hears that what plays, where it is or whether it
 	// plays changed.
 	Changed func()
+	// Skipped reports a track that automatic playback moved past.
+	Skipped func(message string)
 
 	queue   []netease.Track
 	order   []int // the queue's indices in play order: shuffled or not
@@ -50,11 +53,12 @@ type Player struct {
 
 	// A radio goes on with the tracks its feed gives, as the queue nears
 	// its end, for as long as nothing else is played.
-	radio    string
-	feed     func(got func([]netease.Track))
-	radioGen int  // counts radios, to drop what an old one gives
-	feeding  bool // the feed is asked
-	awaiting bool // at the queue's end, for what the feed gives
+	radio             string
+	feed              func(got func([]netease.Track))
+	radioGen          int  // counts radios, to drop what an old one gives
+	feeding           bool // the feed is asked
+	awaitingAutomatic bool
+	awaiting          bool // at the queue's end, for what the feed gives
 
 	track   *netease.Track
 	out     *audio.Player
@@ -149,7 +153,7 @@ func (p *Player) ended() {
 		return
 	}
 	if p.at+1 >= len(p.order) && p.feed != nil {
-		p.awaitFeed()
+		p.awaitFeed(true)
 		return
 	}
 	if p.at+1 >= len(p.order) && p.repeat == RepeatOff {
@@ -157,7 +161,7 @@ func (p *Player) ended() {
 		p.sync()
 		return
 	}
-	p.Next()
+	p.next(true)
 }
 
 // PlayQueue replaces the queue with tracks and plays the one at start.
@@ -274,7 +278,7 @@ func (p *Player) refill() {
 		case !p.awaiting:
 		case p.at+1 < len(p.order):
 			p.awaiting = false
-			p.load(p.at + 1)
+			p.loadSkipping(p.at+1, 0, true, 0, p.awaitingAutomatic)
 		default:
 			// The radio has nothing more: it stops at its end.
 			p.awaiting, p.playing = false, false
@@ -285,7 +289,8 @@ func (p *Player) refill() {
 }
 
 // awaitFeed waits at the end of a radio's queue for what its feed gives.
-func (p *Player) awaitFeed() {
+func (p *Player) awaitFeed(automatic bool) {
+	p.awaitingAutomatic = automatic
 	p.awaiting = true
 	p.refill()
 }
@@ -415,7 +420,9 @@ func (p *Player) OpenAudio() (Audio, error) {
 // current track is among them, -1 for none.
 func (p *Player) PlayOrder() ([]int, int) { return p.order, p.at }
 
-func (p *Player) Next() {
+func (p *Player) Next() { p.next(false) }
+
+func (p *Player) next(automatic bool) {
 	if len(p.order) == 0 {
 		return
 	}
@@ -423,12 +430,12 @@ func (p *Player) Next() {
 	if at >= len(p.order) {
 		if p.feed != nil {
 			p.stop()
-			p.awaitFeed()
+			p.awaitFeed(automatic)
 			return
 		}
 		at = 0
 	}
-	p.load(at)
+	p.loadSkipping(at, 0, true, 0, automatic)
 }
 
 // Prev plays the track before this one, however far this one has played:
@@ -464,7 +471,7 @@ func (p *Player) TogglePlay() {
 			p.playing = !p.playing
 			p.sync()
 		case len(p.order) > 0:
-			p.loadSkipping(max(p.at, 0), 0, true, p.pending)
+			p.loadSkipping(max(p.at, 0), 0, true, p.pending, false)
 		}
 		return
 	}
@@ -611,14 +618,14 @@ func (p *Player) stop() {
 	p.fade.attach(nil, 1)
 }
 
-// load plays the track at order[at], skipping those that cannot play.
+// load plays the explicitly selected track at order[at].
 func (p *Player) load(at int) {
-	p.loadSkipping(at, 0, true, 0)
+	p.loadSkipping(at, 0, true, 0, false)
 }
 
 // loadSkipping loads the track at order[at], to play or not, from from,
-// skipping those that cannot play: skipped of them so far.
-func (p *Player) loadSkipping(at, skipped int, play bool, from time.Duration) {
+// skipping unavailable tracks only during automatic continuation.
+func (p *Player) loadSkipping(at, skipped int, play bool, from time.Duration, automatic bool) {
 	t := p.queue[p.order[at]]
 	level := "exhigh"
 	if p.Quality != nil {
@@ -700,21 +707,12 @@ func (p *Player) loadSkipping(at, skipped int, play bool, from time.Duration) {
 			}
 			p.loading = false
 			if err != nil {
-				p.err = err.Error()
-				switch {
-				case err != netease.ErrUnavailable:
-				case t.ProgramID != 0:
-					p.err = "这期节目需要购买才能收听"
-				default:
-					p.err = "这首歌需要 VIP 才能播放"
-				}
-				// Skip what cannot play, unless nothing in the queue can.
-				if skipped+1 < len(p.order) {
-					next := at + 1
-					if next >= len(p.order) {
-						next = 0
+				p.err = loadErrorMessage(t, err)
+				if next := p.nextAfterLoadFailure(at, skipped, automatic && p.playing, err); next >= 0 {
+					if p.Skipped != nil {
+						p.Skipped(fmt.Sprintf("已跳过《%s》：%s", t.Name, p.err))
 					}
-					p.loadSkipping(next, skipped+1, p.playing, 0)
+					p.loadSkipping(next, skipped+1, true, 0, true)
 				} else {
 					p.playing = false
 					p.sync()
@@ -751,6 +749,34 @@ func (p *Player) loadSkipping(at, skipped int, play bool, from time.Duration) {
 			p.sync()
 		})
 	}()
+}
+
+func loadErrorMessage(t netease.Track, err error) string {
+	switch {
+	case errors.Is(err, netease.ErrTrialOnly):
+		return "仅提供试听"
+	case errors.Is(err, netease.ErrUnavailable):
+		if t.ProgramID != 0 {
+			return "此节目暂不可播放"
+		}
+		return "此曲暂无可播放音源"
+	default:
+		return err.Error()
+	}
+}
+
+func (p *Player) nextAfterLoadFailure(at, skipped int, automatic bool, err error) int {
+	if !automatic || skipped+1 >= len(p.order) ||
+		(!errors.Is(err, netease.ErrUnavailable) && !errors.Is(err, netease.ErrTrialOnly)) {
+		return -1
+	}
+	if at+1 < len(p.order) {
+		return at + 1
+	}
+	if p.repeat == RepeatAll && p.feed == nil {
+		return 0
+	}
+	return -1
 }
 
 // open opens track t's audio at level: kept in the cache, or else
@@ -816,5 +842,5 @@ func (p *Player) Restore(s Session) {
 	}
 	p.queue, p.order = s.Queue, s.Order
 	p.shuffle, p.repeat = s.Shuffle, s.Repeat%3
-	p.loadSkipping(s.At, 0, false, time.Duration(s.Position)*time.Millisecond)
+	p.loadSkipping(s.At, 0, false, time.Duration(s.Position)*time.Millisecond, false)
 }

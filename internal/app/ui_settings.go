@@ -271,6 +271,13 @@ func (a *app) settingsContent(c *ui.Context, version string, post func(func())) 
 		})
 
 		group("更新", func() {
+			row("自动检查更新", "开启后，启动时查询 GitHub，有新版时在应用内提醒", func() {
+				if ui.Switch(c.Key("auto-check-updates"), &s.AutoCheckUpdates).Label("自动检查更新").Changed() {
+					a.queueSettingsSave(post)
+					a.checkForUpdatesAutomatically(version, post)
+					c.Invalidate()
+				}
+			})
 			check := a.releaseCheck
 			row("当前版本 "+version, check.message(), func() {
 				if ui.Button(c.Key("check-updates"), "检查更新").Disabled(check.running).Clicked() {

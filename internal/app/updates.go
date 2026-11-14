@@ -118,7 +118,17 @@ var checkAppRelease = func(current string) (appRelease, bool, error) {
 	return findAppRelease(ctx, client, current)
 }
 
+func (a *app) checkForUpdatesAutomatically(current string, post func(func())) {
+	if a.settings.AutoCheckUpdates {
+		a.checkRelease(current, post, true)
+	}
+}
+
 func (a *app) startReleaseCheck(current string, post func(func())) {
+	a.checkRelease(current, post, false)
+}
+
+func (a *app) checkRelease(current string, post func(func()), automatic bool) {
 	if a.releaseCheck.running {
 		return
 	}
@@ -127,7 +137,14 @@ func (a *app) startReleaseCheck(current string, post func(func())) {
 	go func() {
 		release, newer, err := check(current)
 		post(func() {
+			if a.quitting {
+				return
+			}
 			a.releaseCheck = releaseCheckState{done: true, newer: newer, release: release, err: err}
+			if automatic && a.settings.AutoCheckUpdates && err == nil && newer && a.notifiedRelease != release.Tag {
+				a.notifiedRelease = release.Tag
+				a.toast = "发现新版本 " + release.Tag + "，可在设置中查看"
+			}
 			if a.settingsWin != nil {
 				a.settingsWin.Invalidate()
 			}

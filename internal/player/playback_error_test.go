@@ -92,3 +92,28 @@ func TestPlaybackEOFAndSeek(t *testing.T) {
 		t.Fatal("seek failure disappeared")
 	}
 }
+
+// Automatic continuation skips unavailable tracks only within the queue's repeat policy.
+func TestLoadFailurePolicy(t *testing.T) {
+	for _, tc := range []struct {
+		name      string
+		automatic bool
+		at        int
+		repeat    RepeatMode
+		err       error
+		want      int
+	}{
+		{"manual or resume", false, 0, RepeatOff, netease.ErrUnavailable, -1},
+		{"automatic unavailable", true, 0, RepeatOff, netease.ErrUnavailable, 1},
+		{"end without repeat", true, 1, RepeatOff, netease.ErrUnavailable, -1},
+		{"repeat queue", true, 1, RepeatAll, netease.ErrUnavailable, 0},
+		{"request failure", true, 0, RepeatAll, errors.New("offline"), -1},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			p := Player{order: []int{0, 1}, repeat: tc.repeat}
+			if got := p.nextAfterLoadFailure(tc.at, 0, tc.automatic, tc.err); got != tc.want {
+				t.Fatalf("next = %d, want %d", got, tc.want)
+			}
+		})
+	}
+}

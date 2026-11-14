@@ -48,6 +48,19 @@ func TestSongURLPreservesAPIErrors(t *testing.T) {
 	}
 }
 
+// A preview must be distinguishable from a missing URL and never enter full-track playback.
+func TestSongURLTrialOnly(t *testing.T) {
+	previous := http.DefaultTransport
+	defer func() { http.DefaultTransport = previous }()
+	http.DefaultTransport = songURLTransport(func(req *http.Request) (*http.Response, error) {
+		return &http.Response{StatusCode: 200, Header: make(http.Header), Body: io.NopCloser(strings.NewReader(`{"code":200,"data":[{"url":"https://audio.example/a","freeTrialInfo":{"start":0,"end":30}}]}`)), Request: req}, nil
+	})
+	stream, err := SongURL(context.Background(), 1, "exhigh")
+	if stream != nil || !errors.Is(err, ErrTrialOnly) {
+		t.Fatalf("stream = %v, error = %v", stream, err)
+	}
+}
+
 // A requested lossless level must not turn unknown or downgraded metadata into a lossless cache entry.
 func TestSongURLDoesNotInventQuality(t *testing.T) {
 	for _, tc := range []struct{ body, want string }{

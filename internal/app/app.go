@@ -155,6 +155,7 @@ type app struct {
 	settingsWin         *mygo.Window
 	cacheUsed           int64 // the bytes the song cache takes, -1 until measured
 	releaseCheck        releaseCheckState
+	notifiedRelease     string
 
 	restored     bool   // playback picked up where it was left
 	savedSession string // the session as last kept
@@ -237,6 +238,7 @@ func Run() error {
 		// made, and the view asks the player what plays.
 		a.art = newArtCache(a.post)
 		a.pl = player.New(a.post)
+		a.pl.Skipped = func(message string) { a.toast = message }
 		a.pl.Quality = func() string { return a.settings.Quality }
 		a.pl.Normalize = func() bool { return a.settings.Normalize }
 		a.pl.Exclusive = func() bool { return a.settings.Exclusive }
@@ -279,6 +281,7 @@ func Run() error {
 		// Shown or switched to the morning after, it shows the new day's.
 		a.win.OnFocus(a.freshen)
 		a.applyTray()
+		a.checkForUpdatesAutomatically(mygo.App.Version(), a.post)
 		if shotHook != nil {
 			shotHook(a)
 		}

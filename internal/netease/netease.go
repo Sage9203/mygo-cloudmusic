@@ -396,6 +396,9 @@ func ArtistLatestSongs(id int64, limit int) ([]Track, error) {
 
 var ErrUnavailable = errors.New("this song isn't available to stream")
 
+// ErrTrialOnly means the service returned only a preview.
+var ErrTrialOnly = errors.New("only a preview is available")
+
 // Stream is where a track streams from, and what it is.
 type Stream struct {
 	URL  string `json:"-"`
@@ -451,9 +454,9 @@ func SongURL(ctx context.Context, id int64, level string) (*Stream, error) {
 		return nil, ErrUnavailable
 	}
 	d := res.Data[0]
-	// A preview of a VIP song is no song.
+	// Keep previews out of full-track playback and caching.
 	if len(d.FreeTrialInfo) > 0 && string(d.FreeTrialInfo) != "null" {
-		return nil, ErrUnavailable
+		return nil, ErrTrialOnly
 	}
 	s := d.Stream
 	s.Type = strings.ToLower(s.Type)
