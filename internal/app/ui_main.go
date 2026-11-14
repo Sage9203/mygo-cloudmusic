@@ -106,8 +106,29 @@ func (a *app) open(r route) {
 		a.load(r)
 		return
 	}
-	a.history, a.forward = append(a.history, a.route), nil
+	a.history, a.forward = append(a.history, a.currentVisit()), nil
 	a.show(r)
+}
+
+type pageVisit struct {
+	route route
+	row   int
+}
+
+func (a *app) currentVisit() pageVisit {
+	v := pageVisit{route: a.route}
+	if a.scrolled == a.route && a.route.page == pagePlaylist {
+		v.row, _ = a.trackList.Visible()
+	}
+	return v
+}
+
+func (a *app) revisit(v pageVisit) {
+	a.show(v.route)
+	a.trackList, a.pageScroll, a.scrolled = ui.ListState{}, ui.ScrollState{}, v.route
+	if v.row > 0 {
+		a.trackList.ScrollTo(v.row, ui.Start)
+	}
 }
 
 // show shows the page of r.
@@ -152,10 +173,10 @@ func (a *app) back() {
 	if len(a.history) == 0 {
 		return
 	}
-	a.forward = append(a.forward, a.route)
+	a.forward = append(a.forward, a.currentVisit())
 	r := a.history[len(a.history)-1]
 	a.history = a.history[:len(a.history)-1]
-	a.show(r)
+	a.revisit(r)
 }
 
 // goForward goes to the page back left, as the forward button of a mouse
@@ -164,11 +185,11 @@ func (a *app) goForward() {
 	if len(a.forward) == 0 {
 		return
 	}
-	a.history = append(a.history, a.route)
+	a.history = append(a.history, a.currentVisit())
 	r := a.forward[len(a.forward)-1]
 	a.forward = a.forward[:len(a.forward)-1]
 	a.nowPlaying = false
-	a.show(r)
+	a.revisit(r)
 }
 
 func (a *app) sidebar(c *ui.Context) {
@@ -188,6 +209,9 @@ func (a *app) sidebar(c *ui.Context) {
 			a.navItem(c, iconDaily, "每日推荐", route{page: pageDaily})
 			a.navItem(c, iconRadio, "私人 FM", route{page: pageFM})
 			a.navItem(c, iconCharts, "排行榜", route{page: pageCharts})
+			if id := a.likedPlaylist(); a.profile != nil && id != 0 {
+				a.navItem(c, iconHeart, "我喜欢的音乐", route{page: pagePlaylist, id: id})
+			}
 			a.navItem(c, iconPodcast, "播客", route{page: pagePodcasts})
 			if a.searched.query != "" {
 				a.navItem(c, iconSearch, "搜索结果", a.searched)
@@ -206,7 +230,7 @@ func (a *app) sidebar(c *ui.Context) {
 
 func (a *app) navItem(c *ui.Context, icon *ui.SVG, label string, r route) {
 	p := a.pal
-	selected := a.route.page == r.page && !a.nowPlaying
+	selected := a.route.page == r.page && (r.page != pagePlaylist || a.route.id == r.id) && !a.nowPlaying
 	b := ui.ButtonBase(c.Key(label)).Height(34).PaddingX(10).Gap(10).Radius(8).AlignItems(ui.Center).Justify(ui.Start).FocusRing(false)
 	bg := ui.Transparent
 	switch {

@@ -57,8 +57,8 @@ type app struct {
 	pal                       palette
 
 	route   route
-	history []route
-	forward []route // the pages gone back from, the last first to go to
+	history []pageVisit
+	forward []pageVisit // the pages gone back from, the last first to go to
 
 	profile      *netease.Profile
 	mine, saved  []netease.Playlist // the listener's playlists: made, and saved

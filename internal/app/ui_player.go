@@ -418,7 +418,10 @@ func (a *app) playerBar(c *ui.Context) {
 					if sub == "" {
 						a.artistLinks(c, tr, p.muted, p.text).FontSize(12).SingleLine()
 					} else {
-						ui.Text(c, sub).FontSize(12).TextColor(color).SingleLine()
+						status := ui.Text(c, sub).FontSize(12).TextColor(color).SingleLine()
+						if sub == pl.Err() {
+							status.Tooltip(sub)
+						}
 					}
 				})
 			})

@@ -709,4 +709,9 @@ func fft(x []complex128) {
 	}
 }
 
-func (d *download) resumeDownload() { d.resumeOnce.Do(func() { close(d.resume) }) }
+func (d *download) resumeDownload() {
+	// A cached track is already complete and has no downloader to resume.
+	if d.resume != nil {
+		d.resumeOnce.Do(func() { close(d.resume) })
+	}
+}

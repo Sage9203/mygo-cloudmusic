@@ -267,14 +267,14 @@ func (a *app) deleteChosen() {
 	a.mine = slices.Delete(slices.Clone(a.mine), i, i+1)
 	// Leave no way back to its page, and leave it for the page before.
 	gone := func(r route) bool { return r.page == pagePlaylist && r.id == id }
-	a.history = slices.DeleteFunc(a.history, gone)
-	a.forward = slices.DeleteFunc(a.forward, gone)
+	a.history = slices.DeleteFunc(a.history, func(v pageVisit) bool { return gone(v.route) })
+	a.forward = slices.DeleteFunc(a.forward, func(v pageVisit) bool { return gone(v.route) })
 	if gone(a.route) {
-		r := route{page: pageHome}
+		v := pageVisit{route: route{page: pageHome}}
 		if n := len(a.history); n > 0 {
-			r, a.history = a.history[n-1], a.history[:n-1]
+			v, a.history = a.history[n-1], a.history[:n-1]
 		}
-		a.show(r)
+		a.revisit(v)
 	}
 	go func() {
 		err := deletePlaylist(id)

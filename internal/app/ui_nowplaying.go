@@ -181,6 +181,7 @@ func (a *app) nowPlayingBody(c *ui.Context, tr *netease.Track, art *artwork, acc
 					a.likeButton(c.Key("like"), tr, 22, white.Alpha(0.7))
 					a.songMenu(c.Key("more"), tr, 22, white.Alpha(0.7)).Margin(0, -8, 0, 0)
 				})
+				nowPlayingError(c, pl.Err(), accent)
 				a.scrubber(c.Key("np-scrub"), &a.npScrub, white.Alpha(0.18), white.Alpha(0.9), 16, accent.Mix(white, 0.35))
 				// As tall with the quality's badge as without it: the badge goes
 				// while the next song loads, and the column would move with it.
@@ -364,11 +365,18 @@ func qualityBadge(c *ui.Context, st *netease.Stream) {
 		Padding(1, 6).Radius(4).Border(1, ui.Hex("#f5d58a").Alpha(0.55))
 }
 
+func nowPlayingError(c *ui.Context, message string, color ui.Color) {
+	if message != "" {
+		ui.Text(c, message).FontSize(12).TextColor(color)
+	}
+}
+
 // stageBar is the slim bar along the foot of the stage: what plays, where
 // it is, and the controls.
 func (a *app) stageBar(c *ui.Context, tr *netease.Track, art *artwork, accent ui.Color) {
 	pl := a.pl
 	ui.Column(c).Padding(0, 48, 28, 48).Gap(10).Children(func() {
+		nowPlayingError(c, pl.Err(), accent)
 		a.scrubber(c.Key("stage-scrub"), &a.npScrub, white.Alpha(0.18), white.Alpha(0.9), 14, accent.Mix(white, 0.35))
 		ui.Row(c).Gap(14).AlignItems(ui.Center).Children(func() {
 			ui.Row(c).Grow(1).Basis(0).MinWidth(0).Gap(12).AlignItems(ui.Center).Children(func() {

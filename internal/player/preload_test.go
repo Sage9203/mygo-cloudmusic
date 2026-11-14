@@ -4,10 +4,13 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -52,9 +55,23 @@ func TestPreloadUsesCachedNext(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer s.Close()
-	q := make(chan func(), 1)
+	q := make(chan func(), 4)
 	p := &Player{post: func(fn func()) { q <- fn }, Cache: NewCache(dir, 1<<20), queue: []netease.Track{{ID: 1}, {ID: 7}}, order: []int{0, 1}, at: 0, gen: 4}
-	defer p.CancelPreload()
+	defer p.stop()
+	previous := http.DefaultTransport
+	t.Cleanup(func() { http.DefaultTransport = previous })
+	p.queue[1].Album.PicURL = "https://cover.example/cached-next"
+	http.DefaultTransport = playbackTransport(func(req *http.Request) (*http.Response, error) {
+		switch req.URL.Path {
+		case "/cached-next":
+			return &http.Response{StatusCode: http.StatusOK, Body: io.NopCloser(strings.NewReader(""))}, nil
+		case "/api/song/lyric":
+			return nil, errors.New("lyrics unavailable in cache test")
+		default:
+			t.Errorf("unexpected request for cached track: %s", req.URL.Path)
+			return nil, errors.New("unexpected request")
+		}
+	})
 	p.planPreload(context.Background(), 4, s, "exhigh")
 	select {
 	case fn := <-q:
@@ -62,18 +79,25 @@ func TestPreloadUsesCachedNext(t *testing.T) {
 	case <-time.After(2 * time.Second):
 		t.Fatal("cached next track not prepared")
 	}
-	next := p.takePreload(7, "exhigh")
-	if next == nil {
+	prepared := p.preload
+	if prepared == nil || prepared.dl == nil || prepared.dl.file == nil {
 		t.Fatal("prepared track not reusable")
 	}
-	defer next.dl.Close()
-	p.stop()
-	if next.ctx.Err() != nil {
+	p.Next()
+	// Drain the cover, lyrics and playback callbacks.
+	for range 3 {
+		next(t, q)
+	}
+	if !p.Ready() || !p.Playing() || p.Current().ID != 7 {
+		t.Fatalf("cached next track did not start: %s", p.Err())
+	}
+	out := p.out
+	defer out.Close()
+	if p.preload != nil || prepared.ctx.Err() != nil {
 		t.Fatal("switching cancelled the selected lookahead")
 	}
-	p.cancel = next.cancel
 	p.stop()
-	if next.ctx.Err() != context.Canceled {
+	if prepared.ctx.Err() != context.Canceled {
 		t.Fatal("selected lookahead did not become the active load")
 	}
 }

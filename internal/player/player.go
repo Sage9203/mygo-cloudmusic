@@ -752,6 +752,10 @@ func (p *Player) loadSkipping(at, skipped int, play bool, from time.Duration, au
 }
 
 func loadErrorMessage(t netease.Track, err error) string {
+	var response *netease.SongURLError
+	if errors.As(err, &response) && response.Code == -460 {
+		return "网易云暂时拒绝了播放请求（-460），请稍后点击播放重试"
+	}
 	switch {
 	case errors.Is(err, netease.ErrTrialOnly):
 		return "仅提供试听"

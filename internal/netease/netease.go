@@ -399,6 +399,16 @@ var ErrUnavailable = errors.New("this song isn't available to stream")
 // ErrTrialOnly means the service returned only a preview.
 var ErrTrialOnly = errors.New("only a preview is available")
 
+// SongURLError retains the service's status and message for a failed request.
+type SongURLError struct {
+	Code    int
+	Message string
+}
+
+func (e *SongURLError) Error() string {
+	return fmt.Sprintf("netease: song URL: code %d %s", e.Code, e.Message)
+}
+
 // Stream is where a track streams from, and what it is.
 type Stream struct {
 	URL  string `json:"-"`
@@ -448,7 +458,7 @@ func SongURL(ctx context.Context, id int64, level string) (*Stream, error) {
 		if message == "" {
 			message = res.Msg
 		}
-		return nil, fmt.Errorf("netease: song URL: code %d %s", res.Code, message)
+		return nil, &SongURLError{Code: res.Code, Message: message}
 	}
 	if len(res.Data) == 0 || res.Data[0].URL == "" {
 		return nil, ErrUnavailable

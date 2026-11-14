@@ -3,8 +3,12 @@ package player
 import (
 	"errors"
 	"io"
+	"net/http"
 	"os"
+	"strings"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"netease-music-mygo/internal/netease"
 )
@@ -115,5 +119,82 @@ func TestLoadFailurePolicy(t *testing.T) {
 				t.Fatalf("next = %d, want %d", got, tc.want)
 			}
 		})
+	}
+}
+
+type playbackTransport func(*http.Request) (*http.Response, error)
+
+func (f playbackTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	return f(req)
+}
+
+// A rejected manual skip keeps the selected song and waits for Play before retrying.
+func TestNextRetriesRejectedTrackOnlyOnPlay(t *testing.T) {
+	t.Setenv("LOCALAPPDATA", t.TempDir())
+	previous := http.DefaultTransport
+	t.Cleanup(func() { http.DefaultTransport = previous })
+	var requests atomic.Int32
+	http.DefaultTransport = playbackTransport(func(req *http.Request) (*http.Response, error) {
+		switch req.URL.Path {
+		case "/eapi/song/enhance/player/url/v1":
+			requests.Add(1)
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Header:     make(http.Header),
+				Body:       io.NopCloser(strings.NewReader(`{"code":-460,"message":"network risk"}`)),
+				Request:    req,
+			}, nil
+		case "/api/song/lyric":
+			return nil, errors.New("lyrics unavailable in playback test")
+		case "/cover":
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Header:     make(http.Header),
+				Body:       io.NopCloser(strings.NewReader("")),
+				Request:    req,
+			}, nil
+		default:
+			t.Errorf("unexpected request: %s", req.URL.Path)
+			return nil, errors.New("unexpected request")
+		}
+	})
+	posted := make(chan func(), 4)
+	p := Player{
+		post:  func(fn func()) { posted <- fn },
+		queue: []netease.Track{{ID: 1}, {ID: 2}, {ID: 3}},
+		order: []int{0, 1, 2},
+	}
+	p.track = &p.queue[0]
+	p.queue[1].Album.PicURL = "https://audio.example/cover"
+	defer p.stop()
+
+	for i, action := range []func(){p.Next, p.TogglePlay} {
+		action()
+		// Drain the cover, lyric and playback callbacks before the next action.
+		timeout := time.After(3 * time.Second)
+		for range 3 {
+			select {
+			case fn := <-posted:
+				fn()
+			case <-timeout:
+				t.Fatal("track load did not complete")
+			}
+		}
+		if p.Current().ID != 2 || p.Playing() || p.loading || !strings.Contains(p.Err(), "-460") {
+			t.Fatalf("attempt %d: track=%d playing=%v loading=%v error=%q",
+				i+1, p.Current().ID, p.Playing(), p.loading, p.Err())
+		}
+		if got := requests.Load(); got != int32(i+1) {
+			t.Fatalf("attempt %d: got %d total song URL requests", i+1, got)
+		}
+	}
+}
+
+// An automatic continuation also stops when the service rejects the request.
+func TestSongURLRejection(t *testing.T) {
+	err := &netease.SongURLError{Code: -460, Message: "network risk"}
+	p := Player{order: []int{0, 1}}
+	if next := p.nextAfterLoadFailure(0, 0, true, err); next != -1 {
+		t.Fatalf("rejection advanced to index %d", next)
 	}
 }
