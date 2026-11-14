@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"slices"
 
 	"github.com/egoist/mygo"
 )
@@ -149,6 +150,45 @@ func (s settings) save() error {
 		return err
 	}
 	return writeSettingsFile(path, b, os.Rename)
+}
+
+func (a *app) saveSettings() {
+	a.queueSettingsSave(a.post)
+}
+
+// Keep one write in flight. A subsequent request saves the latest settings
+// after that write, so an older snapshot cannot replace newer settings.
+func (a *app) queueSettingsSave(post func(func())) {
+	if a.quitting || a.settings.path == "" {
+		return
+	}
+	if a.settingsWriteDone != nil {
+		a.settingsWriteQueued = true
+		return
+	}
+	snapshot := a.settings
+	snapshot.SearchHistory = slices.Clone(snapshot.SearchHistory)
+	done := make(chan struct{})
+	a.settingsWriteDone = done
+	go func() {
+		err := snapshot.save()
+		close(done)
+		post(func() {
+			if a.quitting {
+				return
+			}
+			a.settingsWriteDone = nil
+			if a.settingsWriteQueued {
+				a.settingsWriteQueued = false
+				a.queueSettingsSave(post)
+				return
+			}
+			a.settingsSaveFailed = err != nil
+			if a.settingsWin != nil {
+				a.settingsWin.Invalidate()
+			}
+		})
+	}()
 }
 
 // Stage the complete settings next to the destination before replacing it.

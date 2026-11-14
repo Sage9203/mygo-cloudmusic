@@ -27,6 +27,10 @@ func TestReleaseNotesSummary(t *testing.T) {
 	if got := long.notes(); got != "• "+item+"…" {
 		t.Fatalf("summary did not end at the first item: %q", got)
 	}
+	shortFirst := appRelease{Body: "### 更新\n- 修复问题\n- " + strings.Repeat("字", 600)}
+	if got := shortFirst.notes(); got != "更新\n• 修复问题…" {
+		t.Fatalf("summary cut the second item: %q", got)
+	}
 }
 
 func (f releaseTransport) RoundTrip(req *http.Request) (*http.Response, error) {

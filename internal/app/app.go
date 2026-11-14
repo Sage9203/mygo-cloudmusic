@@ -148,11 +148,13 @@ type app struct {
 	sig                   playerSig
 	quitting              bool
 
-	settings           settings
-	settingsSaveFailed bool
-	settingsWin        *mygo.Window
-	cacheUsed          int64 // the bytes the song cache takes, -1 until measured
-	releaseCheck       releaseCheckState
+	settings            settings
+	settingsSaveFailed  bool
+	settingsWriteDone   chan struct{}
+	settingsWriteQueued bool
+	settingsWin         *mygo.Window
+	cacheUsed           int64 // the bytes the song cache takes, -1 until measured
+	releaseCheck        releaseCheckState
 
 	restored     bool   // playback picked up where it was left
 	savedSession string // the session as last kept
@@ -297,6 +299,9 @@ func Run() error {
 	})
 	mygo.App.OnBeforeQuit(func(*mygo.QuitEvent) {
 		a.quitting = true
+		if a.settingsWriteDone != nil {
+			<-a.settingsWriteDone
+		}
 		a.settings.Volume = a.volume
 		a.settings.save()
 		a.saveSession()

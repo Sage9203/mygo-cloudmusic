@@ -72,7 +72,10 @@ func (r appRelease) notes() string {
 	const limit = 600
 	if len(notes) > limit {
 		summary := string(notes[:limit])
-		if lineEnd := strings.LastIndexByte(summary, '\n'); lineEnd >= len(string(notes[:limit/2])) {
+		if notes[limit] == '\n' {
+			return strings.TrimSpace(summary) + "…"
+		}
+		if lineEnd := strings.LastIndexByte(summary, '\n'); lineEnd >= 0 {
 			summary = summary[:lineEnd]
 		}
 		return strings.TrimSpace(summary) + "…"

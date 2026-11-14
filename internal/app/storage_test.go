@@ -1,13 +1,69 @@
 package app
 
 import (
+	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"github.com/egoist/mygo"
+	"github.com/egoist/mygo/ui"
 )
+
+// Settings exposes a failed background write and clears the warning on retry.
+func TestRetrySettingsSave(t *testing.T) {
+	a := newTestApp()
+	a.settings.path = filepath.Join(t.TempDir(), "settings.json")
+	if err := os.Mkdir(a.settings.path, 0700); err != nil {
+		t.Fatal(err)
+	}
+	pending := make(chan func(), 1)
+	post := func(fn func()) { pending <- fn }
+	tt := ui.NewTester(func(c *ui.Context) {
+		a.settingsContent(c, "0.1.26-preview.5", post)
+	}, 560, 2000)
+	complete := func() {
+		t.Helper()
+		select {
+		case fn := <-pending:
+			fn()
+		case <-time.After(5 * time.Second):
+			t.Fatal("settings write did not complete")
+		}
+		tt.Frame()
+	}
+	a.queueSettingsSave(post)
+	complete()
+	if err := os.Remove(a.settings.path); err != nil {
+		t.Fatal(err)
+	}
+	if err := tt.Click("重试保存"); err != nil {
+		t.Fatal(err)
+	}
+	complete()
+	if _, ok := tt.Find("重试保存"); ok {
+		t.Fatal("retry is still offered after saving")
+	}
+	if _, err := os.ReadFile(a.settings.path); err != nil {
+		t.Fatal(err)
+	}
+	a.settings.Volume = 0.2
+	a.queueSettingsSave(post)
+	a.settings.Volume = 0.7
+	a.queueSettingsSave(post)
+	complete()
+	complete()
+	data, err := os.ReadFile(a.settings.path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var saved settings
+	if err := json.Unmarshal(data, &saved); err != nil || saved.Volume != 0.7 {
+		t.Fatalf("saved volume = %v, parse error = %v", saved.Volume, err)
+	}
+}
 
 // A failed replacement leaves the previous settings and removes the staged file.
 func TestSettingsReplacementFailure(t *testing.T) {

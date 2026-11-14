@@ -42,7 +42,7 @@ func (a *app) openSettings() {
 
 // changed applies the settings everywhere and keeps them.
 func (a *app) changed() {
-	a.settingsSaveFailed = a.settings.save() != nil
+	a.saveSettings()
 	a.settings.applyAppearance()
 	if a.notch != nil {
 		a.notch.setEnabled(a.settings.Notch)
@@ -66,8 +66,8 @@ func (a *app) settingsContent(c *ui.Context, version string, post func(func())) 
 	ui.Scroll(c).Fill().Padding(24, 28, 32, 28).Gap(8).Children(func() {
 		if a.settingsSaveFailed {
 			ui.Text(c, "设置未保存，重启后可能恢复上次的设置。").TextColor(p.text).FontSize(13)
-			if ui.Button(c.Key("retry-save-settings"), "重试保存").Clicked() {
-				a.settingsSaveFailed = s.save() != nil
+			if ui.Button(c.Key("retry-save-settings"), "重试保存").Disabled(a.settingsWriteDone != nil).Clicked() {
+				a.queueSettingsSave(post)
 				c.Invalidate()
 			}
 		}
@@ -157,7 +157,7 @@ func (a *app) settingsContent(c *ui.Context, version string, post func(func())) 
 			if runtime.GOOS == "windows" {
 				row("原采样率独占输出", "下一首生效；可能独占声音设备，不支持时回退共享模式", func() {
 					if ui.Switch(c.Key("exclusive"), &s.Exclusive).Label("启用原采样率独占输出").Changed() {
-						a.settingsSaveFailed = s.save() != nil
+						a.queueSettingsSave(post)
 						c.Invalidate()
 					}
 				})
