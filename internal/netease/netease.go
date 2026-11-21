@@ -450,8 +450,30 @@ func SongURL(ctx context.Context, id int64, level string) (*Stream, error) {
 		encode = "flac"
 	}
 	data := map[string]any{"ids": fmt.Sprintf("[%d]", id), "level": level, "encodeType": encode}
-	if err := eapiPostClient(ctx, defaultSession.client, "/api/song/enhance/player/url/v1", data, &res); err != nil {
+	session := defaultSession
+	revision := session.currentRevision()
+	err := eapiPostClient(ctx, session.client, "/api/song/enhance/player/url/v1", data, &res)
+	if session.currentRevision() != revision {
+		return nil, ErrSessionChanged
+	}
+	if err != nil {
 		return nil, err
+	}
+	current, cookies := session.snapshot(siteURL)
+	if current != revision {
+		return nil, ErrSessionChanged
+	}
+	if res.Code == -460 && slices.ContainsFunc(cookies, func(cookie *http.Cookie) bool {
+		return cookie.Name == "MUSIC_U" && cookie.Value != ""
+	}) {
+		res.Code, res.Message, res.Msg, res.Data = 0, "", "", nil
+		err = webSongURL(ctx, session.client, cookies, id, level, &res)
+		if session.currentRevision() != revision {
+			return nil, ErrSessionChanged
+		}
+		if err != nil {
+			return nil, err
+		}
 	}
 	if res.Code != 200 {
 		message := res.Message

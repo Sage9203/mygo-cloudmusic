@@ -29,7 +29,7 @@ func TestRestoredSessionReachesSongURL(t *testing.T) {
 		switch req.URL.Path {
 		case "/api/nuser/account/get":
 			body = `{"code":200,"profile":{"userId":1}}`
-		case "/eapi/song/enhance/player/url/v1":
+		case "/eapi/song/enhance/player/url/v1", "/weapi/song/enhance/player/url/v1":
 			body = `{"code":-460,"message":"network risk"}`
 		default:
 			return nil, errors.New("unexpected request path")

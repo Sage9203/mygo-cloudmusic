@@ -157,6 +157,12 @@ func ForgetSession() func() error { return defaultSession.clear() }
 // before sending logout with an isolated copy of the old cookies.
 func BeginLogout() func() error { return defaultSession.beginLogout() }
 
+func (s *sessionManager) currentRevision() uint64 {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return s.revision
+}
+
 // snapshot pairs request cookies and revision atomically with login/logout.
 func (s *sessionManager) snapshot(u *url.URL) (uint64, []*http.Cookie) {
 	s.mu.Lock()
