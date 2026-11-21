@@ -757,6 +757,8 @@ func loadErrorMessage(t netease.Track, err error) string {
 		return "网易云暂时拒绝了播放请求（-460），请稍后点击播放重试"
 	}
 	switch {
+	case errors.Is(err, netease.ErrSessionChanged):
+		return "登录状态已变化，请点击播放重试"
 	case errors.Is(err, netease.ErrTrialOnly):
 		return "仅提供试听"
 	case errors.Is(err, netease.ErrUnavailable):

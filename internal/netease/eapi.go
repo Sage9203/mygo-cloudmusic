@@ -134,6 +134,9 @@ func eapiPostClient(ctx context.Context, client *http.Client, path string, data 
 		return err
 	}
 	defer res.Body.Close()
+	if path == "/api/song/enhance/player/url/v1" && res.StatusCode == http.StatusTooManyRequests {
+		return &SongURLError{Code: res.StatusCode, Message: http.StatusText(res.StatusCode)}
+	}
 	// Keep what it sets for the site, whichever host set it.
 	if set := res.Cookies(); len(set) > 0 {
 		for _, c := range set {
