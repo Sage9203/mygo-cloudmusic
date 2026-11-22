@@ -107,6 +107,8 @@ func playDevice(dev device, n int, lat Latency, format outputFormat) {
 			}
 			break
 		}
+		// Yield before the write blocks in native code, as the upstream loop does.
+		runtime.Gosched()
 		if err := dev.write(buf); err != nil {
 			// Lost, or a null device trying the real one again.
 			break

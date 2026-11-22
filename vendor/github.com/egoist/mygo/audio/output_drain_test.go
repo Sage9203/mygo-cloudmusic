@@ -40,14 +40,18 @@ func testQueuedTail(t *testing.T, fail bool) {
 	mu.Lock()
 	oldFormat, oldRate, oldVoices, oldVolume := requestedFormat, mixRate, voices, volume
 	oldMixed, oldUnheard, oldHeld := mixed, unheard, held
+	oldTestMode := testMode
 	defer func() {
 		mu.Lock()
 		requestedFormat, mixRate, voices, volume = oldFormat, oldRate, oldVoices, oldVolume
 		mixed, unheard, held = oldMixed, oldUnheard, oldHeld
+		testMode = oldTestMode
 		mu.Unlock()
 	}()
 	format := outputFormat{rate: 48000}
 	requestedFormat, mixRate, volume = format, format.rate, 1
+	// Drive the fake device directly without waking the background output.
+	testMode = false
 	mixed, unheard, held = 0, 0, 4800
 	samples := []float32{0.25, -0.25}
 	p := newPlayer(&memSource{samples: samples, channels: 2}, format.rate, 2, 1)

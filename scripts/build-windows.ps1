@@ -15,9 +15,9 @@ try {
     $required = ((Get-Content -LiteralPath 'go.mod' | Where-Object { $_ -match '^go ' }) -split '\s+')[1]
     $actual = go env GOVERSION
     if ($LASTEXITCODE -ne 0 -or $actual -ne "go$required") { throw "Use Go $required on PATH; found $actual" }
-    # ./... skips vendored dependency tests, including our modified audio backend.
-    go test github.com/egoist/mygo/audio github.com/egoist/mygo/ui
-    if ($LASTEXITCODE -ne 0) { throw 'Audio backend tests failed' }
+    # ./... skips the vendored audio, UI and Windows text regressions.
+    go test github.com/egoist/mygo/audio github.com/egoist/mygo/ui github.com/egoist/mygo/internal/text
+    if ($LASTEXITCODE -ne 0) { throw 'MyGo dependency tests failed' }
     & (Join-Path $PSScriptRoot 'check-account-callbacks.ps1')
     go test ./...
     if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
