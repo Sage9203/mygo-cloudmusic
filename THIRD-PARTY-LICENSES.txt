@@ -1880,7 +1880,7 @@ The Go implementation and generated table retain the Go module's own BSD-style n
 
 ## Go runtime and standard library
 
-The release is built with Go 1.27.3. The Go Authors' license is in go/LICENSE.
+The release is built with Go 1.27.4. The Go Authors' license is in go/LICENSE.
 The C compiler and LAME encoder used for validation and test-fixture generation are build-only tools and are not shipped or linked into the normal CGO_ENABLED=0 application.
 
 ## Project artwork and synthetic test audio
