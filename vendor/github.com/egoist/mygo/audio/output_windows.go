@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"runtime"
 	"syscall"
 	"time"
 	"unsafe"
@@ -34,7 +35,6 @@ var (
 	procCoCreateInstance      = ole32.NewProc("CoCreateInstance")
 	procCoTaskMemFree         = ole32.NewProc("CoTaskMemFree")
 	procCreateEventW          = kernel32.NewProc("CreateEventW")
-	procWaitForSingleObject   = kernel32.NewProc("WaitForSingleObject")
 	procCloseHandle           = kernel32.NewProc("CloseHandle")
 	comInitialized            bool
 	errDefaultDeviceChanged   = errors.New("audio: the default output changed")
@@ -72,17 +72,26 @@ const (
 )
 
 // comCall calls method i of the COM interface obj. Pointers converted to
-// uintptr in the call stay valid until it returns (go:uintptrescapes).
+// uintptr in the call stay valid until it returns (go:uintptrescapes),
+// which moves what they point to, and args, to the heap: write calls
+// syscall.SyscallN and method instead.
 //
 //go:uintptrescapes
 func comCall(obj uintptr, i int, args ...uintptr) uintptr {
-	vtbl := *(*uintptr)(native(obj))
-	fn := *(*uintptr)(unsafe.Add(native(vtbl), i*int(unsafe.Sizeof(uintptr(0)))))
 	var a [16]uintptr
 	a[0] = obj
 	n := copy(a[1:], args)
-	r, _, _ := syscall.SyscallN(fn, a[:n+1]...)
+	r, _, _ := syscall.SyscallN(method(obj, i), a[:n+1]...)
 	return r
+}
+
+// method returns the address of method i of the COM interface obj, to
+// call with syscall.SyscallN, obj first. SyscallN keeps pointers
+// converted to uintptr in its call valid without moving them to the heap
+// (go:uintptrkeepalive), so such a call allocates nothing.
+func method(obj uintptr, i int) uintptr {
+	vtbl := *(*uintptr)(native(obj))
+	return *(*uintptr)(unsafe.Add(native(vtbl), i*int(unsafe.Sizeof(uintptr(0)))))
 }
 
 // native converts a native address to a pointer.
@@ -135,8 +144,11 @@ func defaultID(enumerator uintptr) (string, error) {
 
 func openDevice(ahead time.Duration, format outputFormat) (device, int, error) {
 	if !comInitialized {
+		// COM is initialized per thread: run's goroutine keeps this one.
+		runtime.LockOSThread()
 		// S_FALSE, already initialized, succeeds as well.
 		if hr, _, _ := procCoInitializeEx.Call(0, coinitMultithreaded); failed(hr) {
+			runtime.UnlockOSThread()
 			return nil, 0, hresult("CoInitializeEx", hr)
 		}
 		comInitialized = true
@@ -248,9 +260,11 @@ func (d *wasapiDevice) open(ahead time.Duration, format outputFormat) error {
 func (d *wasapiDevice) write(samples []float32) error {
 	n := uint32(len(samples) / channels)
 	deadline := time.Now().Add(time.Second)
+	// Called on every write: through syscall.SyscallN, not comCall, so
+	// padding and data stay on the stack.
 	for {
 		var padding uint32
-		if hr := comCall(d.client, 6, uintptr(unsafe.Pointer(&padding))); failed(hr) {
+		if hr, _, _ := syscall.SyscallN(method(d.client, 6), d.client, uintptr(unsafe.Pointer(&padding))); failed(hr) {
 			return hresult("IAudioClient.GetCurrentPadding", hr)
 		}
 		if padding <= d.frames && d.frames-padding >= n {
@@ -260,17 +274,17 @@ func (d *wasapiDevice) write(samples []float32) error {
 			return errAudioClientUnresponded
 		}
 		if d.event != 0 {
-			procWaitForSingleObject.Call(d.event, 100)
+			syscall.WaitForSingleObject(syscall.Handle(d.event), 100)
 		} else {
 			time.Sleep(2 * time.Millisecond)
 		}
 	}
-	var p unsafe.Pointer
-	if hr := comCall(d.render, 3, uintptr(n), uintptr(unsafe.Pointer(&p))); failed(hr) {
+	var data unsafe.Pointer
+	if hr, _, _ := syscall.SyscallN(method(d.render, 3), d.render, uintptr(n), uintptr(unsafe.Pointer(&data))); failed(hr) {
 		return hresult("IAudioRenderClient.GetBuffer", hr)
 	}
-	encodeOutput(unsafe.Slice((*byte)(p), len(samples)*int(d.format.bitsPerSample)/8), samples, d.format)
-	if hr := comCall(d.render, 4, uintptr(n), 0); failed(hr) {
+	encodeOutput(unsafe.Slice((*byte)(data), len(samples)*int(d.format.bitsPerSample)/8), samples, d.format)
+	if hr, _, _ := syscall.SyscallN(method(d.render, 4), d.render, uintptr(n), 0); failed(hr) {
 		return hresult("IAudioRenderClient.ReleaseBuffer", hr)
 	}
 	// The default output changing (headphones plugged in, a choice in
@@ -294,7 +308,7 @@ func (d *wasapiDevice) drain() {
 			return
 		}
 		if d.event != 0 {
-			procWaitForSingleObject.Call(d.event, 10)
+			syscall.WaitForSingleObject(syscall.Handle(d.event), 10)
 		} else {
 			time.Sleep(2 * time.Millisecond)
 		}

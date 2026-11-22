@@ -214,7 +214,9 @@ func loadCoreText() error {
 	text := lib("/System/Library/Frameworks/CoreText.framework/CoreText")
 	cg := lib("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")
 	objcLib := lib("/usr/lib/libobjc.A.dylib")
-	lib("/System/Library/Frameworks/AppKit.framework/AppKit") // NSFont
+	if runtime.GOOS != "ios" {
+		lib("/System/Library/Frameworks/AppKit.framework/AppKit") // NSFont
+	}
 	if len(missing) > 0 {
 		return fmt.Errorf("cannot load %s", strings.Join(missing, ", "))
 	}
@@ -471,8 +473,13 @@ type registeredFace struct {
 	mono   bool
 }
 
+// coreTextLoaded binds the functions of Core Text and its frameworks
+// once, as engines are made apart, on the goroutine of each, and what
+// one bound the others reuse.
+var coreTextLoaded = sync.OnceValue(loadCoreText)
+
 func newCoreText() (*coreText, error) {
-	if err := loadCoreText(); err != nil {
+	if err := coreTextLoaded(); err != nil {
 		return nil, err
 	}
 	e := &coreText{
@@ -504,7 +511,8 @@ func newCoreText() (*coreText, error) {
 	if e.srgb == 0 {
 		e.srgb = ct.colorSpaceDeviceRGB()
 	}
-	e.smooth = fontSmoothing()
+	// iOS smooths no text: it draws glyphs as Core Graphics does.
+	e.smooth = runtime.GOOS != "ios" && fontSmoothing()
 	return e, nil
 }
 
@@ -598,6 +606,14 @@ func (e *coreText) systemFont(size float32, weight int, italic, mono bool) uintp
 			font = e.named("Menlo", size, weight, false)
 		} else {
 			font = ct.uiFontForLanguage(ctFontUIFontSystem, float64(size), 0)
+			// iOS has no NSFont: the weight goes in the system font's
+			// descriptor, as UIFont's systemFontOfSize:weight: does.
+			if runtime.GOOS == "ios" && font != 0 && weight != 400 {
+				if f := e.weighted(font, size, weight); f != 0 {
+					ct.release(font)
+					font = f
+				}
+			}
 		}
 	}
 	if font != 0 && italic {
@@ -607,6 +623,24 @@ func (e *coreText) systemFont(size float32, weight int, italic, mono bool) uintp
 		}
 	}
 	return font
+}
+
+// weighted returns font at a weight, owned, or 0: a copy of it with the
+// weight trait in its descriptor, which picks the system font's face of
+// that weight.
+func (e *coreText) weighted(font uintptr, size float32, weight int) uintptr {
+	w := cfFloat(nsWeight(weight))
+	defer ct.release(w)
+	traits := cfDictionary([]uintptr{ct.weightTrait}, []uintptr{w})
+	defer ct.release(traits)
+	attrs := cfDictionary([]uintptr{ct.traitsAttribute}, []uintptr{traits})
+	defer ct.release(attrs)
+	desc := ct.descriptorWithAttrs(attrs)
+	if desc == 0 {
+		return 0
+	}
+	defer ct.release(desc)
+	return ct.fontWithAttrs(font, float64(size), 0, desc)
 }
 
 // named returns a font of a family the system has, owned, or 0.

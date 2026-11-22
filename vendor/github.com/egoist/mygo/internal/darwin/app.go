@@ -1,4 +1,4 @@
-//go:build darwin
+//go:build darwin && !ios
 
 package darwin
 
@@ -38,6 +38,14 @@ type Backend struct {
 	trays       map[id]*tray
 	hotkeys     map[int]uintptr
 	hkInstalled bool
+
+	// sparePopovers are the NSPopovers of closed popover flyouts, which
+	// the next ones show in (takePopover); closingPopovers those of them
+	// that have not finished closing yet, whose delegate is spareDelegate
+	// until they have (givePopover). Main thread only.
+	sparePopovers   []id
+	closingPopovers map[id]bool
+	spareDelegate   id
 
 	notifyDelegate id
 	// notifyAnswered records that the user has answered whether the app

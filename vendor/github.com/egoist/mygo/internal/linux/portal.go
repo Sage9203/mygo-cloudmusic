@@ -1,4 +1,4 @@
-//go:build linux && (amd64 || arm64)
+//go:build linux && !android && (amd64 || arm64)
 
 package linux
 
@@ -44,6 +44,10 @@ func portalSignal(conn, sender, path, iface, signal, params, data ptr) {
 		gVariantUnref(results)
 	case "Activated":
 		theBackend.shortcutActivated(params)
+	case "ShortcutsChanged":
+		if changed := theBackend.portal.changed; changed != nil {
+			changed(params)
+		}
 	case "SettingChanged":
 		// A preference, or the color scheme, changed.
 		ns := gVariantGetChildValue(params, 0)

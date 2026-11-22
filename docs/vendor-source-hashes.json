@@ -817,11 +817,11 @@
   },
   {
     "path": "github.com/egoist/mygo/AGENTS.md",
-    "sha256": "9b9427641a90f199ef892b672943b91ca53c1dc13334ce52d0f00e5024b40f3b"
+    "sha256": "9f79b41eeea407dd3f76c1e7a7331c7eeeb3bfbd38fee161bd27e4515de03317"
   },
   {
     "path": "github.com/egoist/mygo/app.go",
-    "sha256": "79c175afb0d9ee2004454c45c6b2e93a55a0afcbf42f6e3cafb0dda51c81cc61"
+    "sha256": "41742a7e66d47b0a1f2cdbacaadeb6a90b4b6545a816f9c20259abb65e4c94a5"
   },
   {
     "path": "github.com/egoist/mygo/appfile_other.go",
@@ -836,8 +836,24 @@
     "sha256": "20f35ae8ed39e04d6221b21f1a5b6c592820a912f79af99f9b07ee1a762d6b01"
   },
   {
+    "path": "github.com/egoist/mygo/audio/audio_test.go",
+    "sha256": "8184772646f3a488dcc12f79ef54439fe82c94064a3dd4949c4c8eb4c88138b6"
+  },
+  {
     "path": "github.com/egoist/mygo/audio/audio.go",
-    "sha256": "3d724aa84be97b3a3fcbca1ce68f2ed9f19ff3f925966875b35b3fd967ac7516"
+    "sha256": "daf3e2aa335b38ddfb1c2d791406e8faf13eaa9f1f9e3f930331d5f938e97474"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/ccall_test.go",
+    "sha256": "515e16b1d222c7b8a9b613818b19e0c483fdd8205a705df3c80cd7bfa53c05c5"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/ccall.go",
+    "sha256": "4b4c05359bcc5e872f417b21c570a1955e0cbc7aad1885a186a9e95800718e36"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/loop_test.go",
+    "sha256": "03eef815d783ea824b82d9e39d46b59ac0ba5bb101ea2e6b94a46adf634c3727"
   },
   {
     "path": "github.com/egoist/mygo/audio/mixer.go",
@@ -845,11 +861,11 @@
   },
   {
     "path": "github.com/egoist/mygo/audio/output_darwin.go",
-    "sha256": "81478e0020bd927df200996e866dca78108c72e6af880d34634d7700ed77ea37"
+    "sha256": "b33a4d8a7b49736a7c1ea4b65e700430509622b87e25fda57b5ce1316649083c"
   },
   {
     "path": "github.com/egoist/mygo/audio/output_drain_test.go",
-    "sha256": "f61edd5252c0b5695f3781bf67ab3dc301d60ab675f4f028ad98d9426383d990"
+    "sha256": "4fa0c28b2e9b78ee50c432871c5417b348a3d87ed176f1ec287f3ce3863c4b51"
   },
   {
     "path": "github.com/egoist/mygo/audio/output_format_test.go",
@@ -865,7 +881,7 @@
   },
   {
     "path": "github.com/egoist/mygo/audio/output_linux.go",
-    "sha256": "f7a87f295beba9f1b06a41bf1fc5d79495fe47a430150e96b33f0dac656a480c"
+    "sha256": "c08ab47f904fd5a6650a102744fb0a776a64481364276abe5951bfbf39c5e026"
   },
   {
     "path": "github.com/egoist/mygo/audio/output_mix_test.go",
@@ -876,16 +892,28 @@
     "sha256": "1841b00f62cacd8f06112b26bce69c0b4ec11977701e27cb2458ac1625bd39c6"
   },
   {
+    "path": "github.com/egoist/mygo/audio/output_mobile.go",
+    "sha256": "1d72dd4cfdcbb5ae5b0a785dc44fc8a7daa3a2db27f9e7e0af80ed91e4490bfc"
+  },
+  {
     "path": "github.com/egoist/mygo/audio/output_other.go",
-    "sha256": "eeae064fefbf85707d30b1457bf92d1338b4413b41a524e1f39e0e9449c6454e"
+    "sha256": "09616b9e10a51415a07ba85689d8e1b7a3958a93b4670758074223fd662b7c00"
   },
   {
     "path": "github.com/egoist/mygo/audio/output_windows.go",
-    "sha256": "0506442f29c3bdd8fa0f3dd468f08f16e7c3638c9eb52f3c28fadf393a564094"
+    "sha256": "1311efc682fa9f5062050d9f5e33be3c00e9de56de34b11f085daaf03f9b1d6f"
   },
   {
     "path": "github.com/egoist/mygo/audio/output.go",
-    "sha256": "b509a7ddb022b9ecf501f880de564a478992b5d5270c385b747ae391cd2fc602"
+    "sha256": "048bf345580936170a70a8ddcd95889f57bd66fec0ce732588828ff4571b058f"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/position_test.go",
+    "sha256": "1b7c510cbe38dcf1b3f69387ec461691f7744a995febd9e08ce28596c7a5ca32"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/resample_test.go",
+    "sha256": "8e5bbe7fe1e681aea648df603da842c8c0469e2e376e642b12c1b2501098e3f6"
   },
   {
     "path": "github.com/egoist/mygo/audio/resample.go",
@@ -893,7 +921,11 @@
   },
   {
     "path": "github.com/egoist/mygo/audio/source.go",
-    "sha256": "0afe08dfe16e92a8d5e2b03950996e935754877ac6ceed75ecafff745aea576f"
+    "sha256": "096189ba63ed80d146e7189465e68d3d00d2358aebac534bac844353052e3719"
+  },
+  {
+    "path": "github.com/egoist/mygo/audio/stretch_test.go",
+    "sha256": "d9b0af8bf2b6aea251b04779c56ef6d999966b168037a2211d8da22edc215c16"
   },
   {
     "path": "github.com/egoist/mygo/audio/stretch.go",
@@ -909,7 +941,7 @@
   },
   {
     "path": "github.com/egoist/mygo/backend_darwin.go",
-    "sha256": "de5396b5aff7e6698fb77cc2d78fd4037696f54f633718b67295b1d26dc4335c"
+    "sha256": "41ff2fa656251fced8d3cb4bbcdfdbc1dab8eaf11531905d1fa6707e3785166a"
   },
   {
     "path": "github.com/egoist/mygo/backend_js.go",
@@ -917,11 +949,15 @@
   },
   {
     "path": "github.com/egoist/mygo/backend_linux.go",
-    "sha256": "103c7115f34254ffa93ea73cdd767dabb7f3afca484ff2a047bf232b001c75a5"
+    "sha256": "a0b502d84c4bf96acb5b75e87c2be55afe6e0af278936f3da1e7c373575572e2"
+  },
+  {
+    "path": "github.com/egoist/mygo/backend_mobile.go",
+    "sha256": "a8d931453b38df45c5934f52c2f73bb079346215bb35a38fa660de3702c1a3d9"
   },
   {
     "path": "github.com/egoist/mygo/backend_other.go",
-    "sha256": "3d73dd8986015f07f932f05ed30a083cfa312bf7e879a74d407d3d452fb87438"
+    "sha256": "7290ee772bdc938aef4439bc4fd4afafc037424af4a14f73de52f95cd8987e18"
   },
   {
     "path": "github.com/egoist/mygo/backend_windows.go",
@@ -933,11 +969,11 @@
   },
   {
     "path": "github.com/egoist/mygo/bridge.go",
-    "sha256": "be4b58724d82aa2525a520ce1800b98e2e0fff61f301fd8aa720d8b746c8f286"
+    "sha256": "b79861eb6c18367fb34691d8c016f5c5007d024ddcaa3f2676b68172f3298c8d"
   },
   {
     "path": "github.com/egoist/mygo/bun.lock",
-    "sha256": "6edd202bf4932473c2c952ec65c686dc4a69c4767c7082afbb460c86a17018ee"
+    "sha256": "7c857f6e93fbd023fb5e5b5daa0c9ec9d38b1cfe63ce301baf70fc01cd9f9d4d"
   },
   {
     "path": "github.com/egoist/mygo/channel_js.go",
@@ -948,20 +984,32 @@
     "sha256": "98fd3e5cf7da5d2ec5c3e712311de59a885e9e0012c3f426512deacce971c07c"
   },
   {
+    "path": "github.com/egoist/mygo/clipboard_watch.go",
+    "sha256": "cb47a2929c4aa9cb458cfa701de71425a7647089c8f996bbf23a56f681b0c7ed"
+  },
+  {
     "path": "github.com/egoist/mygo/clipboard.go",
-    "sha256": "6bfe89d44e1cba16cffc17b484cbc7afab7faa96926cf05bda45a81e456cc480"
+    "sha256": "cb9bfb51b0157f0112c23a83591b41576e60e02c6f424a8382ead5dba155ef3c"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/android.go",
+    "sha256": "201c869983d244773b8a96fbbebb9d7c1160f5ce00202e83ee4bfbfa9037a54d"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/build.go",
-    "sha256": "eeae6bf873395f5de91872fde6eddf5a3792fef8754f4b13ac6a80a30235ceb2"
+    "sha256": "e0e5731875caf499f87bcbf54c3d611918d27c8a1fa49815959535aee751f9e4"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/bundle.go",
-    "sha256": "dd85f78c8deae212e9439f587427d7f2f863109e84cdede85f6bb0810a5ddd3c"
+    "sha256": "e44f849833ca6ede666f498cbabe9d6c782f02de722d610731f599ee0ddcb508"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/checksums.go",
     "sha256": "9e1f2f39db8205af498e4f2236ee90ebc6bee1b4dcadef6436378c5ad39001f0"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/codesign.go",
+    "sha256": "b5c29ea4d0b3bb18a96b0c695c122f59f610190f045e5864c336c8f28444b1a8"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/config_ts.go",
@@ -969,7 +1017,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/config.go",
-    "sha256": "dab04ce1c2ef2dac46ad2826d033e684cc54bcee065991bc3afae9871bbd9673"
+    "sha256": "75e4365bd4d357aba0e79a9014728bb2379976794c2013f3a2c87388da44454e"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/console.go",
@@ -977,23 +1025,31 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/deb.go",
-    "sha256": "872894e2acd978969ef207185c6aa730ec0c9284bb06c7147532714a3d3c2873"
+    "sha256": "6e3b9a2c98c8f88f64140194f29ed7c8cee6269194e5a36bdf0bfd8f2513b9b6"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/dev.go",
-    "sha256": "87dd057d83cf956ce088facedbd1d4ea8d2de303e66c79679d6ee65c3d8beb5a"
+    "sha256": "766962ef4ee817bf325b69a8e787e13d7b688cf100e04cefbbeec04efa769424"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/devices.go",
+    "sha256": "46cfdc7d4867c6a8d93eda04c028a755fc9eed3c9c0f83d431a9d0a80db5a056"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/devsign.go",
-    "sha256": "16016d5f73157226d30f9fce7ba8374cb67bc1d56937e478d0338ead10a4c768"
+    "sha256": "85a6a902644dd0e8572dfb9548cf8233d368f36aab7065239c8df24b281b505d"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/dmg.go",
-    "sha256": "0b1e1196f885e37281c3cadd7685aa95904c61b13edc74af0f9b606268896173"
+    "sha256": "8633fef1a3d860705266a39db1731abb6a210d54708b6104d09719f30b525fd6"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/doctor_mobile.go",
+    "sha256": "7d6a0dbcc1a8df6bcc4bac73dbabd9661344e95c250ca1ad5e22adc4201b4d5b"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/doctor.go",
-    "sha256": "6a18036ab0a2efdb6086189cccf40a1ad0b6a0dc8c149703e9a5f34d9db3b91a"
+    "sha256": "210bfdd061f5376cdd39f4e727b9b40e34ec2390d66a702aef08a0d9d98822f1"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/dsstore.go",
@@ -1017,7 +1073,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/init.go",
-    "sha256": "a9f18bea4672bd702a6e81668764ecb2a35b8a3a64b1155ef1c337fe0e469dbf"
+    "sha256": "04498e3014cfa96ecbcf70f55ca4d41a3808f048b4aee4f16d76ba670950e101"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/installps1.go",
@@ -1026,6 +1082,14 @@
   {
     "path": "github.com/egoist/mygo/cmd/mygo/installscript.go",
     "sha256": "8ac748c7eafef90a5bd40ef33ece9e66dd2d86c28bff95d74a6654338929bfe1"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/ios_sign.go",
+    "sha256": "079955bbd715494fd1878faf040089e19d477a313dbf1a8a462b35dc74dfe94b"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/ios.go",
+    "sha256": "390a1c0b9781d3c4635d0505c89ea41f81ea47aa72841105aa10f90a3f014fe0"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/languages.go",
@@ -1037,11 +1101,23 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/main.go",
-    "sha256": "0bc97f3016a7721f178f73ce0ecc10c5e58e1ad458b40de211be21fd2f1c3568"
+    "sha256": "b77f4089d66cfdca37ee775ba1862f7f1217cd8d2ff04638961ddde248753508"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/migrate_ui.go",
     "sha256": "dcd9abf0eca85626d6b770d7821c7b32d58e83b71a42b3e217d8c6afaa09bd0b"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/mobile_dev.go",
+    "sha256": "070dd8f7d687a8c68ca1c8506b0f5730f8f0aca29cee3ccc6a08a9d036d9418e"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/mobile_modules.go",
+    "sha256": "39a02938f6e8c66bc80871e621c7c8bf6871e06c080d509b14265c2e9afe54b5"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/mobile_plugins.go",
+    "sha256": "45f2e9fdd19c4c483dbaedce14d6f9a986114c15d8322f5b04a67290365ee527"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/native_call.go",
@@ -1053,7 +1129,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/native_module.go",
-    "sha256": "742030aab2b0881a87c00ff474ccf4c435069e93c1014678ff51cc44eb1c813d"
+    "sha256": "2470acd017405cd7be98bef1e78b5307572e4b5b527d69bdd61095bfac48ca06"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/native_package.go",
@@ -1065,7 +1141,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/native.go",
-    "sha256": "9143784e9929319a0c56cc249af2b5dc9be5f0706298202e3e21025f907e61a5"
+    "sha256": "78704f0bd6082fc53fff19986bdcc7d57ef6e95a3f722d1638b171175e8a24e4"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/nativebuild.go",
@@ -1073,7 +1149,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/natives.go",
-    "sha256": "34c8fe66f8b562f30f3454f70ef44ae3c3a40655944001237691416b591bf783"
+    "sha256": "f4bf68e2c2ea1a15f69fad27e3604ab009386b23c0352bced81435779985374f"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/nsis.go",
@@ -1097,11 +1173,11 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/proc_unix.go",
-    "sha256": "0919c4a7181b65dd5113b821180969d7902196cb246b84a43c2e5bc82ac379a2"
+    "sha256": "ef432f1dc35a2f322921b0a6d1159f4c4625dbb086968f982968f021473246c6"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/proc_windows.go",
-    "sha256": "caacba201e38072819becc75aa5495c37064d136f50341661b490aa9ce6676ff"
+    "sha256": "4764c29fc153cd1461fa88007dc4ebb07d43fa18b08f77637e897a8b857bf48a"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/proc.go",
@@ -1121,7 +1197,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/resources.go",
-    "sha256": "c37972df4db03483cab623ad610caef1e9883d6734312cbe3c8c012d98cfe442"
+    "sha256": "bf43dd41389ae631cbeb085d33769cd7e7b5cf7d33b2f2f075cf52dadbe55726"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/rpm.go",
@@ -1129,7 +1205,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/s3.go",
-    "sha256": "236c0e304d7ddc7efb6802716b838e2fb4294f49ab073ccec280419d634073af"
+    "sha256": "e38d25194b97b9c834334494c05b16c3805d4d911525978f084ef1102f6aa998"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/skills.go",
@@ -1138,6 +1214,10 @@
   {
     "path": "github.com/egoist/mygo/cmd/mygo/slug.go",
     "sha256": "d88f366545e3fd5d2ff452fde6e0bea3c37aea00ffa6aedc97d6ec62a14b3c8b"
+  },
+  {
+    "path": "github.com/egoist/mygo/cmd/mygo/store.go",
+    "sha256": "4c9db8fb1a03af9c6de70978536ee4ebc321f610fb3341f2d5b6fd3f73d7e1cc"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/strings.go",
@@ -1157,7 +1237,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/native/mygo.json.tmpl",
-    "sha256": "6ac11af7fbb729c76eb6500351c893a614f7e8f3270179757ecc93550268c942"
+    "sha256": "38687fe1b48617b440af6382206bc9514a7054678072ad53a0afb6ffba7dcdec"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/shared/.agents/skills/mygo-maintenance/agents/openai.yaml",
@@ -1165,7 +1245,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/shared/.agents/skills/mygo-maintenance/SKILL.md",
-    "sha256": "d8afbc347ec93d166b2462a08b5fad6a265ca77d858e54352b185f2edc68b427"
+    "sha256": "3017ee4f2d13b964d72614542a232aba72709b28893a0d5f8f722f91e087e7b3"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/shared/.agents/skills/mygo-native-modules/agents/openai.yaml",
@@ -1173,7 +1253,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/shared/.agents/skills/mygo-native-modules/SKILL.md",
-    "sha256": "08e869e75979ed153e9fad89573bad669a0ac9cea348099824cb3031d646e76b"
+    "sha256": "0e644e3150690a4752c7748143727d244f741a9ba5a4bf6c03b7d98b60551ce1"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/web/gitignore.tmpl",
@@ -1189,11 +1269,11 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/web/mygo.config.ts.tmpl",
-    "sha256": "77558a41160304b5fbdbe535c91403c213a1d3bd554f13f8f6b88fd864d50d37"
+    "sha256": "c41d73425e2ba3f4ca64c24d1e45b09552767b514fb062dcfbeb6e3b628795a8"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/web/package.json.tmpl",
-    "sha256": "99f7e0c8c36fe83ccd63b52fc7a5168fe8176bc8733015f39d8f088d49ea2d55"
+    "sha256": "a946d15d161599bd756072e0380f7906670e616037ed10a1a8e6d0ff52c6ca3d"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/template/web/src/main.ts",
@@ -1213,11 +1293,11 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/term_other.go",
-    "sha256": "21d1dedf7b088fa55dcf64c2d9624ea30192a2080f4a86d5b8d8b9a1a8021501"
+    "sha256": "6bd3fe8d92d25083bd7dacab76f4cc61d2ea0a0b7e8f0cc2002a5e8c73772776"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/term_unix.go",
-    "sha256": "ea34a74668cddad744978c9ff5bc4ad46025795fc0cdc704d447e26fb1ea2849"
+    "sha256": "c53728a1d616c20b86728401674ce0cb0d49f81aaaeafeec200b2bdc5c276463"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/term_windows.go",
@@ -1225,7 +1305,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/updates.go",
-    "sha256": "06e9113735002fbac0e5d208b3ea531230fe5ceb24257d66ecec9601c48cc44a"
+    "sha256": "3d4c29c6a9aa02ce73a55e02023ff57a99640e5a2f51370c1632e150fb823934"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/vet_ui.go",
@@ -1233,7 +1313,7 @@
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/watch.go",
-    "sha256": "02db1d752d61c339acd87e44ffe1311f8b79db0f09b78ce46f997262716406cb"
+    "sha256": "a1d45bf9e37fb3ab5c725759e41a69e4ffaab107d92bbe94236d01daa45079a4"
   },
   {
     "path": "github.com/egoist/mygo/cmd/mygo/web.go",
@@ -1253,7 +1333,7 @@
   },
   {
     "path": "github.com/egoist/mygo/content_rules_other.go",
-    "sha256": "a6ecd9e1f1c317d467b03496c3a64122a7791f6ce19a4e41eab8033573a91a49"
+    "sha256": "dcdd0337850b52245c4b6f405b6a8d49ff9baff455324bdfb9fe61c698cde600"
   },
   {
     "path": "github.com/egoist/mygo/content_rules.go",
@@ -1265,7 +1345,7 @@
   },
   {
     "path": "github.com/egoist/mygo/context_menu_other.go",
-    "sha256": "4d58afadb549fa3068c423511c7719c6e3354a656ee3b3193ba50374f7cf7a07"
+    "sha256": "d097654601c86a4f176e01a76475295bbcbe62946dbbe6958ebeb0473a710a36"
   },
   {
     "path": "github.com/egoist/mygo/context_menu.go",
@@ -1281,15 +1361,19 @@
   },
   {
     "path": "github.com/egoist/mygo/dev.go",
-    "sha256": "33d061e3804ea6859f53eb34897dd29eb75436a35c3949a7dac09e916cfa6a5a"
+    "sha256": "d68e1c7da8c167834ea0e7683e5c3f0fdc5b4a7b7d2db7edcc28362a9e27660b"
+  },
+  {
+    "path": "github.com/egoist/mygo/device.go",
+    "sha256": "15e786f3fda0b2a050090600e956450d83ae81d7ff9734dcbac49cdf066c7fec"
   },
   {
     "path": "github.com/egoist/mygo/dialog.go",
-    "sha256": "279884fb314411941fa468f213ab019c64c93d2f32b27dedb301f8e4d56bf9ff"
+    "sha256": "99854161bfc1db09ac566b9d5cc71d6b6989bde6bcd7330b98a53faecf69c651"
   },
   {
     "path": "github.com/egoist/mygo/dmabuf_other.go",
-    "sha256": "3d9db132e275f9e4e80ce808aaf3c5c72149c7526a150d02cec255af5758a134"
+    "sha256": "e8d3f0e81365f483bff809c68bacd3f6c494f0e1c4ce9fbec686305dfd5d8501"
   },
   {
     "path": "github.com/egoist/mygo/document_file.go",
@@ -1305,7 +1389,7 @@
   },
   {
     "path": "github.com/egoist/mygo/document_other.go",
-    "sha256": "f81d139410f4f33f54753a32ead8edc3b853b855c7538be7809495b32b8441f8"
+    "sha256": "f2748a905065a6c232ba512553d9b2f538d33bac90933d4f561bfcc6370fbf8a"
   },
   {
     "path": "github.com/egoist/mygo/document_recovery.go",
@@ -1317,7 +1401,7 @@
   },
   {
     "path": "github.com/egoist/mygo/document_unix.go",
-    "sha256": "c62fce693eda5a778e00cd47a645eb62921ffd53a97d5fe46c31c333b0d53c19"
+    "sha256": "e9fe9f52934934b69d0cc8d5350e117889e81be7648f75167c3201d292f13204"
   },
   {
     "path": "github.com/egoist/mygo/document_watch.go",
@@ -1325,7 +1409,7 @@
   },
   {
     "path": "github.com/egoist/mygo/document_windows.go",
-    "sha256": "1c3d5476c660ceb2e4ac83f9d0d012ee10a9b7e054979700535dd3424bfa54d0"
+    "sha256": "7137ef575c76f582570b6a0780cbfe9e24356e4e140f46fde568e1e210a84f8c"
   },
   {
     "path": "github.com/egoist/mygo/document.go",
@@ -1457,7 +1541,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/bridge/bridge.js",
-    "sha256": "bb22811404a1435d048dc1fa7b9152136e99637e8c582f412a98d97783c15684"
+    "sha256": "de3a77ae9766a6534911eb2ba10e21aa29f4ff61284560416819c0c435284c34"
   },
   {
     "path": "github.com/egoist/mygo/internal/contentrules/contentrules.go",
@@ -1469,171 +1553,175 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/access_text.go",
-    "sha256": "8523f62aff4225fdfa7c1c0c6297a06dfc9b1d5ff7ced73b78cbf13f1b4bf9e2"
+    "sha256": "215cdda545409c3539ec119b6d08fb9fb12112b4199cfbb9af64aabbdc04405c"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/access.go",
-    "sha256": "32a0fac45d97c22c1cbce604b9e2f093d74c7604d31cc4749ee3e4e2ea44470c"
+    "sha256": "d3bfa7ad9b77736f18483e969d179eb91257a0077f2703a3cb633ca20976bbed"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/app.go",
-    "sha256": "523b601c0efead69161b76a334e13988a6434b6df395428c0df74f39b3e51930"
+    "sha256": "413dbd6295f43910ce707022426f34f6fbc13e092d0140ea69162a10f5b0ab49"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/apps.go",
-    "sha256": "e74c691cbed7e84676fdada6829a350558b789fe30b32621ab29a08388f04f88"
+    "sha256": "6ed13fcc136e0eb7d6b9f568e40403353c7445d36c05bfca06d7ebd34c0eb055"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/auth.go",
-    "sha256": "aad1de6505a6c2e9900ba126a95b08e9596fff7a3b6d4f63c1f0a89339374bc1"
+    "sha256": "b7da479fa5b814ff2309272ba784796716f076427ab98cf7707f8b96ed71929a"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/cf.go",
-    "sha256": "79d6b9ba443cbfe039026bee1c7a9964d3ef2d7e732befb2c0da2695962ea0bf"
+    "sha256": "550954a223615b917e0edc71000554c06ebe120796d6f4f42bd76d5165762c05"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/child_window.go",
-    "sha256": "62f67631c2d5cdd887768f441ad846088351bc2bca7510723253cfeee917da55"
+    "sha256": "afe6732a5fcfd8be417c377aef55fd809f0dd6ac15e912a49e0f8ff6b9b4992f"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/darwin/clipboard_watch.go",
+    "sha256": "2fb19e46950b9202ca4d5f6448583743b206775b79af068e9c04bc2509144a5e"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/clipboard.go",
-    "sha256": "c85d650ea128160694c1efda97ee729eca4d627d314568740e86c32ef0199b7e"
+    "sha256": "54e0922932ae5ae2896e396995893f96a1b77b07b916131dca6542df1d3595df"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/content_rules.go",
-    "sha256": "d4a9591b4edd2686f61f54042d2eebeb58983d087c827022bedf535c0d01c7c9"
+    "sha256": "dc07627a57e7ab8061dabafebb094a87d3d4b5a55e9d53046e8dafedf7e0d64c"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/context_menu.go",
-    "sha256": "376bc30d6e9c9c092a29573c7068f82dc1f5b2967466e0000a0f177e73957a9e"
+    "sha256": "56273c03f69f83cf419dd30287e4005939aadc1291287df98179327ef4079c3d"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/cookies.go",
-    "sha256": "edf850665ce0170d9b9dd66b340767eae8251d2d0f32b5fa2421cdcb798f62ca"
+    "sha256": "ac52a68132774c8e1bfe468ea3ac8cc556cfb7db69ed5b0ba55948eec56b696d"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/deeplink.go",
-    "sha256": "fac5f9acd07da87ffc8960c8baf0fd3b8b5d0e51ac393cfb2b90cebf15cd8dbc"
+    "sha256": "a109cfd58dd7caacb830acd98fc4ef566acff084d4c494f6fc02231c5ad4b9b9"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/dialog.go",
-    "sha256": "57fda30aac42bbdbb560b232979109ad7f7fe3a522b3362790c593530558163a"
+    "sha256": "b0e0625ace78185929d371d8ea9e5f17fb590574eba39eec4c8427939f4cae5f"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/dock.go",
-    "sha256": "68e5f845c3cdb47fce6c50c77c6290453b9628fc0602a18a86f56c480204fc31"
+    "sha256": "7595b115eb0e67de6357b18d0a74c3e787fd01a904aebb6d2628d2ee86b2ad26"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/hotkey.go",
-    "sha256": "375b1c4f3bf94af45f0fc7efba9065b129381b95ff763fad1334ebb408749168"
+    "sha256": "2b14e3f980f4b4d25605b986f793d4812b92092abd102378edf8f83497474ce7"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/icon.go",
-    "sha256": "30c2512c7f68dc8e9d45ab027fb40427729ce985d87f6b9a7a15f811085bc43f"
+    "sha256": "17a18dc60c5ff3464af920d70dd871c03a507cd2b2225bdbfa02412460daf67f"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/ideographs.go",
-    "sha256": "71d46e01a4fa9eb3226a5584c8048743596f3ec742f98824077d720f9f9743eb"
+    "sha256": "dbfb20e0580a1771d99d7da79bdbc08a5727026930e030bd37672a805bd5975d"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/input_region.go",
-    "sha256": "4ee33e81d7058c0caf50e8cfc6a80c19820657c52d02d75302caf75096780766"
+    "sha256": "238863058e5559f84a9bb243130eb1ddbd8a5f8a17911bac35b568d001f238f5"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/locale.go",
-    "sha256": "a5a09b3a35c6f47b773b692b3bc1333cacb999e02ecce26a60b2aac65bae96f7"
+    "sha256": "5585d9531501114454559870a616aa37c902ead5359f48edffc5846d2790a88a"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/login.go",
-    "sha256": "e2218a70d8a9265369212cc63de3539c6875fa62d3b38f3f7e6db5895c59b9d9"
+    "sha256": "5eea2ff771a335ef38363c88349d0446de13f5aecb523c9e8e0c2c49553cbfcd"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/menu.go",
-    "sha256": "9f584585af23bf6c45c195418cd57318381ea254f3bcb202a453cc55f2fe9c3a"
+    "sha256": "b50211ee22d97fef1261b4aedfb88fd9b404b0beac01952b93c5b423826256eb"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/network.go",
-    "sha256": "37e99914add8eb4662e07f33c9aa66c2219a5ba78646ac8d8214786c2dc833d2"
+    "sha256": "b548390a047e432c520dcc15d5273fe3b2edd8bc6bce5325f61b828545e21a12"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/notify_communication.go",
-    "sha256": "3488af4fd1051a30020b9390e53a645251e6cfddaf6667162d3ecaa6f6fc725a"
+    "sha256": "a970ada4ad127fe1b9112dc79b87c55b49c181b6aebb773a82627a58daee4e67"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/notify_image.go",
-    "sha256": "b35e80a3782fa0c0e9cbcfcd77152fedf96fbb174ed2af3a13c5e95dc1f32807"
+    "sha256": "5cb3df5b3746a51e6790484cd2554fb67fa05a73c2406c81216a6f3ea26716e6"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/notify.go",
-    "sha256": "52833593c2e9d614b7769d8a45fa36bf67f6ddcc24bc4cc8f6beca84995d4763"
+    "sha256": "a0e241ce6f40a00fbca561c9ca06317248839ca848368adfbbdd560f35acd461"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/nowplaying.go",
-    "sha256": "699b5862010fb6df0b7fe0000e1be0b413c6705d32d98cba90d0e56d30278a49"
+    "sha256": "f6e09c975d68bbf36889efb06ae26ae579c1488434b3cc2a2f7ac74c78481d64"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/objc.go",
-    "sha256": "c06d2ea29a02035249dd95ecf4ee3694463f238611eee4705b91d8114061abb8"
+    "sha256": "5e3d31fd9d7bac361ffc8ec1d3d45607f07a93013b0ee465459175ef7f742560"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/popover.go",
-    "sha256": "1722e1b52d856084e1f0453319a797f002454989a03d00c4054d69b4630806b5"
+    "sha256": "e021a0c4a523840c3cd03a03feed31cf749ce5453a372e352cd36998fb8c25ff"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/power.go",
-    "sha256": "1fec851299dff3c33d87cc0bbb75f68ebab160e728f40b559703b4596582ab54"
+    "sha256": "d8d008f37421fc729bc5d8f0ca95ee6147250bc9fd852a22c08851fae733c762"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/replace.go",
-    "sha256": "ba431e4d5cfb2b21d685ba889a6f8ce5a9e9790e5e40cc1d0475c510b31ba728"
+    "sha256": "7b09fed310506135498ed37a1628cf0cf13a0b08a4e62a348fec723350e90a6b"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/scheme.go",
-    "sha256": "f7010adcb444a1ad79e29f02a4f66bc24d6e746af7bb2c1d8ff70490fe3d901c"
+    "sha256": "71399b76218c38d884d223417898fa6473cf65d91401d9837760c37a09e9edca"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/secrets.go",
-    "sha256": "54cedbdf4a2d746b3e26c76c1b37bd5c810582a5791608dc83707cbb7095bcde"
+    "sha256": "ba7b469647cdca2840dd0bc014ac7d4c89dd0f7a4a2c97f738cecb82660f7603"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/session.go",
-    "sha256": "fe6697c9ec417a7afabaaff54d4e03f03638d2e5f2bbf6d0ce81724c12d85ca1"
+    "sha256": "b2d15c363ed77bf57581aef2bade69fc517e4dd211c4cba5622f7605ecd293c0"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/surface_drag.go",
-    "sha256": "e47bed2cce8f103d44581f0fbe55dc459eead73f5e9d06a8114d88d65fb258a4"
+    "sha256": "d57b00256ab78b02de673fa8de4aaf79f226789fa8f363ba69299b2757679ba1"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/surface_input.go",
-    "sha256": "48b47c4e3337f91aec574512d9f4b2d0e302228e55f5a1c1a24d910ebebb7e40"
+    "sha256": "c288665527bc2b125faf4306dc69a686f64b184b10b61035ac4505a927b3643c"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/surface.go",
-    "sha256": "f849503e08be4b8ab4fb24c1274a9a0a19352c3ff17f0a71eae5c1719cffa618"
+    "sha256": "b5ff32e985acfafa725a2298860971f23a37816bd288839a288e130b5e81647d"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/system.go",
-    "sha256": "73b1aa52e21ae50563880f3009d4d17bc48cb7980feac873666bac77ffac3e44"
+    "sha256": "35445aeea7128a7062a19e3247e1ac7a9f141fb3b01a1c439189ee81b4211ad8"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/testhooks.go",
-    "sha256": "5b81a62f0a8d6f0e21ef8a8a011fbe7608b3797ed45dc2c8f9d44363800e28a2"
+    "sha256": "759e19f1cf2f72d1a71f37a31b9eea42af11deee95a3a8076988f3c545c6f08e"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/watch.go",
-    "sha256": "f209ad4811f81d1802366838e649a666f574aeae7b5ecd7a711d431b64837026"
+    "sha256": "6c5daed5e67334aac74a6d13521796282c16d0b095ed7ba2d9f9e330687ba326"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/webview.go",
-    "sha256": "6cecc415187c65e45aa67ed1d9e2273caba0c47ebc0ec2baefa5085f721a19f2"
+    "sha256": "94a884efbb0878081ac2b1e7a9f37791557dfb6b4adc933d2ae839894c0020bc"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/window_drag.go",
-    "sha256": "49fa8d7c8d116d5a17da8859da4b4ad41c13bc1dc64d19e9e282148c07a162c3"
+    "sha256": "23c8bb24f47d5d6ae99428ec13c40600afe4651709089d2064a0a0305c8c73cc"
   },
   {
     "path": "github.com/egoist/mygo/internal/darwin/window.go",
-    "sha256": "c1ad97c64768391b0446e0cba3b31e7ebc66122f18b47ceba79fadd02ddf38f9"
+    "sha256": "c676adcf011df7e9f53431a10779ad64950c709fb8f19deeefc0e5dce1399a1e"
   },
   {
     "path": "github.com/egoist/mygo/internal/download/download.go",
@@ -1641,11 +1729,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/download/lock_other.go",
-    "sha256": "985b9a684383e54a89112438b8986b91b5d06dddc9a533b136fa5109c20aebb6"
+    "sha256": "1f13ca21ee6654aeeed8e746f893bde23300a581aeace106b3690173a3ac3576"
   },
   {
     "path": "github.com/egoist/mygo/internal/download/lock_unix.go",
-    "sha256": "a110d1b37d1c917156e7fc08dd47a59d77bf1517c4b824831f191c26a09de9a7"
+    "sha256": "f2dedbed0cb19b5885c9e0cd63c4b4fb573684e3217ffc14901962ff92c84e49"
   },
   {
     "path": "github.com/egoist/mygo/internal/download/lock_windows.go",
@@ -1693,7 +1781,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/d3d11/offscreen.go",
-    "sha256": "458966a0c8fb7f9ca41304c54d8a874dbffc3018896daac65f9b2b00ad2cf95d"
+    "sha256": "708d1a7d86b8478a54f5f16bf9cf5642ab31b7cfd80c6123e0c7ca80922cc2b5"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/d3d11/shader.go",
@@ -1728,8 +1816,16 @@
     "sha256": "5cb65d6156bb09d160de533d5a167bf863e4026c18c634cb65fede0b2a09ed0f"
   },
   {
+    "path": "github.com/egoist/mygo/internal/gpu/gl/egl_android.go",
+    "sha256": "e6c313d9c0d9eafcc5210e2c3d859b1fba22d3af55fc924ae784189245bd18bd"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/gpu/gl/gl.go",
-    "sha256": "a5cb7c83e61f1c0b2fd92b44f0197e40540d7f94a8d531306e37ef0c14291b9f"
+    "sha256": "64ec2cca416760456dfc06371e5fc76274ff8cce4cd5b2dadc10aa6c29afb358"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/gpu/gl/load_android.go",
+    "sha256": "beb18e3a1362c6336ac92b4b3eef88dfd889529c3d5bd38dae417e9b22ac1e2d"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/load_js.go",
@@ -1737,19 +1833,19 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/load_linux.go",
-    "sha256": "21421a166f331f2e311cd6cd9a3160e2b7721d693e07ab9a673519f9f159ef6a"
+    "sha256": "b63110057d4ab0a2dd4a3ccd3a0bd1d7b0d77e32dfefdd444ae30590802915d2"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/offscreen.go",
-    "sha256": "79826261dad9f89df8315e120813811f273efb21639c774ded0a875ed1cdb5b0"
+    "sha256": "41aece2e88ae858a582d689bc7bf4946bf36e7d8f92dbd474153080159facb9b"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/present.go",
-    "sha256": "9b2f4fdfc4f1d8349fd30fad0d1ab2dd8dac0f06ea982481da4f977a6aea1401"
+    "sha256": "116565e346a336a5a08416f452f3f0913c7e0663a60012b48ba272a2521face8"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/read.go",
-    "sha256": "e23ea044d3366b7cf29084239c7f79d9a42cd0a829fe12ad8310a530ad3eb51e"
+    "sha256": "55f5712b23add58c0e15b8df1cf6c9b70ca23f5cbbc5e92c5da7c5e4a4d8f60e"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/shader.glsl",
@@ -1757,23 +1853,27 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gl/swap_linux.go",
-    "sha256": "e8f8edf740852317d78cc7d7f096dc1811c705ff10da68014baf9d52aea757d1"
+    "sha256": "994cdeab05d699bbf554bb3d3b8e0d140c7a9b08935d7cc94d546f1e6601df31"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/gpu.go",
-    "sha256": "11504c6478f2312e1f68e1238a37d2578a69daf410d732b22e4a2697598573fa"
+    "sha256": "8c4f02f4d239c02a85889a83c76e8e95cf816dcaeb7a7f70b0683e15dc463538"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/compile.go",
-    "sha256": "d2d38fb04b32fdd49ebf357fcc1e6ca685adb0530b7e10c45a9387a3cf53452a"
+    "sha256": "2f54c693759d8fcff5413d6d729841cd014e4263332bb44a67f7d5467a98a34f"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/effect.metal",
     "sha256": "3b380dc6c1acce9aaa49ccc55099c184145372406d4136e102de3b9cff27ba24"
   },
   {
+    "path": "github.com/egoist/mygo/internal/gpu/metal/frames.go",
+    "sha256": "305f0eec888f87eea4249bcdeb9a8d2d6255325c617c8980bbaaf64abe1d24e3"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/gpu/metal/metal.go",
-    "sha256": "928380e40656607417d68f4b5e4efc1fb37834d4ff02f19dcd6d64730bed6b2d"
+    "sha256": "e610742bf2012dc6f9e58cff2fb172582ccd65c897ddc893d88c6c52439ff7e3"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/offscreen.go",
@@ -1797,11 +1897,19 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/shadereffect.metal",
-    "sha256": "0c84dabe06f26e23061ea5aa0ef6f1b303de790e8401341adca25279c041297c"
+    "sha256": "dc2ba27dc2017942fad3ffba65d4204ee24f821aada68594e726bc34bd754032"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/gpu/metal/shaderlib_ios_gen.go",
+    "sha256": "9b335e8d9ddc1295988c53b447ec990a780f77a505a6d7ccf62574fdaa7976b8"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/gpu/metal/shaderlib_ios.go",
+    "sha256": "b9ed5cd1d2b09b556c55da09d0f9c1bf54d8e1f7eb01d3d1f86ffbb8fb55b906"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/shaderlib.go",
-    "sha256": "80a7887b272fe49161ced2e152a56bf4ccc58831c2262374dce6b86ef2b534f3"
+    "sha256": "5795ae9febb2e5a1c5858f0ddd8a1b96f1f75d28ed5d915bb8982d1e8b584de5"
   },
   {
     "path": "github.com/egoist/mygo/internal/gpu/metal/video.go",
@@ -1840,12 +1948,24 @@
     "sha256": "d0d71ac80a84e3aea5374d125f8cace0c4918f296fdcbf36593c620b76e01e2b"
   },
   {
+    "path": "github.com/egoist/mygo/internal/inotify/inotify.go",
+    "sha256": "e95888f6b081db16ef56d23f56f9cb7d5d606da4afd2f73a7bf74e693aed1654"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/keepstate/keepstate.go",
+    "sha256": "4438c013b3a68e1d26e3b3b1961d49aff78ac0ea4e300685239001d5dc69671b"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/kqueue/kqueue.go",
+    "sha256": "b585fd12fb134d4ee8d9a6d30aa79be6818513003682705fb5e4e5a5085d03b2"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/l10n/catalog_gen.go",
-    "sha256": "998527fe6bbd1ce784a0826c755c3fa6d0951e2094528f06212d723901373238"
+    "sha256": "b1cac224060fbe30585745eaf8f747003e4bcec69a2f436251e083add0a1c14d"
   },
   {
     "path": "github.com/egoist/mygo/internal/l10n/en.json",
-    "sha256": "fb9ddc1de5007a2b0227a5bf0f4a38a587bcb8512c3c5252859b3e8f3ad2a287"
+    "sha256": "633defe1f93b6fbc2f991911b7a0ab38c02ab469ba9b134772386c5f49c907bc"
   },
   {
     "path": "github.com/egoist/mygo/internal/l10n/l10n.go",
@@ -1857,203 +1977,207 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/l10n/messages/en.json",
-    "sha256": "c98ba6044850e240425ebf5b644dfa9a86a926ccea2b533b483b2ed8acf9151e"
+    "sha256": "d756a37524f5ae8ce57ccf00c5ddfce0719673cd6bd452329de35af68897eedb"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/app.go",
-    "sha256": "37c5ff2dea47d3a86718f1787a3954f7f57350fdf17c86696b5365bd91025757"
+    "sha256": "55beeedda3409f06d439469fa0e5d49a666d8486ab670c0c00eb86d5cd51c6f6"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/apps.go",
-    "sha256": "601d6cfc9ed4b1489cfed09b3d88bfa047364b9150522a784f82e747ad922939"
+    "sha256": "0fd21cd47d5904f9d6fdfc476c40fac7e20789288b6a3089fb582570b87e7621"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/auth.go",
-    "sha256": "4dfb9a00bb25434e729c2c6a890470c2cdf3116e5a4fe5db95e602f655dc4864"
+    "sha256": "857f498173a06c29db5c9e78555907d8c357c006c4c48f87f581d0247369dd46"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/clipboard.go",
-    "sha256": "8666de31697c1d18991e9357c457ec851943715c4c5f7ca1b491a83c8e367038"
+    "sha256": "16a91630b7684fa64f426bc49f147554c79ca2838c5f3a0cc6128f34db6bbe17"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/content_rules.go",
-    "sha256": "35dc506a5beb03c1d7cf9ca4b45fb59ffcb1d6b6f784d088186e9e8660c2a3e6"
+    "sha256": "f11b5a298fa4a823a39cc53b4ecebc8cb0194134b312727e062873533dc0ee1f"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/context_menu.go",
-    "sha256": "3cade4533cbb4f51610a1b2038c78e6e2cff30adfd6d90557441157893100890"
+    "sha256": "fa64465edc191a2f9a4b2c7af46ac86a439a4e248e78fb6a2541cce61a0f67d0"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/cookies.go",
-    "sha256": "51f54a374c4687030b96de9411190a93358c35f54df8e51daa37724b080a34ce"
+    "sha256": "49f849e8f23cd5aafd44bc0936a6298d6b0d9434baabecce89878a86b6537ab0"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/deeplink.go",
-    "sha256": "1b1c80ac64aa8298235d71bae7db562475ad396125edb607ff8841dc9c47c8d4"
+    "sha256": "e0601b8f70db2a230d86de598aacb98e81d3ef1bf18021788da0d3f5300caafa"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/dialog.go",
-    "sha256": "29d43192878aca4ba225ed0cacf3071152bbef211de8c23ec178ea0ccf6e44fa"
+    "sha256": "4f23d723463739b7256a2b122781a51714489a54db9275fd30d49345e9d072e5"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/dmabuf.go",
-    "sha256": "d82b17df49eeb24d1649a4d2b565c933eb4c848b7be5b99fc899bf3fa55ef1b9"
+    "sha256": "16d9205c5b118f5311523af717f0d9160d29845e261099b9fe3a87ad2cdee278"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/download.go",
-    "sha256": "b6cba4f6aac32399420e8b22c8f3b69f2203bb326bca328ebef86a092e254ad2"
+    "sha256": "4b293c8833a228ffb7707dc7e52c74ada9a2f91e516d3bb655ffd39f6f022cdd"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/ffi.go",
-    "sha256": "321809c58bf43c29bf3f0610fd67ab1f8a3db805243822a9d2706f332928d7f1"
+    "sha256": "1f9fbfabff515cb9b0d91e9a94b68044ca7b796f985cc940b70dc370b3fa20e2"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/flyout.go",
-    "sha256": "2b410b38ce3290afc91142048ca0d9c277a3e20bd282c39cf4ebfdb5dc585343"
+    "sha256": "479628096e2e819a3c68a4fcde47b705aba44fa761b8618c2c43f89cf4d58435"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/glprobe.go",
-    "sha256": "f1b72de1c43d9eac8db95c14ccbb241b1830608b1388cedcd99b70fe737aea27"
+    "sha256": "4ef06b88482ecd5ad0463a901c3ebf75b37ffc3775a180f0cdd894dcd8ed9550"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/hotkey_portal.go",
-    "sha256": "cfb4d0a4beb46d9b608a1f3eb9e45005903393d82005a3fecde106804965b7d9"
+    "sha256": "2578b38cff3203ab04ef2250b8ad7c53110035a2cf57790013103e5f077b0be0"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/hotkey.go",
-    "sha256": "0447f8aaa29e091b1010a4fb9d05d2c0f5fc9cd749281c9ce8b6d0b80fd7a49f"
+    "sha256": "2e4954f285d2bd146c218afe4ad2dc42e129d2268cac434b5c6828ae60598d84"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/icon.go",
-    "sha256": "7bffb37364b86ac61830f523e514a93cca45bf82ef9e93fdcf1c1d056668cef2"
+    "sha256": "b4daf3037691c3c89e439b026de7721b8d8da0e6618d9bbc7d17550825ba5b0f"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/input_region.go",
-    "sha256": "0d9c279c4a08fdc80c0efacccf16b697e424d3fef0ae30e84672aef94ef76ee2"
+    "sha256": "d2ddc124d4d1b1aea90b58dad0acef20fb2c51350028b2437e7948e4fb1151da"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/keyrepeat.go",
-    "sha256": "e082225a4eb54f8fe0eb8d7478d272690d7e850e1e943f493e5b14ddc6567bdb"
+    "sha256": "d455d0c98f898586cd31afeb49999189afcc3b905222849d1ac4f8a71c1b3a00"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/layer.go",
-    "sha256": "03d2e707a9559dd0df535aa611fa322510f11cc9e9ccce399cb315871b0258c3"
+    "sha256": "8cf9bf275af749617bdfb153c3552a59e3d122487833cdc9e3f4c8276447846e"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/locale.go",
-    "sha256": "0351606e9265f9848e2bc9e66259ea15b4bf12f3e4c6f5dc5b27cec3928f9e23"
+    "sha256": "ec22e78fc92fa28ba48f8163bdcef6bd639b1179d4f11b90c7f1ac936f432ff6"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/login.go",
-    "sha256": "612be43da67cbbe6181f01be7001bb85c599888c6d2bd037e87a59a73c4e5b19"
+    "sha256": "184a17a53655f927ff70d4745872806a63cdc82a6a33571929f3dd14925f2fa0"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/menu.go",
-    "sha256": "5d0f45db6bf405e4287c797bee3b9fa8abd8efa501c1606df5b1df912b38183f"
+    "sha256": "a093e96896927a8aa8bbbbcb95a0996334266dca022cc678822c1ec58dff11d7"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/menuicon.go",
-    "sha256": "e322977b2f5191ed83dfc5287b467621e365da0750ca4127d2b36e3b3d175d65"
+    "sha256": "feb6dd04d885bdf6d219fb0b8b0429c9c0762e838b78345de5f8bbf598b83df7"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/network.go",
-    "sha256": "9a791f0112a8da41b64cb7b6f4d31e3851b52de4754f06cb1c04c2a721b119e5"
+    "sha256": "32c66bdf7b3f66e1ba9e47ad39b52bc0f650bd593993a1935b6fe069b7f36922"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/notify_image.go",
-    "sha256": "16c38be41adba4912d7f73e8383fa2a87a3aab114d9d3111e9444b70c18a773d"
+    "sha256": "567facedd283bf0e9ce026a12611bfecad36faa0226a308cbd55b266b5b29451"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/nowplaying.go",
-    "sha256": "4ad7d34a9e2739d4f7edc825c7eaf33485ff4c000f6cc09354690fb3647205cd"
+    "sha256": "e3d6621179aa4ee7b786375d5226c8581058ab4609d0ac37ba4b0b4eaea20ef1"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/panel.go",
-    "sha256": "a62d63f353d2e87d3d60fcdc65534441d6dfc7f2594e9ed93ba28b462b44e24e"
+    "sha256": "7ae87f3743e6c2dda1d12d50c9c027b4a49de1371d9d5187c642907b25a3f1be"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/portal.go",
-    "sha256": "e64a8898b0fb80bf40f90cf7213e19e26077dcdff2a2abfba874e459c00b1244"
+    "sha256": "d77dbfba04354ef166648e5c4b837da0ba57e77e17e1cde68f13efa800cb68b1"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/power.go",
-    "sha256": "3042563b8e2197536044f71520a3a0404104ccac991ca1a692fcf0d1b2b5f4ea"
+    "sha256": "95c5a7188112334df16a06c94bf67ec5b0c11da151f4f7b9b46fd9f701a5437b"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/replace.go",
-    "sha256": "6c0ec3440af8e1335eebd72a20f9e79aaaa5309b8bc245311bfc1acfdc8012da"
+    "sha256": "80be887bdd0a8dddfb8f3a1ebd608d953aef11553937ff2731276fc5c46dab76"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/scheme.go",
-    "sha256": "0b04a900e55aaf436115c6221104ad213bcc2856897d6f6f3be5abef5b675a08"
+    "sha256": "d851d909cd4556d22c13d88029621d859a475c3c1febb2cb7b9a6322e17cb3f8"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/secrets.go",
-    "sha256": "2c7cc0fd8c7583f4c2387f0bf7e5e51d89166c955ab25d15548b8d0daa068b14"
+    "sha256": "e311c13c9db3dc4dd8cada084517ed3175fda1c009e3123f2165f16bb11bc1a6"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/session_state.go",
-    "sha256": "ddea446d44e9920717d0d21dfcf9c7e9158065a4c7f2e631fb1e9d5ca029596f"
+    "sha256": "bf64d6491453f56ed38417c0d5d8dcc9471393a000fc4de4ad6300ddaea857bf"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/session.go",
-    "sha256": "25691ce9da62cd0263502bb42af193a1f56b5317c964f68bfcb051225c4018b1"
+    "sha256": "d2a07be4b20d57a575754abd0ad85950225f265fa5d51f75e2c73765c1944c81"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/style.go",
-    "sha256": "28104c59318170b3fbc97e86e1a15803000adfdd12119bb91efef8b8ca13f0c2"
+    "sha256": "c90a7233bf3b2fd95fb45d2673eef7b1030f60424ff6c6ca40fb0ccad7f661da"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/surface_access.go",
-    "sha256": "a596ffc8138da9fd84e63f8577e3282e0cf369bffcb485685f17efd39a267f45"
+    "sha256": "55c4048429f912c22df3fe0c30cc46725867f1779e7509e69b2d86f2b8908b7b"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/surface_drop.go",
-    "sha256": "fdb1dbb11af032a0287b5e51821fe354dfa2cfdfb05ec148ff5475f218bbdcdd"
+    "sha256": "43af558e3c160603337c65dcf1ec8de197f1ea5c95c1f4746b6aff869dc1f4a4"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/surface_input.go",
-    "sha256": "803204e2963d2d0995c80ea9e9de545e7b8b2be164ba863c4e8ce2249c18a313"
+    "sha256": "31bb2a9dce69c3eadae1203406e61dc02922d7b62750042b508f1bec3309a653"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/surface.go",
-    "sha256": "f983c17ac85d46343d575f7a52e932bf22cf8e10e203fc54a359db00c9f6633e"
+    "sha256": "c237ca2fa47ae19e19d77b69ad8f5ccdbfa2d3202b9f94e7cef874cc3c244481"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/system.go",
-    "sha256": "95f5ee80ddec4c45d10e3eb07cfbcecdd45a0005121267809bce3daa62c67ad1"
+    "sha256": "3ff7a5187347f2e309f8a3cfe1131a2932b1723c2d0a9633667a775de0eaf7bf"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/testhooks_gl.go",
-    "sha256": "b9f285271d4ab42c2c8c5f098bd5527e16936533e5d8fa1b5976f0a68cc4d195"
+    "sha256": "e2a2ee4f60e078ad857c2a1c1384da6d5b9fdf286e21ad8fc916c9b414e05e55"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/testhooks_surface.go",
-    "sha256": "6fa9489eb7100666a9c4a9fc877d0063e48433a111da99c2765e022a39c78f21"
+    "sha256": "ef7d8cf7dd327c4eabe30195198396e6ae502c6361d4ab63fa72d7e382d5a773"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/testhooks.go",
-    "sha256": "b84cf0ba6a458e7b19a1ae7fc63271592026345a6b7dcb784e68f4a1ffcd1ce3"
+    "sha256": "cb87f83151ed703952aa35abab990197024b347eb88525212484892d30daf8ff"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/titlebar.go",
-    "sha256": "12ec715e946b46c147729d1a2fc43c1cc85802b83e044d5f2e305db9bf175b2b"
+    "sha256": "b472451cfd9a66a771024a2c37884b00039d1b7fd3ebc8a3d10c3038050babf8"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/touch.go",
-    "sha256": "17e4f9e3d4fc9b53df905b5f5c383a7ce9b19527064cdd1e15174fc7d4e0431d"
+    "sha256": "39098ea35fe08f3cec551e56cf82d7e90e725d46d408e319bc91cfa18e5038cf"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/linux/trayhost.go",
+    "sha256": "3d0ee5824d89662e7e8cc406fcd0041c7d464ad96c88d9533bd22561073e0ce3"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/watch.go",
-    "sha256": "8a31895654c6f33659edf83f4ffae82db92cdd2de495e30599ba18a2f8f3ed21"
+    "sha256": "13e00414c5d8aea04053b79082300841e5075c9f1ab85fa58c19ba56b524c3d9"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/webview.go",
-    "sha256": "5db8c84947529e4c8ecbfdfa795a104ba347cbc8ea1d4bfb2000e9cbe8d0a25c"
+    "sha256": "559ff65798519a6aa4dd01a4d4db6c8dc610196834d8ff963640b3daa212ec48"
   },
   {
     "path": "github.com/egoist/mygo/internal/linux/window.go",
-    "sha256": "3985e252b5b585982ee3b6f3eca9a37d9247e0c648b02463adbea3768a23f661"
+    "sha256": "6daca09642185068201a1220b1efe08a93a39fd337fa1cc88cb8ced5afacd1fc"
   },
   {
     "path": "github.com/egoist/mygo/internal/media/element_js.go",
@@ -2061,27 +2185,291 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/media/media.go",
-    "sha256": "89735078111d488dba29659bbe12989fb8828c34426741c9ec21eceb6658410c"
+    "sha256": "c453a0342b8d62b4670a48287c82f7472536fbd281c26c1a57697856d00baa6c"
   },
   {
     "path": "github.com/egoist/mygo/internal/menuicon/menuicon.go",
     "sha256": "034b40866110f55de9e35c5c3879df2a963181067568d4f2b541e7aebe5359ac"
   },
   {
+    "path": "github.com/egoist/mygo/internal/mobile/android/app/build.gradle.kts",
+    "sha256": "30f5144e0a6cc2bf227c9e1ab9faec9fd47b6b76063de79a78dee0951cdfbe30"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/app/src/main/AndroidManifest.xml",
+    "sha256": "2b766ed60304b8d4fe5d1e0d7d018da8595d137f4e3e3e932c15b0018ea88ebd"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/app/src/main/res/values/themes.xml",
+    "sha256": "43bde429148c4858fbb705ff4e113fa61fefcb6ea2349538048966032a91b1cb"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/build.gradle.kts",
+    "sha256": "cd264d83593e2b43ab40b0d7fb6a1cbdda30f749cf33badbf5cf7d8908b5bc74"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/embed.go",
+    "sha256": "90998ea9bab4973496676f9f3b7079d9e4c45bc6924c6520ca133d8d6d1d30ee"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/gradle.properties",
+    "sha256": "c5d08f74b2995d2238764f2fe6931c1a72440a55bfeb4c14f857713c5a475817"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/gradle/wrapper/gradle-wrapper.jar",
+    "sha256": "55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/gradle/wrapper/gradle-wrapper.properties",
+    "sha256": "7e0821d895908883350587c74476b717016ab416320c44dc82a10def916c6fb5"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/gradlew",
+    "sha256": "aed171fb114f82e6eaea4970a245a200e0582a7dcc8ec0891ca41b6e4a62b754"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/build.gradle.kts",
+    "sha256": "cc1a0b6ee753f86f3b88aa2dceeba79167a3f1543b2b8968cadb27eb3c89f95d"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/consumer-rules.pro",
+    "sha256": "3728d89746ee1ebc489e5839fb8b044345de927933e56fd94efcfcc4cf7edd6d"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/AndroidManifest.xml",
+    "sha256": "f68a6d1a6b88fa03fda030694c2090b31fe1c93c3c6951c72bfd7b9196c5eaeb"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Go.kt",
+    "sha256": "7c77d52423126ed4f128e732fcc2f5da4c4d62c6979e1fcbbc993411dc2c28be"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/HostImpl.kt",
+    "sha256": "1ac758b47c8413d93941fe1c070ae2c46c287c87118e212fd56e622f6f5cd493"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/HostWindow.kt",
+    "sha256": "7c36f4fa32add0a27d727168b5a8f6409de975cbc3452975c205e13c2233072c"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/MyGoActivity.kt",
+    "sha256": "2f014b19ea2341b8d2a3a01ae8d4151d71de26b8f61761c7fb61c19fbac03245"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Native.kt",
+    "sha256": "895d37623b79f868785a5238392b88c669fec6708dccec2247bcf52fa4aaa12d"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Navigation.kt",
+    "sha256": "6ef1a4a7bb4e01a37a06e6f5dd0f9a26ea767b8526b1c0bb11213ca3cdbbf415"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/PluginRegistry.kt",
+    "sha256": "6aa9a97a8d49ab6524544d861fe270a7b6e4dc392b80edca6e83076d5e380125"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Plugins.kt",
+    "sha256": "df414463f623ccf8bebfaf425eba026791ed2bdacb2a9eccd23903c61f0bc71e"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Resources.kt",
+    "sha256": "be26ee12592baa3da1a1ab84294041ab8512ad82607bee704d363ad47dcf1b17"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Secrets.kt",
+    "sha256": "3f17eabf644e7c1f95879dfc324eca88e2bf7ca1049b784f6b61ca78ff7ae880"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Sound.kt",
+    "sha256": "4cc29edea69058e8ed66d227b652f714ffe8e0230a0a2e9c9675a4c65b5fad14"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/SurfaceWindow.kt",
+    "sha256": "6f4ce0eada5493135612ba7ec7c152e97f942be27665fea5ef2598b758e2e26c"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Text.kt",
+    "sha256": "f30d4846ce1045cce4e4205459cd9754591704c36fd082af154562f85fa399a9"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/WebWindow.kt",
+    "sha256": "044789b4bc822723808c27254adbeeec482fa409ba1075c62832dbb7a0ee1090"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/java/dev/mygo/Wire.kt",
+    "sha256": "7aa396e06cfd15f70046955c1fdbbfc51997eefc0da038d7542245f2fb738582"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/mygo/src/main/res/xml/mygo_file_paths.xml",
+    "sha256": "a3ab3f7ffbf6cf1e294cdc7aef1b600d447e100d08d1cedab0e2a508174430dc"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/android/settings.gradle.kts",
+    "sha256": "d1337c2cd506af8ef91ebc7de8491665e06b1b5e9f6276e826545c7cea6792de"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/backend.go",
+    "sha256": "907c299d1bba6a63d20c8e34fd8765319351b9abd161f5256aa01ae3baa66ac7"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/device.go",
+    "sha256": "c394547a9c9c20e8608a0ab687a983ba1f756970519231b23310d81a99df22a9"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/dup_android.go",
+    "sha256": "a20067d87011bd798154450de387646b58cb84d2a11777dff63fd4f856d2cff5"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/dup_ios.go",
+    "sha256": "f668594fdd4a87490966009828399355be67f3760f86dea42eaa745da791b442"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/dup_other.go",
+    "sha256": "47c34149cb8ee938f2021caa235a1227f6398067e7af7a4b2ced096193326784"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/events.go",
+    "sha256": "0e6f6276e3e07200249c69f23bd3dc53034f731e21c6c3a4058c058e995d8b30"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/glue_android.go",
+    "sha256": "9208e977c5c8bf06a6a8f57913f9fc2791480e94913e283da59be463bf03cc55"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/glue_ios.go",
+    "sha256": "280744bcd044ad9e8b4cc20991338bc0c26d1f639166132fd5ca8c76b44f1a58"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/embed.go",
+    "sha256": "b7556b143b7e57ab7b923ab4a88697bce82f4595b5c1179423746039f9c7ad63"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/MyGo.h",
+    "sha256": "ae69fd30e230be04ff92812c8fbd6c71b30828fece70a6e5e883a13a24f0058c"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/App.swift",
+    "sha256": "5256c9753b789232f27fb67526afdeb42b0eb218fde455f98791a461c7ccac44"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/Host.swift",
+    "sha256": "2f46941719180f1113c94c3c772d06420d685d393595cae9425665c15ad48839"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/Navigation.swift",
+    "sha256": "010bc6570d7b9968f7dd85be2ddc14e85e5d075c56f7abcdaa2760d883734689"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/PluginRegistry.swift",
+    "sha256": "b64ac1ad12935000428be7627dccf2cccf36f560d89293883d285625e9db51e9"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/Plugins.swift",
+    "sha256": "df241512c4fc56f120438eaa33ea53bdf4a91e39c1b6dce2d2a29078285b380f"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/Sound.swift",
+    "sha256": "a93b26feda3ce96340d9a94b7b89eabb1c00a9fc25dbbd703b9c212fb1132eb3"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/SurfaceWindow.swift",
+    "sha256": "dc885994dcaedc5926f51c4af73545948e29fd265aca61ed5e489215eb139957"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/WebWindow.swift",
+    "sha256": "ed779c8999169c2dc2db76abb8e9ad180396e9431fb5ccb359c014dc19fc0a67"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/ios/Sources/MyGoHost/Wire.swift",
+    "sha256": "e6aef758909cd9b09c180a66bbcdf8081b64f37c07be5469f504e8bfebd4a2de"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/jni_android.c",
+    "sha256": "04a83a503c5a5d1b3abf2e8975b1c500a34d88f12aeb862fe4cfe8172229b3dc"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/native_android.go",
+    "sha256": "6c85de08a2fc25f9f8a63789d40927ab336b53c1fc0450b5e9dd2853ccfe3e3a"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/native.go",
+    "sha256": "c23cc4037db544b7c4522021ed0586edb7e957dbe09347721278ecbfe695cd48"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/navigation.go",
+    "sha256": "c4d2ecbeee07ee370dada27e21f708f6254dce6a011c4051fc8535eebde9fd9b"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/services.go",
+    "sha256": "e189940322bb758d49e9bee8a81a0e288a940e5d334794235c4cb90c22516755"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/start.go",
+    "sha256": "00c3bce2938592949debc3ab6f5eaa25892db83a073b5deaf139b98c8d667ec9"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/surface.go",
+    "sha256": "f54b0459462ffe6a94d9776ae9ce03043350b6fcec633969cb874a2ed1f12f3f"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/text.go",
+    "sha256": "cbb102165d17b7d7bf0d93e34da91f6bf98e180375977621ab11b35d5e31c32a"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/textinput.go",
+    "sha256": "b48b378b0f4ee1282c32f549fef5a0dedac06f922c1395e42ecefc6934d0419c"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/timezone_phone.go",
+    "sha256": "1bee9c45d2bdac879741330962a82bdb66663b521a89768997d5ccd483429225"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/timezone.go",
+    "sha256": "f4da7dc93b5f7585bf864a9e0827ad11c873e06648a82f76137014a91c0f28bf"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/transport.go",
+    "sha256": "453346422db96499c0095d91bf949e3030adf1e9aaf3f8c8c35be516b76ddfdd"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/watch_android.go",
+    "sha256": "2264551987c737be4ce1af7a8e703de19594a47f999dbba1dc153a1bc216248a"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/watch_ios.go",
+    "sha256": "5677c60f3f0eac7b6e52be0d335ff88937f2ac0d942b0286902428367f2af4ae"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/window.go",
+    "sha256": "b5b01334be1fa697cbb8b7a993d3d4165b6a735633a3ca2d4ab0ba61e4b49b07"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/wire/msgs.go",
+    "sha256": "4023a407da2ca9d489829f6cf6db86850435f953babd9039885c6d3662db6646"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/mobile/wire/wire.go",
+    "sha256": "f8d2b387e5bccfb17b2f89588352a5d2bcc6dfb9b61c83d3d692b936a5576a72"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/nativegen/gogen.go",
-    "sha256": "49beeabe45c0850767eb241112b361c42c259c25d445983446addde345ceab2a"
+    "sha256": "06754e3c631fefb6d4374842d4781acb3749f9dce8394b1bcf557c0c3b086fa7"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/nativegen/kotlingen.go",
+    "sha256": "8745e0c829b43ed8fa278759488adf59dd618c385f28e457e001b220fc9874ab"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/model.go",
-    "sha256": "d3887363f75f1f6dcea105fe94f8648ec3bce12cccd4785f797458b30eef9b28"
+    "sha256": "5630e53654fc3159614ace8144f8839a825cc7a4ec1f867ead77f80d9b75350c"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/parse.go",
-    "sha256": "ef43b98fee374e664f13be2f23edecefd16f2e79e7ef796148f113f4269ce20e"
+    "sha256": "6ced4097d1eabf48d2754a6a56a945c7d234d7965eae86db63a8a451113116b7"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/rustgen.go",
-    "sha256": "ac63792192b423138c40f1259cccc159e7fa35b1e2de72242291fdaa8191603c"
+    "sha256": "be7db6cc6d07b8dd708e84e7361e296cb2feceb368449f0aad9ef1f96332ad9f"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/rustsupport.go",
@@ -2089,11 +2477,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/support.go",
-    "sha256": "12dff2e155ab49f5bd95218b070770f142801817264a9143c75b7d764208ee23"
+    "sha256": "153209d975a05232e3afb456ae82dbf5417879b3a41ce43727a6556b0aaf8b89"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/swiftgen.go",
-    "sha256": "2ae02371f496241ad50aac215c43b2bef8cdd5e0d4444f5faefcd780bed2fd7a"
+    "sha256": "28b5e684be6a5c33c101d90d4a6e4751e75b6b461c1ed631c962ac4b84907933"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/wire.go",
@@ -2101,7 +2489,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/write.go",
-    "sha256": "195b1a237888369a59251eaca08fc58509921cb8b212586b0c919e71751bbe9c"
+    "sha256": "cd6b92c37af172c2dca9f7751caee9e2878beb5e373220ba0d638a309e76999f"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativegen/ziggen.go",
@@ -2110,6 +2498,10 @@
   {
     "path": "github.com/egoist/mygo/internal/nativegen/zigsupport.go",
     "sha256": "3ff403f62a4193bba22de7f6a94a4de02c436e251bf84e1c19831740eec4a753"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/nativehost/nativehost.go",
+    "sha256": "8c7c9f0031176ab82116b9b6e6c1f8e6badff205bdaf9cbe032f3b2bb8821f97"
   },
   {
     "path": "github.com/egoist/mygo/internal/nativelib/nativelib.go",
@@ -2124,8 +2516,12 @@
     "sha256": "c4efe8c9bc3d059334be3e79a81d529c2511107f153a7fad25a620a9c1ca8b20"
   },
   {
+    "path": "github.com/egoist/mygo/internal/platform/access_lines.go",
+    "sha256": "2f321edd1731b0c39d5e8e4aa631fefeeef8e236970c798162f2b39a09b5225b"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/platform/access.go",
-    "sha256": "3d75c16b67b286927cd249cc08bcb02dc3d374c84b01a06ef4a9e2aa579073ca"
+    "sha256": "7ca9319e3e570863eabdbacda00292fb98801eb7fc6e80b1c6008fc949c2c8b3"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/auth.go",
@@ -2177,7 +2573,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/menu.go",
-    "sha256": "07c88fc640ff048c821b71f1ee62826822d8a3d1abbbfdafb386410cca946636"
+    "sha256": "b584035eb27aea02eca9281f9bddeb6fc305ff4ed3a65fe4efc8e5530373bbe1"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/pip.go",
@@ -2185,19 +2581,27 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/platform.go",
-    "sha256": "b47dd3e7b0015c4db73335e7dd0249a7fdec6c1f0fd75b09f79d907f0de0b58d"
+    "sha256": "d605bb9e312fd23fd541cc994f139b21bd115804a59dc1a2bb336d285f2a2acf"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/surface.go",
-    "sha256": "ace2b62a0eba9ea9e63907f2570312b6ea0c356de5f4ac19258e2124c4b7c482"
+    "sha256": "2e621816258ca793b255d0b707b31f317420c8cc9dfe3f4907ccf7ab042704b4"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/platform/text_input_runes.go",
+    "sha256": "9e13c4653069d6d8777ae2d7e1d7d97d2388b73121b8023e214d708e5e8d9513"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/text_input.go",
-    "sha256": "d0bfff4a36754d1f4d76b9a3c10d7a238f1c452674db24891c326c2019fe1e65"
+    "sha256": "83a0a44c5af6fe107e8dad273998f7461151ad9e3f0fd5d5df2ca481f457fd06"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/texts.go",
     "sha256": "dec1e29775c5f0f306842a96b31b1f690ce0041741c19523981aa3df405d2595"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/platform/touch.go",
+    "sha256": "9106ea851728007e8c201b0ce055f43c418a7cb94ee69880a1d7800b7253c25d"
   },
   {
     "path": "github.com/egoist/mygo/internal/platform/watch.go",
@@ -2209,7 +2613,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/canvas.go",
-    "sha256": "5af2610a26e5735ca5470105059a8509779ff45ec79839c2858a96e3aab722fa"
+    "sha256": "170b6e54c77fd4d973e9aa9992061344dd51af60d93051de8bc0b322a37fffae"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/clipmask.go",
@@ -2221,19 +2625,31 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/damage.go",
-    "sha256": "338dc380a5b8030950b0d155e63692ce5b13936637ef008369f8966e823d9a8f"
+    "sha256": "932938a9f9830e998e17a466d0d41a2220cf2df31675c2412fab41276ff8d64e"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/effect.go",
-    "sha256": "4aba4176ccd62307be3a1a2b9f3adf7978614e03232a2de7c3b5f542aaf33245"
+    "sha256": "e4d1295769c6e8070645fded0244f7bdc70fa5c7172d46de6bf95a8888a2409a"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/raster/image.go",
+    "sha256": "0a08eb5b0b0d1c6873279e6eb15d6bf99b816418366e40e0c914fcce0258b8b2"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/raster/instances.go",
+    "sha256": "a8e3117d087be4e98f5c2bdc68ad4d23d8232ca87401758f671345599e008592"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/raster/layer.go",
+    "sha256": "a7ff3e5613d9e7097686edda4a195cc7ef78e6453cdb0ba6d63a4c0f4016ff06"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/pixels_other.go",
-    "sha256": "bf6dcfd4bf1d0508a57ff3c0f0024c507eeb58fcf8265e5ac64a09d4341b116d"
+    "sha256": "af1ed62fd36ca8f4b6686812527fdf2a31cdae0c0ebf91e9de6529fbef31a9f1"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/pixels_unix.go",
-    "sha256": "99e0243ae4630799e32e9d9f63de41313bef51b6514afa8ac191ae0955796c65"
+    "sha256": "1e3614e314c49a389fc86d0470db6b14c11b368af26e09f0e2c6b832abcd179e"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/pixels_windows.go",
@@ -2241,7 +2657,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/raster.go",
-    "sha256": "de5102aa06ef8dbd943f30ce2a76f83714cc17915035f614f128b33b9d27a3af"
+    "sha256": "a9490b4dede743b265d8883bc91c0c7f212984abe939e2d09b3c5fd37ed177f0"
   },
   {
     "path": "github.com/egoist/mygo/internal/raster/team.go",
@@ -2253,7 +2669,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/rope/rope.go",
-    "sha256": "fc39c3281386f6598d1ac14cd9e3073ac12b54b77f2bf1c5f85b454345b95c56"
+    "sha256": "3421fe070281720d9863fb3400185181d77065ee620dd6d91ebcc63a247bc600"
   },
   {
     "path": "github.com/egoist/mygo/internal/rope/text.go",
@@ -2265,11 +2681,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/scene/damage.go",
-    "sha256": "d6ef45c925d1f3de1844c5a25fba5a7ad72fac54d3ce9ead1a74a2484bfc7909"
+    "sha256": "f66d59931187d17385d43fd7a12b92998606c4dfd8c51e5b387543420d15ae8a"
   },
   {
     "path": "github.com/egoist/mygo/internal/scene/effect.go",
-    "sha256": "5d8a86e3b3ac1ad748bfc63d10a65d4cee2fcbad85c6927590ba003ee32c1bce"
+    "sha256": "9b6b16e6b311cfa502662e8ef2d2e2ed75cb1520827579d29c7600c6bdf462d6"
   },
   {
     "path": "github.com/egoist/mygo/internal/scene/fold.go",
@@ -2293,7 +2709,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/schemehost/schemehost.go",
-    "sha256": "0ec4cf53c8988eb1d72e62cd8592af6511aee49a41479a09464ecac34fe8306d"
+    "sha256": "951136c175f70b5905151790d2bbee36340e379f3066c671da99fc6f9c5671ab"
   },
   {
     "path": "github.com/egoist/mygo/internal/schemestream/schemestream.go",
@@ -2301,7 +2717,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/shader/bridge.go",
-    "sha256": "9ade816775a582161f82f2379c2b922ab259c7a1c14b226b2deea51973b17f4c"
+    "sha256": "0bda96ec4f39fbf55b789f0a9501ef3e12f1300fdef2dac9e7cbe2b19094b1e4"
   },
   {
     "path": "github.com/egoist/mygo/internal/shader/doc.go",
@@ -2345,11 +2761,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/glsl/fragment.go",
-    "sha256": "9623790ef8c19cad49f7b988990e8bb9f0deafd1e87d7d1906f28cd24ce6488d"
+    "sha256": "ce6da953bb8980e17c8c0d99a116af4811938d0decbe052de904428bcfcf5904"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/glsl/glsl.go",
-    "sha256": "14f6738ea0cbd524c215783eaaef8644b8dfe03fd1e5f1482317a9ee9a0b3134"
+    "sha256": "69e0eb3a9db47ede06650cd0df3c201fabb8514e0a977f7e7feb6b2d6bde471b"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/glsl/type.go",
@@ -2361,11 +2777,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/hlsl/fragment.go",
-    "sha256": "333ae08863e414d2775f062dfc345a3f04468bb68dd8512c3825afde13e29b6e"
+    "sha256": "f1c529a5742e3cdeeaecb0f434ae53c9c0c9f074d6e8e8ce7ba7e90bdb3571c1"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/hlsl/hlsl.go",
-    "sha256": "739b55818716b7396f624f14edee337c9f99bca49f3521b89ad1d69ce27d0d51"
+    "sha256": "69ff05a819f65d06e02ec88f83358b1264ad3fc04f83770a7a92359974949c63"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/hlsl/type.go",
@@ -2393,11 +2809,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/msl/fragment.go",
-    "sha256": "aa7afb584a5518cc7596be208946612dc243b71b58f415743862264f70aa7ec5"
+    "sha256": "7d0ba748a5555f03c18ad1cf30dec163e50c89b50dc35876ca24e2402b86ea42"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/msl/msl.go",
-    "sha256": "8ee28e09317c46f26bed04b3b72ec7b8ad9227878829d4cc68bdb0244dde1b40"
+    "sha256": "92d9b91ff5152ffb1b8f04d8189e5d0f8c2da2b306bf5bcfbb2ccb7017213a9e"
   },
   {
     "path": "github.com/egoist/mygo/internal/shaderir/msl/type.go",
@@ -2417,7 +2833,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/surface/automation.go",
-    "sha256": "21c6c833e5c69e0dfb49cabda2addaa31b92534059a7e0480a5f7d95bbee58bf"
+    "sha256": "7641ac838e0fc37644049fd30bc3d33585292d88d5fd9cafb09523f1945054b1"
   },
   {
     "path": "github.com/egoist/mygo/internal/surface/surface.go",
@@ -2429,19 +2845,27 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/compile.go",
-    "sha256": "cb3486bb453a029816f38d6baf100c1a844c0c76e41f8008c68dc099a6733d0e"
+    "sha256": "d696cc72346dc2137058b369c093a387aee31c13203ce50342dfc87f04401e4b"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/svg/css.go",
+    "sha256": "2705c50bacbaa4340a06241cd805620f79115d2346b9cc43a656c1abccba2f65"
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/dom.go",
-    "sha256": "712f2073e4069fa44e2b3b13fdbfd3ed3f9edf9b8a52983448b30113cbbc4e16"
+    "sha256": "75e3aa9521a935ed375fafab4e399e4c82a4b742f6d4a75eb6c7b4975f4247a0"
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/geom.go",
-    "sha256": "b3a2dcb75c79ceca892e38dd592d72c11f6dae01f91a8c986aee599607fc49a1"
+    "sha256": "7cb6f4d70013a7e2ac994d2128a68f1bd8299577a14bcbc7a36719022ec7fce6"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/svg/marker.go",
+    "sha256": "66c98ce85397fe6cbeab29a79b91a6ecbfe0a44162ba122a317b7b8676a1efcc"
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/render.go",
-    "sha256": "133dd0dce30619f2c02b9c8fb202147e73ff01e3c13c3add4899b2ed020fe967"
+    "sha256": "f8b8fd3de1a1a6d676da93d828490bd5bb3e7d54fcb768e94870224153a32a3b"
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/stroke.go",
@@ -2449,23 +2873,31 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/style.go",
-    "sha256": "6b23061f8c505d034ed9717dad5977d5f5ee4f721345ee673e0b63f69a949a98"
+    "sha256": "e8f1bf18764b3acb8f63b14b5ec116544a093b8ff1d6e3f18604ea641f411685"
   },
   {
     "path": "github.com/egoist/mygo/internal/svg/svg.go",
-    "sha256": "b30fd139d43abccc2b5a6f091157054968005528ed6450c676d0c031eab08314"
+    "sha256": "99f5feab0c1c60933dcf793676992e23d65ad40fab99cc56f96ba538e31b4f61"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/svg/text.go",
+    "sha256": "4adb94e3f13d52e4dd42e0ff1471a7bfead624ddeb6b932ca0a2045babdf857b"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/canvas_js.go",
-    "sha256": "808281c272c6eac962eacb405a8af74bf8f109169950408571f57132899c6296"
+    "sha256": "8f07ef4114205c1f78a1838d9aad21d3b1e00a596633526d3bffe03081712528"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/caret.go",
     "sha256": "4cd6b633d44ffae3e88e0e593413167191a077e3b3e8d2ba42a8b3a51f1223c2"
   },
   {
+    "path": "github.com/egoist/mygo/internal/text/clusters.go",
+    "sha256": "5d0bdb9d888cc846d821a7db78eeb55464e42bd44f1508c71cf3cd40ab7f364d"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/text/coretext_darwin.go",
-    "sha256": "6655c0fe96378c3924c377443651c31d6bc80b39ab01d3d5def3aa39d9c512be"
+    "sha256": "0e9739fa540b7a9603fa84501d75add6228336f8b492c3c7554f4adf9b996304"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/decoration.go",
@@ -2477,19 +2909,23 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/text/dwrite_windows.go",
-    "sha256": "8b2df2365d4bef805fde49208135dc4c13fd5181c74e7892f5bec4efb8f44aca"
+    "sha256": "f37745382580297769ad8e16845363f18da6056e670f629b6fffaace431638df"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/edit.go",
-    "sha256": "8c3114167a102206e3d50ee6b98f296ebef46afca9f751ca207445d52433dddf"
+    "sha256": "96593f935d0eef8b1a53f6ff5fbe5dc5cc357b8cd896871ac054fd5e688c62f4"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/engine_other.go",
-    "sha256": "25c46b3b8a5a48b03f016495ca075914875e2677910a6c960138645e3818c764"
+    "sha256": "9b9dbb33d9fec632cdb957e25bab4727ab62598ec4ce846de2e93052672a5449"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/engine.go",
     "sha256": "1ec33a977797fa4d7ac3f554c4c7a6148b7e1d49de98df979d4a3381ee8502ae"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/text/han_windows_test.go",
+    "sha256": "effd515b499e8c754755f87dd4bbb02dd92183f3cbda79436b53294517f17dda"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/join.go",
@@ -2501,7 +2937,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/text/layout.go",
-    "sha256": "52ab3677cc4dfc83f193ee678c3f26e8440b93c506d203130376f49d547977eb"
+    "sha256": "f30995447fac943810a0c81fa1d337949c64f146a4a330719055510a6826ce1b"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/numbers_darwin.go",
@@ -2516,16 +2952,20 @@
     "sha256": "b589561f1f4a5828a07ad025e38edba70507b446a644dadf21bd62177d7a7b3b"
   },
   {
+    "path": "github.com/egoist/mygo/internal/text/paint_android.go",
+    "sha256": "e18863daf2de6155393993217e8f032187c621fcf46b9cd6f77a3a1c38d03dd3"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/text/pango_linux.go",
-    "sha256": "1aa6a611a42368ef452f0429251e53c010a25d64f11409617c8156e483202121"
+    "sha256": "a863f054cfa821abe19be801a3e4a2786f79fbb16d46cdd63669f96d12c7c7b3"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/paragraph.go",
-    "sha256": "1e2dfb1ecf16e65f8214e28a39283c5cba452409546b2d5869482bb1f1b56fc2"
+    "sha256": "b709e9043825cc6c0271068d25388111860cb151a9d47de370fc3569e9f22eb6"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/raster.go",
-    "sha256": "11a56ac4e89e7f7260558c4f9e67013447043f35e4dba84f547e54f648e83c17"
+    "sha256": "2e6ad654d1df8d82473cc468512454343cadd39f30737787760211dedf17f659"
   },
   {
     "path": "github.com/egoist/mygo/internal/text/rundelegate_darwin_amd64.s",
@@ -2569,7 +3009,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/tsgen/generate.go",
-    "sha256": "ab891e1db08300c5fe6e4514948765e9e0816efa618685f6fb21dd26e93a8afe"
+    "sha256": "744889c61ae17e9c8cd92e62632915a2e05ed406a345e1cb7e63d7d2a6e964bb"
   },
   {
     "path": "github.com/egoist/mygo/internal/tsgen/names.go",
@@ -2589,7 +3029,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/uimigrate/uiapi.go",
-    "sha256": "3b22082085b72f402b37783f906e9851b854dd9a6847c73a6444a394dd0ba568"
+    "sha256": "6eb8ff0e19c8fa3393585e3b7ab783e81976186e66f446062dfaf1d266412721"
   },
   {
     "path": "github.com/egoist/mygo/internal/uivet/analyze.go",
@@ -2597,7 +3037,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/unsupported/unsupported.go",
-    "sha256": "51e7e9b7a94668b58fc371717362843d60bb561a2b360722cbfa9084787660af"
+    "sha256": "9c4a1c853ed54f46870378ce28be5583f0f2e8427324d616ef327d7e6f25bccb"
   },
   {
     "path": "github.com/egoist/mygo/internal/unsupported/watch.go",
@@ -2609,7 +3049,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/update/delta.go",
-    "sha256": "9de6811ed969d29ee11a487ea668ad441a40425c35636dcfdd5507ca7f1c1329"
+    "sha256": "9f609f498956756335af32b99048523697edc202322bd5848f943343ebd05299"
   },
   {
     "path": "github.com/egoist/mygo/internal/update/desktop.go",
@@ -2640,6 +3080,10 @@
     "sha256": "03194c3e6b5c5e820d604b74b5357bfbeeced7cec63414cfb08147795c89dccc"
   },
   {
+    "path": "github.com/egoist/mygo/internal/wait/wait.go",
+    "sha256": "ece1b088a54cc7e6864fe94a9207af37ff0fb660b14c422dc166ecbd7fd2f410"
+  },
+  {
     "path": "github.com/egoist/mygo/internal/watchdriver/watch.go",
     "sha256": "69d401303653e87ae5ed46cca6b8693a28924d105a64a22646adbd8a367fe4c3"
   },
@@ -2653,7 +3097,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/web/menu.go",
-    "sha256": "a27921c9283570a49876e5d183f01c2dfdb3e5fa927dfddfa057f43646215454"
+    "sha256": "690a814e228dec22f164eb8efc57b2a2f7b9b9470031b1b6554ba3499e5ab4ec"
   },
   {
     "path": "github.com/egoist/mygo/internal/web/network.go",
@@ -2673,7 +3117,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/web/surface.go",
-    "sha256": "4ba87c71e2280b4d5deed7ba3ca4e59ce27e0d1fc024090fa9ca6bf4740baeae"
+    "sha256": "95ccbf5cf7ab517853a53fced6471868540a0d403a3a4812d048e1c23048fbf9"
   },
   {
     "path": "github.com/egoist/mygo/internal/web/watch.go",
@@ -2681,11 +3125,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/web/web.go",
-    "sha256": "c363176500caeab6c10cca5ede76d6cc363694ee8dd3a5dee747baf7f268ead5"
+    "sha256": "aec9f364005688dc4403d4320d14f4f4543b2822ee0ead68c86d48ec63e43e41"
   },
   {
     "path": "github.com/egoist/mygo/internal/web/window.go",
-    "sha256": "6a376ce91345625f2c4d22355938ec0c496b477aa328773a56fa3a1ce5fb7869"
+    "sha256": "71fecc047fe646e10808056c643684b3c2f690d6d357a4604aeaedba7e25a90e"
   },
   {
     "path": "github.com/egoist/mygo/internal/webview2/registry_other.go",
@@ -2709,7 +3153,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/app.go",
-    "sha256": "b63e6e7940bd2ca54385835f216452766fb1cfc69fd7fe42e592c571e8074894"
+    "sha256": "464d3a3811214ea2bbc70f013ab5e869c145978fd6cc37322f3f670cf9a6d25c"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/apps_match.go",
@@ -2722,6 +3166,10 @@
   {
     "path": "github.com/egoist/mygo/internal/windows/auth.go",
     "sha256": "20cb5fe359f55a2edb66adbba33d4be77c354802b9d1360ff4f8e1619b6c21d8"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/windows/clipboard_watch.go",
+    "sha256": "e418cb28e1ac9506ba707687e8dcee31ee7bfa766f63196af40179e8ec2fc3ed"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/clipboard.go",
@@ -2745,7 +3193,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/cookies.go",
-    "sha256": "202b8dabc3345ae168ad78983fb3c5cbfada0bbe9806ebc00750c37ab8fd4f12"
+    "sha256": "b2e1cd28331c82f3f6a59fa09d0b6cb73c971b782449124a1aa53d41d407756d"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/cursor.go",
@@ -2777,7 +3225,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/input_region.go",
-    "sha256": "8963b74da23883f787fd2dac1616e3a794b726e3efcd5612f52f1e80c4ff15d2"
+    "sha256": "dfbba5d0196a16faec4e154787acb15abb64f38d120da2f03489e865e0917549"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/jumplist.go",
@@ -2797,7 +3245,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/menu.go",
-    "sha256": "355564d0d9a6d34b96557d9e71a1109fdd65a7166cc6c84929797ea922ddbf96"
+    "sha256": "92b12c4874b6c5795dfa2c9adc3ff82e1f314dfab9264fafd6df3c5bd6531424"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/menudraw.go",
@@ -2825,7 +3273,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/pointer.go",
-    "sha256": "e13ffb20276a142657155cf547c3321f118d3532d586c7705df7d097d337b96c"
+    "sha256": "4b38abadf02826a4a1b6bafef36f2b11e7e3ca0f5a9d3d1dac7f620819fd20e5"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/power.go",
@@ -2869,11 +3317,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/surface.go",
-    "sha256": "2c4a355a53a62c221dedfb2cdaf9aed89249c5e0c7b6d8f429b173cb28c47424"
+    "sha256": "6b9cdb85684b730a94081b632ad82d0affab38310aa2da91e2ca0d9b3d14cf95"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/system.go",
-    "sha256": "04fbc77715e894b4140b806ebef294dc3d218dd321279605cd4fd1efb00dbb71"
+    "sha256": "5e9e3ae82f22a6deb4a54bb7ec127bf03e5133f17842d1230526a1cb47f5f538"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/taskbar.go",
@@ -2885,7 +3333,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/testhooks.go",
-    "sha256": "9c5320038bc50bdb6a8b6bf3903bb64a8dbeaab761cce8bb94ecb1ddb5f9f506"
+    "sha256": "18bc68c17229ec3074df1e553ba36ceb326bc745d36cd6d93f49ef903ccf6fd9"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/titlebar.go",
@@ -2897,11 +3345,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/trash.go",
-    "sha256": "edee66ebb6a14e854e96c3ba24e45d4973ee5d2cc46068ae9635f4c892b22444"
+    "sha256": "99d5a08927a163b91d9a865a24473f566cc980ae98703690f89bf553c3725f70"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/tray.go",
-    "sha256": "d2523a2cbcb3ed597492ed60db078344176e02ff2fc295d69622f32503280aea"
+    "sha256": "e808df739ba28aa5f5c01ec8817dc5421034c6d0dbd1f0677d868c2ce267edf6"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/uia_amd64.s",
@@ -2925,7 +3373,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/webview_embed.go",
-    "sha256": "8e8048672152b4eb7a21b60a34495ddd6ea7ccf758fb1786ebdb16981b0caf2e"
+    "sha256": "320bd425677a94525861fd4b16458831605078eaab01dcc72107d626020cc5ce"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/webview_keys.go",
@@ -2933,7 +3381,15 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/webview.go",
-    "sha256": "f44ddd014d440c29dde214661e26fa68354d8cb73f34432d030f52f3759b7b19"
+    "sha256": "a55813bbd33f7901f3345bc9e9110927a95b5093791e299d269d5f8dee1c45b8"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/windows/webview2_env_off.go",
+    "sha256": "3bba7d46ded76b8e367733fa66e9f7e7c79421b9a84ec1c1447254385189fa1b"
+  },
+  {
+    "path": "github.com/egoist/mygo/internal/windows/webview2_env.go",
+    "sha256": "4c0014e7ad26fda63986c5e9ec7d18451acada9275ba04bf196a5347f26688ff"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/webview2_options.go",
@@ -2941,11 +3397,11 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/webview2.go",
-    "sha256": "2c028a781df4083b2192de4e59a80b8ebbccbd5edfe49b90cc46460e859b6aea"
+    "sha256": "fd0bc912df0485d83f12bd5bf1567578383938fdc462ce5f1c3ed4788fd42c3e"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/win32.go",
-    "sha256": "3388e7156f099dd3c5cf87d58a532bea1eaf9325b0f44cb2846a9e0f37ce8bf6"
+    "sha256": "c807386f9f91ef1a62ce7e6ebfe01ab8c80aa25fb2aa206fd4bb416a19e1256f"
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/window_state.go",
@@ -2953,7 +3409,7 @@
   },
   {
     "path": "github.com/egoist/mygo/internal/windows/window.go",
-    "sha256": "46819492df066736c0eefb2a6d95ffbf0d65e014c70408528725ef8f83c0636a"
+    "sha256": "3684e7e8cab7878d4bf24c88c7b5534ee7a3a3c082ca2503fce1608ec19a6452"
   },
   {
     "path": "github.com/egoist/mygo/ipc_js.go",
@@ -2961,7 +3417,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ipc.go",
-    "sha256": "bd856572bf38c587615d949e8935eeb66f006e7727a2b9919d9d00804cf4c39b"
+    "sha256": "441cc9e1fa9d76639fdf42ee7ff19ac76bed920a55db716f02304d14a16be718"
   },
   {
     "path": "github.com/egoist/mygo/jumplist.go",
@@ -2985,7 +3441,7 @@
   },
   {
     "path": "github.com/egoist/mygo/locales/ja/ja.json",
-    "sha256": "8b25f954e6d82053ea70a0f18b1def9996d50a0b66eee87dec6e6e7b2bdc39e6"
+    "sha256": "039a6203290e5c393a55aa88cc1de14c38df1be767cdb6e963cd4588c7573669"
   },
   {
     "path": "github.com/egoist/mygo/locales/ja/locale_gen.go",
@@ -2997,7 +3453,7 @@
   },
   {
     "path": "github.com/egoist/mygo/locales/zh-Hans/zh-Hans.json",
-    "sha256": "93896807e2058c4e425acb6178590140f03a7aeff7eecf74a12cca10abcd27d0"
+    "sha256": "4e9a354e2253c563e1a9080e15fb8454f14b27c8a91367bd2cb390beb43af9bd"
   },
   {
     "path": "github.com/egoist/mygo/locales/zh-Hant/locale_gen.go",
@@ -3005,7 +3461,7 @@
   },
   {
     "path": "github.com/egoist/mygo/locales/zh-Hant/zh-Hant.json",
-    "sha256": "cd327ddc5e8b4dc8bf26938e51bd8bbc2395244557d970d29acbd14de86ce190"
+    "sha256": "9dc1bad46166207ca4e52890a7ea7942286276c2745f03757e82cc1e85efd4c6"
   },
   {
     "path": "github.com/egoist/mygo/login.go",
@@ -3025,11 +3481,11 @@
   },
   {
     "path": "github.com/egoist/mygo/menu.go",
-    "sha256": "92e4137943611dcdb43e439a91eddaf2ce691b4fb4a33de0335e1eacd20ff88e"
+    "sha256": "40836a4512b429dec3080df216f35fa1e48a47453d5545bb6512b41471e189ac"
   },
   {
     "path": "github.com/egoist/mygo/menuicon_other.go",
-    "sha256": "152bdca70b7ff46d607d5a1071d9f94d797e91791e7ac3f13d83943e857073d8"
+    "sha256": "f270355e7edf79f59bc918c0347a5f97af1c49140ba52455ede4aa25fdf843da"
   },
   {
     "path": "github.com/egoist/mygo/mise.toml",
@@ -3037,11 +3493,19 @@
   },
   {
     "path": "github.com/egoist/mygo/modules.go",
-    "sha256": "00d304873b0a76f50df129c7b87b013fd5844e378a0868017bbf0e16f995738b"
+    "sha256": "ee75430d2b584a3804bdad7df6bd7e027d6dc67397333e790486ef510d487367"
   },
   {
     "path": "github.com/egoist/mygo/mygo.go",
-    "sha256": "ae81383b73227709c7914ae1240adb163bad2b000b6d9f376166c36624ced433"
+    "sha256": "34b7f5bad89a0afb2cde43dccb392d62fc622440a6e22d2c4fe97745677f826a"
+  },
+  {
+    "path": "github.com/egoist/mygo/native.go",
+    "sha256": "c8270b755bf63d9370f664ea83e9c1f0a5f0e380b6b139033d5ec5dda7cb4d0d"
+  },
+  {
+    "path": "github.com/egoist/mygo/navigation.go",
+    "sha256": "b93c39f310b0691942405e736d68e9209ffb0a7538446732dc1c39c48f17b9a1"
   },
   {
     "path": "github.com/egoist/mygo/netproxy/netproxy.go",
@@ -3053,15 +3517,15 @@
   },
   {
     "path": "github.com/egoist/mygo/netproxy/system_darwin.go",
-    "sha256": "8cb3be1b090a9c7da849bab1fd2ae82abfc03e082862bbb5de4de1ad3658320e"
+    "sha256": "7b7c5b5d140704480cb21a232bf7b8d861a02b88ac6c6ddabc19f1b74be1d2c2"
   },
   {
     "path": "github.com/egoist/mygo/netproxy/system_linux.go",
-    "sha256": "7d02587c63a6fb3cdb9620ddaf60d45958f1f81d25af815c20d8874617974c4a"
+    "sha256": "36918154ac6ac90386f6c7e959104aea698f494b8712b3fc2ec1b03495e9f33a"
   },
   {
     "path": "github.com/egoist/mygo/netproxy/system_other.go",
-    "sha256": "ec615af7790b6c73d9dd480c61a7586154926b44863fec19f8ec707c8cea4463"
+    "sha256": "0855a78a227c308e6191c56c0d7bb32789a0d0a8538875095aca1fad1b99437d"
   },
   {
     "path": "github.com/egoist/mygo/netproxy/system_windows.go",
@@ -3073,19 +3537,19 @@
   },
   {
     "path": "github.com/egoist/mygo/notification_image_other.go",
-    "sha256": "d52340c55ef3bcf96ea1e9e79d30e6088511eac99dc2573a8e4cbb80a93424d8"
+    "sha256": "55714c956000b2c119c80000edadea78585c51df83a5f8d3296b1b3cd7ee484f"
   },
   {
     "path": "github.com/egoist/mygo/notification_sender_other.go",
-    "sha256": "295e4dd7cc6f8bfc1a94f7de4e6451556d311bf43e93fcff73cf672c0445c4eb"
+    "sha256": "560b6f78da8def108be08c52db4e6a32a33404234fb7e88bfb3f64b84966d237"
   },
   {
     "path": "github.com/egoist/mygo/nowplaying_other.go",
-    "sha256": "92ad3554b11e8a25a33a6b0b6868d88e458787f0ece5f76a6bc5f63060a15f13"
+    "sha256": "901f524a32f2dcdbc04fa22e001c1e8d0f484d27450c564eca6f8393a2a1c36a"
   },
   {
     "path": "github.com/egoist/mygo/nowplaying.go",
-    "sha256": "543e5d7779bdbcd966ef8b20416515bc16e283181ee6d41b168319674c185b09"
+    "sha256": "6867781ac23a310b4cf0ca8ffc91df791e7aa2027697bf77f2e0d92038ed0cc1"
   },
   {
     "path": "github.com/egoist/mygo/package.json",
@@ -3097,15 +3561,15 @@
   },
   {
     "path": "github.com/egoist/mygo/paths.go",
-    "sha256": "00142ce5c7a1472f5b8a317c939a54ac94062efca4fbeb2589f23e41615050f4"
+    "sha256": "f702b2b90e54253f47b42f2ee96ef9ce209301e676a6efaa4581f88f93c088a5"
   },
   {
     "path": "github.com/egoist/mygo/pdf_text_darwin.go",
-    "sha256": "30aa03171b2c51d9dd4f1639d2e8ab6e28d02e98675a8fd7c309eacce5f12ee5"
+    "sha256": "f05a37448fb0104bda0b9991ff07e71bb491d8bf6abe19a6dd02d8bbb7737286"
   },
   {
     "path": "github.com/egoist/mygo/pdf_text_other.go",
-    "sha256": "c594f0191c67ffc28ed314bd7f634a550de7a9d00378184713d1fc5672f92f26"
+    "sha256": "3ac8f6ea0e2641641e94b039e9b6b5beaa5bb12c91c98d5bf3738cbb327c9527"
   },
   {
     "path": "github.com/egoist/mygo/pdf_text.go",
@@ -3177,7 +3641,7 @@
   },
   {
     "path": "github.com/egoist/mygo/plugins/glass/shaders_darwin.go",
-    "sha256": "754f91b84067ef1902859fd167e3ac26a168aa245088474c2d6a79338b02d267"
+    "sha256": "586ebbdc2d6df71a7120ba79b79e34d97836d5200bca23df840a44cb1dd3b62b"
   },
   {
     "path": "github.com/egoist/mygo/plugins/glass/shaders_nohlsl.go",
@@ -3185,7 +3649,7 @@
   },
   {
     "path": "github.com/egoist/mygo/plugins/glass/shaders_nometal.go",
-    "sha256": "6acb1d8acbcc9f94711957b4846be70422a08f35115caf7d54732e8c2836f7c9"
+    "sha256": "1dc20561a26013fe632f23a7ed2f1fd7cd01c1db551d5da02a972f88edfce0b7"
   },
   {
     "path": "github.com/egoist/mygo/plugins/glass/shaders_windows.go",
@@ -3201,7 +3665,7 @@
   },
   {
     "path": "github.com/egoist/mygo/protocol.go",
-    "sha256": "3a599cce598c4c1465feaffdf127f0c932d3236b5262b240566b25c072e31521"
+    "sha256": "e0ec7665b1172b18581a573401ff9f94d6f5357bfce2caf4df84d8931eebf750"
   },
   {
     "path": "github.com/egoist/mygo/random_js.go",
@@ -3213,11 +3677,15 @@
   },
   {
     "path": "github.com/egoist/mygo/README.md",
-    "sha256": "917a811e808c486a3dd2effd966d36dba63c380d8ce727d69720aa39a7836701"
+    "sha256": "62d8d6085e287e9df2fcab145325a98910b0506dc53ffa2201174972a4ad705c"
   },
   {
     "path": "github.com/egoist/mygo/recent_docs.go",
     "sha256": "43e090c9948121b2772fe0e5efdac106ca0916fa4d73f926009297022a9c8b2b"
+  },
+  {
+    "path": "github.com/egoist/mygo/restore.go",
+    "sha256": "50d3b17159e1b103bd9716ef177a78d18a23b9e81ec0f165ecce54d3c42fdee1"
   },
   {
     "path": "github.com/egoist/mygo/secrets.go",
@@ -3245,7 +3713,7 @@
   },
   {
     "path": "github.com/egoist/mygo/single_instance.go",
-    "sha256": "ad92e9f8cd0c21a82367044c3542766216b87c0274a9539ba508b90a8f9c7814"
+    "sha256": "d48f5e54c4c921b768d2277db0f608cc52adcb40d5e8331b74b356fe4fec03b0"
   },
   {
     "path": "github.com/egoist/mygo/stat_identity_other.go",
@@ -3285,7 +3753,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/access.go",
-    "sha256": "28e6d60c6414811c7adbcd8f88324f5f5f673f5f9a6d4fb54e8a7895f16780b5"
+    "sha256": "79c8350f3b29470d509f6be5f339bf91a5f356b98635dc7256c2852646eed8c5"
   },
   {
     "path": "github.com/egoist/mygo/ui/actions.go",
@@ -3293,7 +3761,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/api_gen.go",
-    "sha256": "548df13674674a099f69fcfd11c610a88de91b1c4a42942733ca6d5add73ab5c"
+    "sha256": "f867043afe7c8d0b49fb3467acadeb5b2b399a0026408ac978e5a56924b0cef2"
   },
   {
     "path": "github.com/egoist/mygo/ui/apng.go",
@@ -3313,11 +3781,15 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/bitmap.go",
-    "sha256": "09fc37856fa16e59dfb05a0e859801b034d91daa91d1b22fcc66532c60eaddb3"
+    "sha256": "bd0f2b90f8c66389cb244dcf62954f87c19577ad02dcc255fc7d1f93365a96d4"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/builtcheck.go",
+    "sha256": "c2fc30ea2709a6daf6ffecc219970e4ecfaa85c59cebc568a731cdd5a4435bb0"
   },
   {
     "path": "github.com/egoist/mygo/ui/cache.go",
-    "sha256": "4d2b71e2b2e363bda071e3b18e8ec6b76033c4e17734168297fb10f7bf526793"
+    "sha256": "29d27bdfda56cc219c7838db4974dc679d758ac8f46fef45137df4085625fcbb"
   },
   {
     "path": "github.com/egoist/mygo/ui/canvas.go",
@@ -3341,7 +3813,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/combobox.go",
-    "sha256": "57bbf327ad4f7321149b8d8f0e8feab0e0034d80242cc9e99a0320c3a01078ba"
+    "sha256": "3143112f99cda81bfb88e2fe623039495ac6b3ef89fe3e86bccd4c310cc75f29"
   },
   {
     "path": "github.com/egoist/mygo/ui/content.go",
@@ -3349,7 +3821,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/context.go",
-    "sha256": "2c7cb695ac8ccde14d4a5efecf45a0c7ae0a36eb23e89bac841b032bae2f35b6"
+    "sha256": "61a547cadf463a8c59046d568f3fb51200294a061d979fdf3cff9c97961dc4ab"
   },
   {
     "path": "github.com/egoist/mygo/ui/data_drag.go",
@@ -3362,6 +3834,14 @@
   {
     "path": "github.com/egoist/mygo/ui/decimal.go",
     "sha256": "ba401fed83439997841090e9ebd028e0bfe76a2c80854208e87d11762fcc2c78"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/devstate_off.go",
+    "sha256": "ee41260e5878a2814d1ea10f96e5983818ef95643870be30c41c4fec1b15a3dd"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/devstate.go",
+    "sha256": "50f51305ed23090fb5f42a37d6602b54f0c07a1e85bb70a55990f95d7ec59a07"
   },
   {
     "path": "github.com/egoist/mygo/ui/diagnostics.go",
@@ -3377,7 +3857,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/dragdrop.go",
-    "sha256": "6b32d5d6c506523ccdb5fe9dff70b9690aa0efa0fe54faebdf96091941352456"
+    "sha256": "d4d90a23d5505b4d41f759991057b2976731d5d3c93e73849584d6434d51476e"
   },
   {
     "path": "github.com/egoist/mygo/ui/draggable.go",
@@ -3397,19 +3877,19 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/editor_history.go",
-    "sha256": "fc8e33bbf692b311d61b44b2afa9f16f7a894ae52456454c4977e3d17db6cb1a"
+    "sha256": "898d0512b23a742662b08b1f3c61d1e7ca104b49268830b69f955c323e9ad7c4"
   },
   {
     "path": "github.com/egoist/mygo/ui/editor_input.go",
-    "sha256": "cc54639b22f2eda0297e99d0c79c230976cd7f0fee9b90cd049ed7e131e82931"
+    "sha256": "4d6175ca4e2f49ff40077c58c181ae4f512736ff82b8c01c04847d137996d892"
   },
   {
     "path": "github.com/egoist/mygo/ui/editor_layout.go",
-    "sha256": "84574fea7e59d9aade29d342f110b3bd7e09048bcf8ae23d9b125682e60b0a41"
+    "sha256": "e6bec845539d9d669d5f6a39f740953812fcecfb1c1b6d292f625a880ba33379"
   },
   {
     "path": "github.com/egoist/mygo/ui/editor_navigation.go",
-    "sha256": "2a3b2378797ae9798a9c064e61b2a411668f8b27cc56aa48455ecccd2a6cd0c7"
+    "sha256": "d0d08245e189c595e658b5028d624487215a26ad4e9ba6b85063eb3fecfc5d35"
   },
   {
     "path": "github.com/egoist/mygo/ui/editor_selection.go",
@@ -3417,19 +3897,19 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/editor.go",
-    "sha256": "89d34e1993be3fb6751a4d8ffe0ca4cebb13ec3700d9ba0323fded728765789c"
+    "sha256": "5a360fb21ecbe171629a6f23c62facd270641a3915de606024490de3d8b0d671"
   },
   {
     "path": "github.com/egoist/mygo/ui/effect.go",
-    "sha256": "51d5fd27c6c2cfc27fcc888cb2acca48e074f57d0329cd5b95992d2da72a57fe"
+    "sha256": "3d9e6c0a64674d412b570cea1438254382f6acc1c80f9c39fa05e9bba2b512de"
   },
   {
     "path": "github.com/egoist/mygo/ui/element.go",
-    "sha256": "809a9a91a552b684588fe0cc60968a455c79469ae795bdde4ee669064a076e1f"
+    "sha256": "6d9a29ff1ee44eb75f8364611b64bcaf95e214486814b01b0aeeb1ba5b55556d"
   },
   {
     "path": "github.com/egoist/mygo/ui/engine_video.go",
-    "sha256": "5feb8a3fd8dbead1274f83e7dab1b65f7a1bcf1ecfdf0e63327f444601ee115c"
+    "sha256": "6d9c6639df82158c594fa942d66470b49b538ab3755c5406f8c154e7ead15e2e"
   },
   {
     "path": "github.com/egoist/mygo/ui/feedback.go",
@@ -3453,7 +3933,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/form.go",
-    "sha256": "e91f15ab0aef2c257f259fb45f2148bce447b0025cfe281ec00c9e799732f71c"
+    "sha256": "97de46ecbcb4c9e91bbaa9ecf634d0e271bc6f9bc58bfa8b6106e5ee8edccc22"
   },
   {
     "path": "github.com/egoist/mygo/ui/frame.go",
@@ -3469,7 +3949,11 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/glyphs.go",
-    "sha256": "05b3a51bc4d22403d268e952f25cb75a9c99d98738cf7370c171c83e18973566"
+    "sha256": "37c5dbec9823494d17cbad9c3062962e84b5d36652e442652cb85bb5ab4c3298"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/gpu_android.go",
+    "sha256": "b894df5239b7fe7ae99d8f66f9b1e6d9b36f51b0f05debad2224bbdade804ac8"
   },
   {
     "path": "github.com/egoist/mygo/ui/gpu_darwin.go",
@@ -3481,11 +3965,11 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/gpu_linux.go",
-    "sha256": "c9d8a3903f9d885379e1a47f2c758c17e65f6e7a299dfcce11db0558830a511d"
+    "sha256": "e38275a497b625ecf16414b392202678944e050076ebf23fe6f8ac633258caee"
   },
   {
     "path": "github.com/egoist/mygo/ui/gpu_other.go",
-    "sha256": "ab05af4271d1b13f695857ca4dae09f6557fc6193e26a20c792ced2914137f77"
+    "sha256": "28cb749a02599dea803ff9d333d3cbd55d4bba5e0c75981fabaacb4d43f3b008"
   },
   {
     "path": "github.com/egoist/mygo/ui/gpu_windows.go",
@@ -3497,15 +3981,15 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/gridview.go",
-    "sha256": "8adc523185da99e14eef25e064afdca26b11d682e88eacdda00c088fb487e452"
+    "sha256": "d710669e6df86a62af6cf717c62f61605883b6a9a07f8a6ed3ca834a45169347"
   },
   {
     "path": "github.com/egoist/mygo/ui/group.go",
-    "sha256": "4debff16a28de2bb438853b773c48b34c97e8c02edf0b002363a31f2248032c5"
+    "sha256": "dabc7c569e84d14e0040cf863388c2449064a5d4938f3f6498b4ef94db057960"
   },
   {
     "path": "github.com/egoist/mygo/ui/handler.go",
-    "sha256": "0738033678f39701621f5257f09d9a2dc98685e9099cdc83e507e2d64dc08485"
+    "sha256": "131f98b00180017b54b61bf197acc043a4b5c51dc02fed03d1ee902dbd11ed7a"
   },
   {
     "path": "github.com/egoist/mygo/ui/handles_debug.go",
@@ -3517,7 +4001,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/headless.go",
-    "sha256": "79a3b4f4fb6d150cd6bc37760ed532f40efe8ab882c567827e60d680b3b09c60"
+    "sha256": "debdf465186f81922f54d8640da92774e4ddb922eb4bb9a8bb70c13aec00e6a0"
   },
   {
     "path": "github.com/egoist/mygo/ui/indicators.go",
@@ -3529,7 +4013,11 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/input.go",
-    "sha256": "b033cc72279a0e89f13e494ff73e1d05f3f9d22a4ab905e4fc7d9db80c94f1a3"
+    "sha256": "9d2bd9fbac0d01ef71c5454229f9d44f5b6f23a6dad8be586525d7c5f8e7ce9f"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/inspector_copy.go",
+    "sha256": "381bfcf017cd85cfe8dce4cb0a217e4a7c528fa4beac81479b1da3e12640b2c8"
   },
   {
     "path": "github.com/egoist/mygo/ui/inspector_details.go",
@@ -3569,19 +4057,19 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/inspector_off.go",
-    "sha256": "f520f5866fa6c1295cd867e3aeb21cbf5b0605035c7279c837a953f4f9d151b0"
+    "sha256": "b264612fa67cf79218154bed2f3bb75959d187f578ff4f78e5ba418a222b4d39"
   },
   {
     "path": "github.com/egoist/mygo/ui/inspector_overlay.go",
-    "sha256": "e9cb17f67ffd1eddf8a37cc9be20a01b2be9a00b36305499e1ff807b1d8c4ea1"
+    "sha256": "9779d61e8668d120d60b4caa653d5d763fac789dd1ac4bf4c233f9d3c33aea5d"
   },
   {
     "path": "github.com/egoist/mygo/ui/inspector_panel.go",
-    "sha256": "a6b7fe16fc1524b3827d3be2c1c7610ff6217e0a2e93f72d3de493885e0c6239"
+    "sha256": "1c5b5f31a4ce74c1130f49a9db61e6ce126b5980d3a206dbd974ad8893d1b518"
   },
   {
     "path": "github.com/egoist/mygo/ui/inspector.go",
-    "sha256": "d2b311ce246f58280c6c29b94fb6a4294d694fe838d3b47ad7fff93ff5fe5283"
+    "sha256": "adce9332262f794246bd0f6d9e645d8abb3c5d2dc4d52ae0acdb5ec3dd2e00f4"
   },
   {
     "path": "github.com/egoist/mygo/ui/journal.go",
@@ -3593,19 +4081,23 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/layout.go",
-    "sha256": "5efe4f9080bce53243edf89936c7402a761065846080da621f879dcbd620ce4a"
+    "sha256": "c1266ab616057b56d0b73facf564cd1626027a605ed93efd791a211c2d1e0c8e"
   },
   {
     "path": "github.com/egoist/mygo/ui/layoutcache.go",
-    "sha256": "242bed72068d5186ce71dda3baa41ba554bfcc3b7fcd46401c80aa80bd74dc5a"
+    "sha256": "fb5d2b4ac61c22f70412b6c15660c4e172e24c9dc78c362a69faefb3f5865c12"
   },
   {
     "path": "github.com/egoist/mygo/ui/list_builder.go",
     "sha256": "2aa36064f5734d9d473eb793209e5d467ac8cae46c7afce72283cbbd2450efb2"
   },
   {
+    "path": "github.com/egoist/mygo/ui/list_move.go",
+    "sha256": "5682d5e5f081967f3465a9b76705bf0d383cc362256cfbb190fb4e5a863299e9"
+  },
+  {
     "path": "github.com/egoist/mygo/ui/list.go",
-    "sha256": "42ab6e4cf844def2eb50f7a49077d9a9bd12a6157a319a2d1bb430ff7503b08f"
+    "sha256": "7aaa3c3d75558cca05c06ee656729d1acb4fedc5810447967cdfb5cd728fe3a3"
   },
   {
     "path": "github.com/egoist/mygo/ui/local_close.go",
@@ -3629,7 +4121,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/material.go",
-    "sha256": "bfd897be283b7a9e7eeae185e980271db9e20037b5d00082d01969b61408cf08"
+    "sha256": "e7b8647e129d4c0ecc8604560b8a5e0332486d6cc78521850b5baa497ded4fe4"
   },
   {
     "path": "github.com/egoist/mygo/ui/menu.go",
@@ -3641,11 +4133,11 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/morph.go",
-    "sha256": "db6e979de8044083d8caa76a200ce160cb2ca7bb7d663b558d60c96acb6310f2"
+    "sha256": "abd2116871cc26bd7d49678453746985aa4dc164f731876e6adc9235bac981b6"
   },
   {
     "path": "github.com/egoist/mygo/ui/motion.go",
-    "sha256": "886d28e137c3949a02d1254ba3a35a84515bf9f2a22b87035aed9b4b81ca4362"
+    "sha256": "8e00582e238176c72ea453180bc4b69599aa2fa125bf60572c73c94d69e0ed8b"
   },
   {
     "path": "github.com/egoist/mygo/ui/nativeglass.go",
@@ -3657,51 +4149,71 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/outline.go",
-    "sha256": "ab8188943288b0d0684d54857b3813f9dae1eb6625fff39ae557ca18b4a50017"
+    "sha256": "054c813508affaf40236cd23e948d2b9ad6b253c5694b78ef7fcb6666d572878"
   },
   {
     "path": "github.com/egoist/mygo/ui/paint.go",
-    "sha256": "f7f23a84fb00ca31b2a46afe4b7fb61e96d3688ec93d47a7df1051c3c55e4dca"
+    "sha256": "fc64d75c13840e498e65f1b763d36b692a23b383c046b3a1c625f44942fda26e"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/path_spill.go",
+    "sha256": "ca89df7979aa6ab6e3f8d2baa0ad2b460b49f5049e5325986d4933d97ccd95bf"
   },
   {
     "path": "github.com/egoist/mygo/ui/path.go",
-    "sha256": "69f8604fd4158219332cddc09217320e7f9600f4e7a632c97fcd29e9ab40e63c"
+    "sha256": "744380d14204556b1b7f75fdcb4b5ea7aca5074f2dff39d79df94aacdae81093"
   },
   {
     "path": "github.com/egoist/mygo/ui/polyline.go",
-    "sha256": "2369bba3294dc7f476ed8d060d0413b3038f44ab02406a4faa4902303e685a18"
+    "sha256": "526189160b0539486d20b8efc38f7a6eba527b4b6e32b2c63be123221859e9bb"
   },
   {
     "path": "github.com/egoist/mygo/ui/popovermenu.go",
-    "sha256": "6e148db84d698eb063c0ef3173a10b485918cf25feb42a1432f801a444e48280"
+    "sha256": "85955e48741352551a249d1b04b4f7e3bcc7311c6c4fb2842e5cc326f4037470"
   },
   {
     "path": "github.com/egoist/mygo/ui/pose.go",
-    "sha256": "bd1f2e0df2a62ff92fb0b2d6130cce1c570c27b029d01b84a42fa5c7bf90b41b"
+    "sha256": "097605c96c2dbd9e6fd9bdb1e84c1b64169c531df8207fab25dcceb932772028"
   },
   {
     "path": "github.com/egoist/mygo/ui/preferences.go",
     "sha256": "4f32f5f7115367f7c6c0f10a60f0a76c92d087586f52ef946bcc1297b65ec8d6"
   },
   {
+    "path": "github.com/egoist/mygo/ui/rasterscale.go",
+    "sha256": "4fc1b9ce17a44dc30efc2442f3f0c97b9c0374e69b7dfa19250a4db686f6b0de"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/recorder.go",
+    "sha256": "60c147abdd013eaeb2f4b5a5dc3e00675c1f651bbd76a273bdefb763d0b12896"
+  },
+  {
     "path": "github.com/egoist/mygo/ui/ref.go",
-    "sha256": "4b8e03bf5054b0952b497e76f97417d936571fc0fdfa3a308e2df284301619a0"
+    "sha256": "c3a17c5ade9f41e5be68d95bbe49249cfb453f2e30bf7f563471fb35c1e27620"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/refresh.go",
+    "sha256": "41238d80bebd05a3433c81466548e16dcb19222bcbf4681baca6e3d82e2f456c"
   },
   {
     "path": "github.com/egoist/mygo/ui/repaint.go",
-    "sha256": "dd8eb25a3cbbf8d25953e10f2b9db62a957f4147af329748e07ec97ffa31b574"
+    "sha256": "c0ed79d3dd9f157906361217b86f27cc85401d809e2e495f85615aa30e99d707"
   },
   {
     "path": "github.com/egoist/mygo/ui/richtext.go",
-    "sha256": "f18061eca0ad174a653c47985ba5bc3db51050b7e99bcbe4f1137bb83bd938a3"
+    "sha256": "cd618ac6b87cb5b56ae39b7b8b60187efe9cf3fb18c22374d26052a94becc151"
   },
   {
     "path": "github.com/egoist/mygo/ui/router_js.go",
     "sha256": "a927ddfa9b1b6fc44d860b1b7f9468ab409c2ce21fbddbc6d84d249061daefa8"
   },
   {
+    "path": "github.com/egoist/mygo/ui/router_stack.go",
+    "sha256": "8646aff1e89acf67fbf7706db7ac65ca561841db1f32be5a899c5427093dae31"
+  },
+  {
     "path": "github.com/egoist/mygo/ui/router.go",
-    "sha256": "689b8a7fc2e467623b9319c1f232f83783d899c2aa6455fda8afc6018931c2d5"
+    "sha256": "a4dd4750e192cce3b61ec8e22b336a147cfc1d8a8100636570a22d4b3cb7f618"
   },
   {
     "path": "github.com/egoist/mygo/ui/rowclick.go",
@@ -3709,7 +4221,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/runtime.go",
-    "sha256": "9f3224eb339e175519a4ed360ebab979ca457d80bf82bc3e9d550f759566afbc"
+    "sha256": "ba08e33f5c43cb8ee8cedf57b34c1f2f09505a56da835064623aedb7e09432dd"
   },
   {
     "path": "github.com/egoist/mygo/ui/scope.go",
@@ -3725,7 +4237,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/selection.go",
-    "sha256": "00556190945f700893e1cb209b02ad8bf432113eda18ea994ea748195b6b215f"
+    "sha256": "82508066504a4518498970368f6e80b676160af3c3d387247b47bfaf40550ade"
   },
   {
     "path": "github.com/egoist/mygo/ui/services.go",
@@ -3733,19 +4245,19 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/shader/code_darwin.go",
-    "sha256": "560e82f69fe5ba9fe852f33a7a3d50b9cfb70d7e9b75ae59bbbcc7c33857b320"
+    "sha256": "8c90533299f01300f06c0d95ac4022a5284b378f47072f2df27de4c6704a502a"
   },
   {
     "path": "github.com/egoist/mygo/ui/shader/code_other.go",
-    "sha256": "b4cae01e62c2ccb4d732e22d7d993ea66be3ead13a50abe05b775b3834252121"
+    "sha256": "dd2bef461f3cae851f236d05ba1696d58f7447a61a552564df987a0c2b9b660f"
   },
   {
     "path": "github.com/egoist/mygo/ui/shader/code_windows.go",
-    "sha256": "0bf82303b8d3e43d53c43cbb6a22a62b6af36e6b7fc911930102338152083f89"
+    "sha256": "98200b18c593f628839ad5e028fd034ed7defafa68bd36e70645c17d1fec2d8c"
   },
   {
     "path": "github.com/egoist/mygo/ui/shader/shader.go",
-    "sha256": "599c0de148bcdf8896a5809d7e19fff2e754a2d9e0dd31a3bcb45b7fd021d1d9"
+    "sha256": "2417c2e90bb2412bad2e35ad0b1093861440ba81c8aeb71ceba34f4de1cfb0c0"
   },
   {
     "path": "github.com/egoist/mygo/ui/shader/values.go",
@@ -3773,11 +4285,11 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/svg.go",
-    "sha256": "c8f25c032cc88e8bf3d5157fcddd7bebf2d1705cb5ad90890d2383bf04ba5bee"
+    "sha256": "3f98677c1a7c071e590a3a0b7b88bbd2fdf90a942eef54cb2d2e549efa684ea8"
   },
   {
     "path": "github.com/egoist/mygo/ui/table.go",
-    "sha256": "5957c7daa657ae7eb399cc8e57cd6f0b745aad0b160d90ba32b4ec25f2f71de5"
+    "sha256": "e4e6987b1f7684bc8e3027bc92dd4604be3bb195a2551d4b4a22416b5be16144"
   },
   {
     "path": "github.com/egoist/mygo/ui/tabs.go",
@@ -3785,7 +4297,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/tester_access.go",
-    "sha256": "2033e58bcb0283606cc389f71d8f422fb4691917256621bbd36e495a8f6a5333"
+    "sha256": "bcf75e27bb71f6e5f4a444cb2f292f9eac30ca7270388099a90f3933aa3a4d60"
   },
   {
     "path": "github.com/egoist/mygo/ui/tester_inline_target_test.go",
@@ -3797,39 +4309,39 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/text_input_client.go",
-    "sha256": "ad5e3d2158bef9a6e0ba11a82dbc5ea67af98624c86337787844b21c39de2aab"
+    "sha256": "c2b64be86d7b050d014c286e2874d686997e943c8dfd9f82cf6f95ca4f7306f0"
   },
   {
     "path": "github.com/egoist/mygo/ui/text_layout.go",
-    "sha256": "896d0d5572ead18f4e8f434fc6eaa9107e30759d0ba306555863a567682d76d5"
+    "sha256": "9b211ddc1cee2e5fa788eae948748e5ca9ef43e2d3e427daac2416b9dec617ca"
   },
   {
     "path": "github.com/egoist/mygo/ui/textarea.go",
-    "sha256": "08dbca475599a4d833125a5e8f1a00fea6bcd91ca6f4ccd646f95f7a13a3f1b8"
+    "sha256": "3f0962ebc6f73063cd872bd3b638df5c49f7b35283e287315cccc237873eda18"
   },
   {
     "path": "github.com/egoist/mygo/ui/textbuffer_input.go",
-    "sha256": "390084d329e990e4f5917944ea11caaff2e5f04e500991a0a593e37ac8e4bd40"
+    "sha256": "6857b32fd15c997026965e7e97d18a9653729b17613dedb527e5b536c5041d0c"
   },
   {
     "path": "github.com/egoist/mygo/ui/textbuffer.go",
-    "sha256": "f0fc106b246d8752618bf445e9f8c57b7f72483f1b0c2deedb24cb5f4d20bb59"
+    "sha256": "30ce7a9d89a8994d3cb3cbe6e368d5e5d155de7f99c209c583a201b0ad8e6cc3"
   },
   {
     "path": "github.com/egoist/mygo/ui/textinput.go",
-    "sha256": "4b33a12f5575ac7c76f91534846ec8e5b043720ee2b492a228606144e587e595"
+    "sha256": "6ff5a31053a72944ba31fc83744960028bf488f032b0420c5601fe89f971a40e"
   },
   {
     "path": "github.com/egoist/mygo/ui/textlines.go",
-    "sha256": "054ade0f2dfa0d9972fb01e4aef09f13acb693a200ec7019a71ecf38cf79c991"
+    "sha256": "74f496e3d9cdc296de0416c20eff22cc35307e9e6b1911da50ac95c57b49a816"
   },
   {
     "path": "github.com/egoist/mygo/ui/textselection.go",
-    "sha256": "75cbb24d0e1c25eaf44741e1c14b6e2f31554b7124fe115ee6bc1093d6ca1ef1"
+    "sha256": "c5f8d3aa826a19b7fbac6a3bea6da5ab6d6d0149d4c9fc0a56925167e2e0c758"
   },
   {
     "path": "github.com/egoist/mygo/ui/theme.go",
-    "sha256": "6410de1881720514213fe28d8c45399805e4371b405cfdaf8726376352274077"
+    "sha256": "7076b52563ce87b5803c8fa2a2490ba873d604c7353a8542363af0713649cf12"
   },
   {
     "path": "github.com/egoist/mygo/ui/timeinput.go",
@@ -3849,11 +4361,31 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/toolbar.go",
-    "sha256": "e86c5531ea1127de1caea8320bce4a8d7d8f518115c6e6fb8f4dc0460ba50c87"
+    "sha256": "10392bc6aedf582d05617cd43ddaf01f3cfcb97126a27c49776b7b46e3c7d8e1"
   },
   {
     "path": "github.com/egoist/mygo/ui/tooltip.go",
     "sha256": "5c2678202046274a90e8c4a0119e7afc6a6953eebad3ae0360cc77cee637133d"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/touch_back.go",
+    "sha256": "7d389752277d84259826185ad599fcbe75032a25807459adfbb9f0b4a76d2e89"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/touch_mobile.go",
+    "sha256": "4433f03af4a0fc97f2a4c7b435aa07479d27266af81a637062c4ecb6e2977b10"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/touch_text.go",
+    "sha256": "c9d7ff15a500b3a0c2a82ac95122dde64c20a30e303386424a5030841a9e3b50"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/touch.go",
+    "sha256": "586a92e6712b73b56d2abc4d80d804ba8007e6dd2c6c24bb8d832ca335f3385e"
+  },
+  {
+    "path": "github.com/egoist/mygo/ui/touches.go",
+    "sha256": "e4ee5708e4721590143dfab4b358e9ab6a8ec68122623f95feabcd3bdae25f89"
   },
   {
     "path": "github.com/egoist/mygo/ui/transform.go",
@@ -3861,7 +4393,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/transition.go",
-    "sha256": "6008a839724070f2fc9c5e831617bda4d46a0ecd1fa965b9f58c7ef00c90f695"
+    "sha256": "da6633a3b00b19d24dfca7aeb65bbc8124e039379d69158b3e589fb49b35dce1"
   },
   {
     "path": "github.com/egoist/mygo/ui/tree.go",
@@ -3873,7 +4405,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/video.go",
-    "sha256": "958bb6ec36cad9aaabbcb7b65a726814cfe85442a7c0f491c8f9ae8c4f4a7008"
+    "sha256": "efaf1db12b2d1e5642feb4ea4109786c5eea149af8e04fde749c11346eee0e38"
   },
   {
     "path": "github.com/egoist/mygo/ui/visibility.go",
@@ -3881,7 +4413,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/webview.go",
-    "sha256": "4d7861d4631df4b9488fc8aa950dff80633009bd8eb647f5dc6c572b446eed55"
+    "sha256": "8f04072c441be417431c077a9f29fbbb5b78c2dfb35528fb8eef9d7e554a486b"
   },
   {
     "path": "github.com/egoist/mygo/ui/wheel.go",
@@ -3901,7 +4433,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/window.go",
-    "sha256": "ee0fe6099d8157eb84dbffe7ac2c60df117fdc7904ac9cc1a82484085f7a5483"
+    "sha256": "45169823346a7d33abe811ae89d90f207fcabb3fb439c424624f65e132a81375"
   },
   {
     "path": "github.com/egoist/mygo/ui/yuv.go",
@@ -3913,7 +4445,7 @@
   },
   {
     "path": "github.com/egoist/mygo/ui/zoom.go",
-    "sha256": "5f8b4e495e531bac2e65532c200dfe1cdcd95b454f7e3269d883bfdf0d5fb93e"
+    "sha256": "70e34d3383c7307387a6620234c7a2fada632f112ea708f3003d6b1d641de4de"
   },
   {
     "path": "github.com/egoist/mygo/updater_js.go",
@@ -3921,7 +4453,7 @@
   },
   {
     "path": "github.com/egoist/mygo/updater.go",
-    "sha256": "d1fd3ea79d84ddfea42f6b6171a9cf79188b0b40d70f356ee5851f0630b53084"
+    "sha256": "73f6c7d21364915f480331267a8d961da49151785ce700d8ca55357ccd9dd744"
   },
   {
     "path": "github.com/egoist/mygo/vibrancy.go",
@@ -3929,19 +4461,19 @@
   },
   {
     "path": "github.com/egoist/mygo/watch_entries_darwin.go",
-    "sha256": "4e536e4221a99130407c1c6dde1510366c4de96872616f7d8340b7d65f0e66ba"
+    "sha256": "8c14578fa0bbcf903d4409ae54acdb75012fbe6598c46bda35b4c73f16b87f7d"
   },
   {
     "path": "github.com/egoist/mygo/watch_entries_other.go",
-    "sha256": "bd12f00a1af2c7633f5a5853e538b05a44696567b3501bee91b7fc198aea561c"
+    "sha256": "fe6a5f6688be7198f038a3810b72bdc8cf6a241ccd180d59f0e9d665aad59de1"
   },
   {
     "path": "github.com/egoist/mygo/watch_hints_linux.go",
-    "sha256": "e446a2e4321099a7f62e8647ac7d6e5e7a4ca729eb6e3fb7bed90f7fbf3ae5c1"
+    "sha256": "5725ee3a0c0dad541aa617ba711b7bc549b51d7c8107a45017da08067bdaa145"
   },
   {
     "path": "github.com/egoist/mygo/watch_hints_other.go",
-    "sha256": "ee0e74e7e34b49ad5d63c4b89d35189ed86d6e15b2bf0d7b1e5599d335671361"
+    "sha256": "44ba16a5783ba68553a8803962c055d93217a6688456d5dc1d589851d023ae4c"
   },
   {
     "path": "github.com/egoist/mygo/watch_hints.go",
@@ -3989,7 +4521,7 @@
   },
   {
     "path": "github.com/egoist/mygo/window.go",
-    "sha256": "ac15b3649f8945601c246713fe424e0992997ab2c34ea7471af3edbef4726d22"
+    "sha256": "26750befc34219f2ef3f47addc4102d3beec906fee236abfbf9ba9c2d1fe9e55"
   },
   {
     "path": "github.com/go-text/typesetting/bidi/bidi.go",
@@ -5997,7 +6529,7 @@
   },
   {
     "path": "modules.txt",
-    "sha256": "a1ebc0cb38a87e6b07e6d6cc414d83ad4bc2f7e64d645411ac1d90225e82cf6e"
+    "sha256": "94c61d2b9afa51a84b4597ba711a28c71c0cbe62f2c5263416c15110733bda1e"
   },
   {
     "path": "rsc.io/qr/coding/qr.go",

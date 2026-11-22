@@ -1,8 +1,8 @@
 [
   {
     "path": "third_party/NOTICE.md",
-    "sha256": "aefb9d9f753857ca01813a1f8df911502ee2bc20f6c10b2f4282448817128b97",
-    "bytes": 3121
+    "sha256": "d733349dbcbd373120718d924efd70e5eea753a1feba149e1dbba9db81672f5c",
+    "bytes": 3170
   },
   {
     "path": "third_party/go/LICENSE",
