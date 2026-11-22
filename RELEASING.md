@@ -2,7 +2,7 @@
 
 ## Windows x64
 
-需要 Git、PowerShell 和 Go 1.27.3。完整依赖已包含在 `vendor/` 中。
+需要 Git、PowerShell 和 Go 1.27.4。完整依赖已包含在 `vendor/` 中。
 
 在仓库根目录运行：
 
