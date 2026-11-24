@@ -56,3 +56,51 @@ func TestScrubSeeksOnRelease(t *testing.T) {
 		t.Errorf("let go at 60%%, at %v", pos)
 	}
 }
+
+// Losing window focus cancels a scrub without seeking, and the next drag can still seek.
+func TestScrubCancelsOnFocusLoss(t *testing.T) {
+	a := newTestApp()
+	a.settings = defaultSettings()
+	a.pl.Cue([]netease.Track{{ID: 7, Name: "宝船", Duration: 200000}})
+	out := audio.NewPlayer(&silence{})
+	out.SetVolume(0)
+	out.Play()
+	a.pl.Attach(out)
+	defer out.Close()
+
+	a.nowPlaying = true
+	tt := ui.NewTester(a.view, 1200, 800)
+	tt.SetFocused(true)
+	tt.Advance(time.Second)
+	tt.Frame()
+	bar, ok := tt.Find("播放进度")
+	if !ok {
+		t.Fatal("no progress bar")
+	}
+	y := bar.Y + bar.H/2
+	at := func(f float32) float32 { return bar.X + bar.W*f }
+
+	tt.Press(at(0.25), y)
+	tt.Frame()
+	tt.Move(at(0.6), y)
+	tt.Frame()
+	before := a.pl.Position()
+	tt.SetFocused(false)
+	tt.Frame()
+	tt.Frame()
+	if after := a.pl.Position(); after < before || after > before+5*time.Second {
+		t.Fatalf("losing focus changed playback position from %v to %v", before, after)
+	}
+
+	tt.SetFocused(true)
+	tt.Press(at(0.25), y)
+	tt.Frame()
+	tt.Move(at(0.4), y)
+	tt.Frame()
+	tt.Release(at(0.4), y)
+	tt.Frame()
+	tt.Frame()
+	if pos := a.pl.Position(); pos < 70*time.Second || pos > 90*time.Second {
+		t.Errorf("let go at 40%% after cancellation, at %v", pos)
+	}
+}

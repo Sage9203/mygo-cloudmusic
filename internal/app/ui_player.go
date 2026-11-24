@@ -43,6 +43,9 @@ func (a *app) scrubber(c *ui.Context, st *scrubState, track, fill ui.Color, heig
 			st.held = ev.Button == 0
 		case ui.InputPointerUp:
 			st.held = false
+			if ev.Canceled {
+				st.active = false
+			}
 		}
 		return false
 	})
