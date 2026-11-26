@@ -12,6 +12,14 @@ powershell -NoProfile -File scripts/build-windows.ps1
 
 脚本会运行测试、静态检查和 Windows 构建，输出位于 `build/windows-amd64/`。首次打包可能需要下载安装器工具；`-Offline` 仅用于已准备好相关缓存的环境。
 
+只需要便携 EXE 时，可用下面的命令跳过 NSIS 安装器构建。
+
+```powershell
+powershell -NoProfile -File scripts/build-windows.ps1 -Offline -SkipInstaller
+```
+
+这条命令也会运行完整检查。如果当前工作区不能创建构建暂存目录，可以在可写的本机临时目录中解压对应源码，再运行同一条命令。
+
 ## 检查
 
 账号交互测试使用模拟网络和临时目录，不需要真实账号。带 `LIVE` 的联网测试须由开发者主动启用。更多说明见 [测试](docs/TESTING.md)。

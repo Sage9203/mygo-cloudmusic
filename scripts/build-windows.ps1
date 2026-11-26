@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([switch]$Offline)
+param([switch]$Offline, [switch]$SkipInstaller)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $keys = @('GOTOOLCHAIN','CGO_ENABLED','GOPROXY','GOSUMDB','LIVE','MYGO_OUTPUT_PROBE','NM_SESSION','NM_FRAMES','NM_LOGIN_FRAME','SPEECH_ROOT','SPEECH_MODEL','SPEECH_WAV','SHERPA_ONNX_DIR')
@@ -23,7 +23,9 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
     go tool mygo vet .
     if ($LASTEXITCODE -ne 0) { throw 'MyGo checks failed' }
-    go tool mygo build -platform windows/amd64
+    $buildArgs = @('-platform', 'windows/amd64')
+    if ($SkipInstaller) { $buildArgs += '-skip-installer' }
+    go tool mygo build @buildArgs
     if ($LASTEXITCODE -ne 0) { throw 'Windows build failed' }
     Write-Host 'Built in build/windows-amd64. Review RELEASING.md before distribution.'
 } finally {
